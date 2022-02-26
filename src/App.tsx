@@ -9,7 +9,7 @@ export const App = () => {
     <div className={styles.app}>
       <H size={'h3'}>tt</H>
       <Button>В корзину</Button>
-      <P size={'m'}>что-то написано</P>
+      <P size={'l'}>что-то написано</P>
     </div>
   );
 };
