@@ -5,10 +5,18 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: linear-gradient(360deg, #211F20 0%, #44403F 100%);
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+:root {
+  --tetxGray: #cfcfcf;
+  --textWhite: #ffffff;
+  --greenGradient: linear-gradient(114.93deg, #618967 5.11%, #72A479 94%);
+  --green: #618967;
 }
