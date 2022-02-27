@@ -1,0 +1,11 @@
+.card {
+  background: var(--brownGradient);
+  border-radius: 10px;
+  width: 327px;
+
+  img {
+    width: 327px;
+    height: 227px;
+    border-radius: 10px 10px 0 0;
+  }
+}

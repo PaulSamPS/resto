@@ -20,5 +20,6 @@
         "@typescript-eslint/eslint-plugin"
     ],
     "rules": {
+        "max-len": "off"
     }
 }
