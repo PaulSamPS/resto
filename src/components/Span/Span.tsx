@@ -1,9 +1,9 @@
 import React from 'react';
-import styles from './P.module.scss';
-import {PProps} from './P.props';
 import cn from 'classnames';
+import {SpanProps} from './Span.props';
+import styles from '../P/P.module.scss';
 
-export const P: React.FC<PProps> = ({children, size, className}) => {
+export const Span: React.FC<SpanProps> = ({size, className, children}) => {
   switch (size) {
     case 'l':
       return <p className={cn(styles.l, className)}>{ children }</p>;
@@ -15,3 +15,4 @@ export const P: React.FC<PProps> = ({children, size, className}) => {
       return <></>;
   }
 };
+
