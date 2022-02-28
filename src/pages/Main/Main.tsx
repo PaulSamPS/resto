@@ -4,6 +4,7 @@ import axios from 'axios';
 import {ProductInterface} from '../../interfaces/product.interface';
 import {Slider} from '../../components/Slider/Slider';
 import styles from './Main.module.scss';
+import {H} from '../../components/H/H';
 
 export const Main: React.FC = (): JSX.Element => {
   const [products, setProducts] = React.useState<ProductInterface[]>([]);
@@ -19,8 +20,11 @@ export const Main: React.FC = (): JSX.Element => {
   return (
     <div className={styles.main}>
       <Slider />
-      <div className={styles.productBlock}>
-        {products.map((p) => <Card key={p.id} product={p}/>)}
+      <div className={styles.meatDishes}>
+        <H size={'h1'} className={styles.title}>Горячие блюда</H>
+        <div className={styles.productBlock}>
+          {products.map((p) => <Card key={p.id} product={p}/>)}
+        </div>
       </div>
     </div>
   );

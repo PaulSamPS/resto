@@ -1,7 +1,15 @@
 .main {
-  .productBlock {
-    display: flex;
-    column-gap: 20px;
-    overflow: hidden;
+  .meatDishes {
+    .title {
+      margin-left: 115px;
+      padding-left: 20px;
+      border-left: 4px solid var(--green);
+    }
+    .productBlock {
+      padding: 20px 0;
+      display: flex;
+      column-gap: 20px;
+      overflow: hidden;
+    }
   }
 }
