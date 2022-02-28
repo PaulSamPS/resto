@@ -5,7 +5,7 @@ import {Main} from './pages/Main/Main';
 import {Cart} from './pages/Cart/Cart';
 import styles from './App.module.scss';
 
-export const App: React.FC = () => {
+export const App: React.FC = (): JSX.Element => {
   return (
     <div className={styles.app}>
       <BrowserRouter>

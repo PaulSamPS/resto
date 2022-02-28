@@ -3,7 +3,7 @@ import styles from './P.module.scss';
 import {PProps} from './P.props';
 import cn from 'classnames';
 
-export const P: React.FC<PProps> = ({children, size, className, ...props}) => {
+export const P: React.FC<PProps> = ({children, size, className, ...props}): JSX.Element => {
   switch (size) {
     case 'l':
       return <p className={cn(styles.l, className)} {...props}>{ children }</p>;

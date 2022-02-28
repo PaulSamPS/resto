@@ -1,0 +1,45 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  .sliderBlock {
+    display: flex;
+    width: 1440px;
+    overflow: hidden;
+    border-radius: 10px;
+    height: 484px;
+    position: relative;
+
+    &:hover {
+      button {
+        svg {
+          fill: var(--green);
+        }
+      }
+    }
+
+    .slider {
+      width: 1440px;
+      text-align: center;
+      transition: all ease 1s;
+      height: 484px;
+
+      img {
+        height: 484px;
+        width: 1440px;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .dots {
+    display: flex;
+    bottom: -30px;
+    right: 270px;
+    position: unset;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+  }
+}

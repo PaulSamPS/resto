@@ -10,7 +10,7 @@ import {ReactComponent as MinusIcon} from './Icons/minus.svg';
 import {ReactComponent as PlusIcon} from './Icons/plus.svg';
 import styles from './Card.module.scss';
 
-export const Card: React.FC<CardProps> = ({className, product}) => {
+export const Card: React.FC<CardProps> = ({className, product}): JSX.Element => {
   const [addToCart, setAddToCart] = React.useState<boolean>(false);
 
   return (

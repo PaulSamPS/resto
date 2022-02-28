@@ -2,9 +2,10 @@ import React from 'react';
 import {Card} from '../../components/Card/Card';
 import axios from 'axios';
 import {ProductInterface} from '../../interfaces/product.interface';
+import {Slider} from '../../components/Slider/Slider';
 import styles from './Main.module.scss';
 
-export const Main: React.FC = () => {
+export const Main: React.FC = (): JSX.Element => {
   const [products, setProducts] = React.useState<ProductInterface[]>([]);
 
   React.useEffect(() => {
@@ -17,7 +18,10 @@ export const Main: React.FC = () => {
 
   return (
     <div className={styles.main}>
-      {products.map((p) => <Card key={p.id} product={p}/>)}
+      <Slider />
+      <div className={styles.productBlock}>
+        {products.map((p) => <Card key={p.id} product={p}/>)}
+      </div>
     </div>
   );
 };
