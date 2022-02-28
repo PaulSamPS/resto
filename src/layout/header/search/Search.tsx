@@ -1,14 +1,15 @@
 import React from 'react';
-import styles from './Search.module.scss';
 import {Input} from '../../../components/Input/Input';
 import {ReactComponent as LocationIcon} from './icons/location.svg';
 import {ReactComponent as SearchIcon} from './icons/search.svg';
+import styles from './Search.module.scss';
 
-export const Search: React.FC = (): JSX.Element => {
+export const Search: React.FC = () => {
   const [search, setSearch] = React.useState<string>('');
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key == 'Enter') {
+      console.log(e);
     }
   };
 
