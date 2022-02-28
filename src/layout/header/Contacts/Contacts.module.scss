@@ -1,0 +1,32 @@
+.contacts {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 40px;
+
+  .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--green);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    transition: transform ease .2s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  .phone {
+    display: flex;
+    flex-direction: column;
+
+    .number {
+      font-weight: 700;
+      color: var(--textWhite);
+    }
+  }
+}
