@@ -24,6 +24,10 @@
     display: flex;
     flex-direction: column;
 
+    .title {
+      color: var(--tetxGray);
+    }
+
     .number {
       font-weight: 700;
       color: var(--textWhite);

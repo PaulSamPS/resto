@@ -1,7 +1,7 @@
 import React from 'react';
 import cn from 'classnames';
 import {SpanProps} from './Span.props';
-import styles from '../P/P.module.scss';
+import styles from './Span.module.scss';
 
 export const Span: React.FC<SpanProps> = ({size, className, children, ...props}) => {
   switch (size) {
