@@ -5,7 +5,7 @@ import {Button} from '../../components/Button/Button';
 import {Span} from '../../components/Span/Span';
 import styles from './Header.module.scss';
 
-export const Header = () => {
+export const Header: React.FC = (): JSX.Element => {
   return (
     <div className={styles.header}>
       <h1 className={styles.logo}>LOGOS</h1>

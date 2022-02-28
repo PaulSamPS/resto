@@ -5,7 +5,7 @@ export interface ISize {
     size: 'h1' | 'h2' | 'h3'
 }
 
-export const H: React.FC<ISize> = ({children, size, ...props}) => {
+export const H: React.FC<ISize> = ({children, size, ...props}): JSX.Element => {
   switch (size) {
     case 'h1':
       return <h1 className={styles.h1} {...props}>{children}</h1>;

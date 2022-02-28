@@ -3,7 +3,7 @@ import {ReactComponent as CallingIcon} from './icons/calling.svg';
 import {Span} from '../../../components/Span/Span';
 import styles from './Contacts.module.scss';
 
-export const Contacts = () => {
+export const Contacts: React.FC = (): JSX.Element => {
   return (
     <div className={styles.contacts}>
       <div className={styles.icon}>

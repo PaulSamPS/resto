@@ -4,7 +4,7 @@ import {ReactComponent as LocationIcon} from './icons/location.svg';
 import {ReactComponent as SearchIcon} from './icons/search.svg';
 import styles from './Search.module.scss';
 
-export const Search: React.FC = () => {
+export const Search: React.FC = (): JSX.Element => {
   const [search, setSearch] = React.useState<string>('');
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {

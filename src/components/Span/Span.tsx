@@ -3,7 +3,7 @@ import cn from 'classnames';
 import {SpanProps} from './Span.props';
 import styles from './Span.module.scss';
 
-export const Span: React.FC<SpanProps> = ({size, className, children, ...props}) => {
+export const Span: React.FC<SpanProps> = ({size, className, children, ...props}): JSX.Element => {
   switch (size) {
     case 'l':
       return <span className={cn(styles.l, className)} {...props}>{ children }</span>;
