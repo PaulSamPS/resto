@@ -1,7 +1,8 @@
 {
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "node": true
     },
     "extends": [
         "eslint:recommended",
@@ -21,6 +22,7 @@
         "@typescript-eslint/eslint-plugin"
     ],
     "rules": {
-        "max-len": "off"
+        "max-len": "off",
+        "linebreak-style": "off"
     }
 }

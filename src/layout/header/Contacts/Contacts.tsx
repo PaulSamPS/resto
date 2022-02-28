@@ -10,7 +10,7 @@ export const Contacts = () => {
         <CallingIcon/>
       </div>
       <div className={styles.phone}>
-        <Span size={'m'}>Контакты:</Span>
+        <Span size={'m'} className={styles.title}>Контакты:</Span>
         <Span size={'l'} className={styles.number}>+7 (912) 345-67-89</Span>
       </div>
     </div>

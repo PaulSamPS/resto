@@ -1,0 +1,212 @@
+[
+  {
+    "id": 1,
+    "name": "Ягненок",
+    "image": "https://lamajo-pizza.ru/images/virtuemart/product/%D0%A9%D0%B5%D0%B4%D1%80%D1%8B%D0%B9%20%D1%8F%D0%B3%D0%BD%D0%B5%D0%BD%D0%BE%D0%BA%20%2001.jpg",
+    "description": "помидор, сыр фета, масло подсолнечное, капуста пекинская, \nперец сладкий красный, огурцы, оливки без косточек",
+    "weight": 210,
+    "price": 529,
+    "nutritionalValue": [
+      {
+        "id": 1,
+        "name": "Белки",
+        "value": "17.23"
+      },
+      {
+        "id": 2,
+        "name": "Жиры",
+        "value": "7.63"
+      },
+      {
+        "id": 3,
+        "name": "Углеводы",
+        "value": "22.35"
+      },
+      {
+        "id": 4,
+        "name": "ККал",
+        "value": "234"
+      },
+      {
+        "id": 4,
+        "name": "Вес",
+        "value": "210"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Цыпленок",
+    "image": "https://lamajo-pizza.ru/images/virtuemart/product/%D0%A9%D0%B5%D0%B4%D1%80%D1%8B%D0%B9%20%D1%8F%D0%B3%D0%BD%D0%B5%D0%BD%D0%BE%D0%BA%20%2001.jpg",
+    "description": "помидор, сыр фета, масло подсолнечное, капуста пекинская, \nперец сладкий красный, огурцы, оливки без косточек",
+    "weight": 210,
+    "price": 529,
+    "nutritionalValue": [
+      {
+        "id": 1,
+        "name": "Белки",
+        "value": "17.23"
+      },
+      {
+        "id": 2,
+        "name": "Жиры",
+        "value": "7.63"
+      },
+      {
+        "id": 3,
+        "name": "Углеводы",
+        "value": "22.35"
+      },
+      {
+        "id": 4,
+        "name": "ККал",
+        "value": "234"
+      },
+      {
+        "id": 4,
+        "name": "Вес",
+        "value": "210"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Барашек",
+    "image": "https://lamajo-pizza.ru/images/virtuemart/product/%D0%A9%D0%B5%D0%B4%D1%80%D1%8B%D0%B9%20%D1%8F%D0%B3%D0%BD%D0%B5%D0%BD%D0%BE%D0%BA%20%2001.jpg",
+    "description": "помидор, сыр фета, масло подсолнечное, капуста пекинская, \nперец сладкий красный, огурцы, оливки без косточек",
+    "weight": 210,
+    "price": 529,
+    "nutritionalValue": [
+      {
+        "id": 1,
+        "name": "Белки",
+        "value": "17.23"
+      },
+      {
+        "id": 2,
+        "name": "Жиры",
+        "value": "7.63"
+      },
+      {
+        "id": 3,
+        "name": "Углеводы",
+        "value": "22.35"
+      },
+      {
+        "id": 4,
+        "name": "ККал",
+        "value": "234"
+      },
+      {
+        "id": 4,
+        "name": "Вес",
+        "value": "210"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Рулька",
+    "image": "https://lamajo-pizza.ru/images/virtuemart/product/%D0%A9%D0%B5%D0%B4%D1%80%D1%8B%D0%B9%20%D1%8F%D0%B3%D0%BD%D0%B5%D0%BD%D0%BE%D0%BA%20%2001.jpg",
+    "description": "помидор, сыр фета, масло подсолнечное, капуста пекинская, \nперец сладкий красный, огурцы, оливки без косточек",
+    "weight": 210,
+    "price": 529,
+    "nutritionalValue": [
+      {
+        "id": 1,
+        "name": "Белки",
+        "value": "17.23"
+      },
+      {
+        "id": 2,
+        "name": "Жиры",
+        "value": "7.63"
+      },
+      {
+        "id": 3,
+        "name": "Углеводы",
+        "value": "22.35"
+      },
+      {
+        "id": 4,
+        "name": "ККал",
+        "value": "234"
+      },
+      {
+        "id": 4,
+        "name": "Вес",
+        "value": "210"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Курица",
+    "image": "https://lamajo-pizza.ru/images/virtuemart/product/%D0%A9%D0%B5%D0%B4%D1%80%D1%8B%D0%B9%20%D1%8F%D0%B3%D0%BD%D0%B5%D0%BD%D0%BE%D0%BA%20%2001.jpg",
+    "description": "помидор, сыр фета, масло подсолнечное, капуста пекинская, \nперец сладкий красный, огурцы, оливки без косточек",
+    "weight": 210,
+    "price": 529,
+    "nutritionalValue": [
+      {
+        "id": 1,
+        "name": "Белки",
+        "value": "17.23"
+      },
+      {
+        "id": 2,
+        "name": "Жиры",
+        "value": "7.63"
+      },
+      {
+        "id": 3,
+        "name": "Углеводы",
+        "value": "22.35"
+      },
+      {
+        "id": 4,
+        "name": "ККал",
+        "value": "234"
+      },
+      {
+        "id": 4,
+        "name": "Вес",
+        "value": "210"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Конина",
+    "image": "https://lamajo-pizza.ru/images/virtuemart/product/%D0%A9%D0%B5%D0%B4%D1%80%D1%8B%D0%B9%20%D1%8F%D0%B3%D0%BD%D0%B5%D0%BD%D0%BE%D0%BA%20%2001.jpg",
+    "description": "помидор, сыр фета, масло подсолнечное, капуста пекинская, \nперец сладкий красный, огурцы, оливки без косточек",
+    "weight": 210,
+    "price": 529,
+    "nutritionalValue": [
+      {
+        "id": 1,
+        "name": "Белки",
+        "value": "17.23"
+      },
+      {
+        "id": 2,
+        "name": "Жиры",
+        "value": "7.63"
+      },
+      {
+        "id": 3,
+        "name": "Углеводы",
+        "value": "22.35"
+      },
+      {
+        "id": 4,
+        "name": "ККал",
+        "value": "234"
+      },
+      {
+        "id": 4,
+        "name": "Вес",
+        "value": "210"
+      }
+    ]
+  }
+]

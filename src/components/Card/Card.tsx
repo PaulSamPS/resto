@@ -17,9 +17,9 @@ export const Card: React.FC<CardTypes> = ({className}) => {
     <div className={cn(styles.card, className)}>
       <img src='https://lamajo-pizza.ru/images/virtuemart/product/%D0%A9%D0%B5%D0%B4%D1%80%D1%8B%D0%B9%20%D1%8F%D0%B3%D0%BD%D0%B5%D0%BD%D0%BE%D0%BA%20%2001.jpg' alt="1"/>
       <div className={styles.info}>
-        <div className={styles.title}>
+        <div className={styles.top}>
           <H size={'h3'}>Ягненок</H>
-          <P size={'m'}>Вес: 225 г</P>
+          <Span size={'s'}>Вес: 225 г</Span>
         </div>
         <P className={styles.desc} size={'m'}>
           Фаршированный гречневой кашей,
