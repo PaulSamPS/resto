@@ -2,6 +2,7 @@ import React from 'react';
 import {Card} from '../../components/Card/Card';
 import axios from 'axios';
 import {ProductInterface} from '../../interfaces/product.interface';
+import styles from './Main.module.scss';
 
 export const Main: React.FC = () => {
   const [products, setProducts] = React.useState<ProductInterface[]>([]);
@@ -14,11 +15,9 @@ export const Main: React.FC = () => {
     apiGet();
   }, []);
 
-  console.log(products);
-
   return (
-    <div>
-      <Card />
+    <div className={styles.main}>
+      {products.map((p) => <Card key={p.id} product={p}/>)}
     </div>
   );
 };
