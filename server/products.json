@@ -2,10 +2,11 @@
   {
     "id": 1,
     "name": "Ягненок",
-    "image": "https://lamajo-pizza.ru/images/virtuemart/product/%D0%A9%D0%B5%D0%B4%D1%80%D1%8B%D0%B9%20%D1%8F%D0%B3%D0%BD%D0%B5%D0%BD%D0%BE%D0%BA%20%2001.jpg",
+    "image": "assets/card/1.jpg",
     "description": "помидор, сыр фета, масло подсолнечное, капуста пекинская, \nперец сладкий красный, огурцы, оливки без косточек",
     "weight": 210,
     "price": 529,
+    "category": "Горячие закуски",
     "nutritionalValue": [
       {
         "id": 1,
@@ -37,10 +38,11 @@
   {
     "id": 2,
     "name": "Цыпленок",
-    "image": "https://lamajo-pizza.ru/images/virtuemart/product/%D0%A9%D0%B5%D0%B4%D1%80%D1%8B%D0%B9%20%D1%8F%D0%B3%D0%BD%D0%B5%D0%BD%D0%BE%D0%BA%20%2001.jpg",
+    "image": "assets/card/1.jpg",
     "description": "помидор, сыр фета, масло подсолнечное, капуста пекинская, \nперец сладкий красный, огурцы, оливки без косточек",
     "weight": 210,
     "price": 529,
+    "category": "Холодные закуски",
     "nutritionalValue": [
       {
         "id": 1,
@@ -72,10 +74,11 @@
   {
     "id": 3,
     "name": "Барашек",
-    "image": "https://lamajo-pizza.ru/images/virtuemart/product/%D0%A9%D0%B5%D0%B4%D1%80%D1%8B%D0%B9%20%D1%8F%D0%B3%D0%BD%D0%B5%D0%BD%D0%BE%D0%BA%20%2001.jpg",
+    "image": "assets/card/1.jpg",
     "description": "помидор, сыр фета, масло подсолнечное, капуста пекинская, \nперец сладкий красный, огурцы, оливки без косточек",
     "weight": 210,
     "price": 529,
+    "category": "Супы",
     "nutritionalValue": [
       {
         "id": 1,
@@ -107,10 +110,11 @@
   {
     "id": 4,
     "name": "Рулька",
-    "image": "https://lamajo-pizza.ru/images/virtuemart/product/%D0%A9%D0%B5%D0%B4%D1%80%D1%8B%D0%B9%20%D1%8F%D0%B3%D0%BD%D0%B5%D0%BD%D0%BE%D0%BA%20%2001.jpg",
+    "image": "assets/card/1.jpg",
     "description": "помидор, сыр фета, масло подсолнечное, капуста пекинская, \nперец сладкий красный, огурцы, оливки без косточек",
     "weight": 210,
     "price": 529,
+    "category": "Напитки",
     "nutritionalValue": [
       {
         "id": 1,
@@ -142,10 +146,11 @@
   {
     "id": 5,
     "name": "Курица",
-    "image": "https://lamajo-pizza.ru/images/virtuemart/product/%D0%A9%D0%B5%D0%B4%D1%80%D1%8B%D0%B9%20%D1%8F%D0%B3%D0%BD%D0%B5%D0%BD%D0%BE%D0%BA%20%2001.jpg",
+    "image": "assets/card/1.jpg",
     "description": "помидор, сыр фета, масло подсолнечное, капуста пекинская, \nперец сладкий красный, огурцы, оливки без косточек",
     "weight": 210,
     "price": 529,
+    "category": "Гриль меню",
     "nutritionalValue": [
       {
         "id": 1,
@@ -177,7 +182,7 @@
   {
     "id": 6,
     "name": "Конина",
-    "image": "https://lamajo-pizza.ru/images/virtuemart/product/%D0%A9%D0%B5%D0%B4%D1%80%D1%8B%D0%B9%20%D1%8F%D0%B3%D0%BD%D0%B5%D0%BD%D0%BE%D0%BA%20%2001.jpg",
+    "image": "assets/card/1.jpg",
     "description": "помидор, сыр фета, масло подсолнечное, капуста пекинская, \nперец сладкий красный, огурцы, оливки без косточек",
     "weight": 210,
     "price": 529,

@@ -9,7 +9,7 @@ import styles from './Slider.module.scss';
 export const Slider: React.FC = (): JSX.Element => {
   const [slider, setSlider] = React.useState<ISlider[]>([]);
   const [offset, setOffset] = React.useState<number>(0);
-  const [loading] = React.useState<boolean>(true);
+  const [loading] = React.useState<boolean>(false);
   const [slideIndex, setSlideIndex] = React.useState<number>(0);
   const IMG_WIDTH = 1440;
 
