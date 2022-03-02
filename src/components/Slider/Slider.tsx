@@ -3,11 +3,13 @@ import axios from 'axios';
 import {ISlider} from '../../interfaces/slider.interface';
 import {Dots} from '../Dots/Dots';
 import {Arrow} from '../Arrow/Arrow';
+import {Spinner} from '../Spinner/Spinner';
 import styles from './Slider.module.scss';
 
 export const Slider: React.FC = (): JSX.Element => {
   const [slider, setSlider] = React.useState<ISlider[]>([]);
   const [offset, setOffset] = React.useState<number>(0);
+  const [loading] = React.useState<boolean>(false);
   const [slideIndex, setSlideIndex] = React.useState<number>(0);
   const IMG_WIDTH = 1440;
 
@@ -62,25 +64,30 @@ export const Slider: React.FC = (): JSX.Element => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.sliderBlock}>
-        {slider.map((s) =>
-          <div
-            className={styles.slider}
-            key={s.id}
-            style={{transform: `translateX(${offset}px)`}}
-          >
-            <img
+        {loading ?
+          <Spinner/> :
+          <>
+            {slider.map((s) => <div
+              className={styles.slider}
               key={s.id}
-              src={s.image}
-              alt={s.name}
-            />,
-          </div>,
-        )}
-        <Arrow appearance={'left'} onClick={prevSlide}/>
-        <Arrow appearance={'right'} onClick={nextSlide}/>
+              style={{transform: `translateX(${offset}px)`}}
+            >
+              <img
+                key={s.id}
+                src={s.image}
+                alt={s.name}/>,
+            </div>
+            )}
+            <Arrow appearance={'left'} onClick={prevSlide}/>
+            <Arrow appearance={'right'} onClick={nextSlide}/>
+          </>
+        }
       </div>
-      <div className={styles.dots}>
-        <Dots slideIndex={slideIndex} dots={handleDots} arr={slider}/>
-      </div>
+      {!loading &&
+        <div className={styles.dots}>
+          <Dots slideIndex={slideIndex} dots={handleDots} arr={slider}/>
+        </div>
+      }
     </div>
   );
 };

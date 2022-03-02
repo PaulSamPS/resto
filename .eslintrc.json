@@ -7,7 +7,8 @@
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended",
-        "google"
+        "google",
+        "plugin:jsdoc/recommended"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -19,12 +20,14 @@
     },
     "plugins": [
         "react",
-        "@typescript-eslint/eslint-plugin"
+        "@typescript-eslint/eslint-plugin",
+        "jsdoc"
     ],
     "rules": {
         "max-len": "off",
         "linebreak-style": "off",
         "comma-dangle": "off",
-        "no-undef": "off"
+        "no-undef": "off",
+        "require-jsdoc": "off"
     }
 }

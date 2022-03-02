@@ -3,10 +3,14 @@ import {Card} from '../../components/Card/Card';
 import axios from 'axios';
 import {ProductInterface} from '../../interfaces/product.interface';
 import {Slider} from '../../components/Slider/Slider';
+import {H} from '../../components/H/H';
+import {Spinner} from '../../components/Spinner/Spinner';
+import {Nav} from '../../components/Nav/Nav';
 import styles from './Main.module.scss';
 
 export const Main: React.FC = (): JSX.Element => {
   const [products, setProducts] = React.useState<ProductInterface[]>([]);
+  const [loading] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     const apiGet = async () => {
@@ -18,9 +22,16 @@ export const Main: React.FC = (): JSX.Element => {
 
   return (
     <div className={styles.main}>
-      <Slider />
-      <div className={styles.productBlock}>
-        {products.map((p) => <Card key={p.id} product={p}/>)}
+      <Slider/>
+      <Nav/>
+      <div className={styles.meatDishes}>
+        <H size={'h1'} className={styles.title}>Горячие блюда</H>
+        <div className={styles.productBlock}>
+          {loading ?
+            <Spinner/> :
+            products.map((p) => <Card key={p.id} product={p}/>)
+          }
+        </div>
       </div>
     </div>
   );
