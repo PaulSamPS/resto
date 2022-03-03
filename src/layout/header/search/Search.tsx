@@ -1,32 +1,29 @@
 import React from 'react';
-import {Input} from '../../../components/Input/Input';
 import {ReactComponent as LocationIcon} from './icons/location.svg';
 import {ReactComponent as SearchIcon} from './icons/search.svg';
+import {AddressSuggestions, DaDataSuggestion, DaDataAddress} from 'react-dadata';
 import styles from './Search.module.scss';
 
 export const Search: React.FC = (): JSX.Element => {
-  const [search, setSearch] = React.useState<string>('');
+  const [search, setSearch] = React.useState<DaDataSuggestion<DaDataAddress> | undefined>();
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key == 'Enter') {
-      console.log(e);
+  const handleAddressVerification = () => {
+    if (search!.value!.search('г Оренбург') === -1) {
+      console.log('Доставка только по городу Оренбург');
+    } else {
+      console.log('По вашему адресу доставка возможна');
     }
-  };
-
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
   };
 
   return (
     <div className={styles.search}>
-      <Input
-        className={styles.input}
-        placeholder='Введите адрес доставки'
-        value={search}
-        onChange={handleOnChange}
-        onKeyDown={handleKeyDown}/>
+      <AddressSuggestions
+        token={process.env.REACT_APP_API_KEY}
+        value={search} onChange={setSearch}
+        inputProps={{placeholder: 'Введите адрес доставки'}}
+      />
       <LocationIcon className={styles.locationIcon}/>
-      <SearchIcon className={styles.searchIcon}/>
+      <SearchIcon className={styles.searchIcon} onClick={handleAddressVerification}/>
     </div>
   );
 };
