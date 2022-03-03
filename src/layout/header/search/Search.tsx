@@ -7,11 +7,23 @@ import styles from './Search.module.scss';
 export const Search: React.FC = (): JSX.Element => {
   const [search, setSearch] = React.useState<DaDataSuggestion<DaDataAddress> | undefined>();
 
+  const handleAddressVerification = () => {
+    if (search!.value!.search('г Оренбург') === -1) {
+      console.log('Доставка только по городу Оренбург');
+    } else {
+      console.log('По вашему адресу доставка возможна');
+    }
+  };
+
   return (
     <div className={styles.search}>
-      <AddressSuggestions token={process.env.REACT_APP_API_KEY} value={search} onChange={setSearch} inputProps={{placeholder: 'Введите адрес доставки'}}/>
+      <AddressSuggestions
+        token={process.env.REACT_APP_API_KEY}
+        value={search} onChange={setSearch}
+        inputProps={{placeholder: 'Введите адрес доставки'}}
+      />
       <LocationIcon className={styles.locationIcon}/>
-      <SearchIcon className={styles.searchIcon}/>
+      <SearchIcon className={styles.searchIcon} onClick={handleAddressVerification}/>
     </div>
   );
 };
