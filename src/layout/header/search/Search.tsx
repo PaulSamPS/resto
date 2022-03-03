@@ -9,7 +9,7 @@ export const Search: React.FC = (): JSX.Element => {
 
   return (
     <div className={styles.search}>
-      <AddressSuggestions token={process.env.REACT_APP_API_KEY} value={search} onChange={setSearch} />
+      <AddressSuggestions token={process.env.REACT_APP_API_KEY} value={search} onChange={setSearch} inputProps={{placeholder: 'Введите адрес доставки'}}/>
       <LocationIcon className={styles.locationIcon}/>
       <SearchIcon className={styles.searchIcon}/>
     </div>
