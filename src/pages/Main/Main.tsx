@@ -29,7 +29,7 @@ export const Main: React.FC = (): JSX.Element => {
         <div className={styles.productBlock}>
           {loading ?
             <Spinner/> :
-            products.map((p) => <Card key={p.id} product={p}/>)
+              products.map((p) => <Card key={p.id} product={p}/>)
           }
         </div>
       </div>

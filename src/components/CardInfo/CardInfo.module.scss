@@ -1,0 +1,105 @@
+.cardWrapper {
+	display: flex;
+	justify-content: center;
+
+	padding-bottom: 50px;
+
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+	.card {
+		display: flex;
+
+		width: 1210px;
+		height: 400px;
+
+		border-radius: 10px;
+		background: var(--brownGradient);
+
+		img {
+			width: 600px;
+			height: 400px;
+
+			border-radius: 10px 0 0 10px;
+		}
+
+		.characteristics {
+			.title {
+				margin-top: 38px;
+				margin-bottom: 5px;
+				padding-left: 50px;
+			}
+
+			p {
+				max-width: 450px;
+				margin-bottom: 90px;
+				padding-left: 50px;
+			}
+
+			.weight {
+				padding-left: 50px;
+
+				font-weight: 400;
+			}
+
+			.addToCart {
+				display: flex;
+				align-items: center;
+
+				margin-top: 20px;
+				margin-bottom: 30px;
+				padding-left: 50px;
+
+				button {
+					display: flex;
+					align-items: center;
+
+					margin-right: 25px;
+					padding: 16px 20px;
+
+					span {
+						padding-right: 20px;
+
+						border-right: 1px solid var(--textWhite);
+					}
+
+					svg {
+						margin-left: 15px;
+					}
+				}
+
+				h3 {
+					font-size: 25px;
+					line-height: 30px;
+				}
+			}
+		}
+
+		.nutritionalValue {
+			width: 100%;
+
+			.name {
+				display: grid;
+
+				padding-right: 159px;
+				padding-bottom: 5px;
+				padding-left: 50px;
+
+				border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+				font-weight: 300;
+				grid-template-columns: 40px 41px 58px 34px 28px;
+				column-gap: 50px;
+			}
+
+			.value {
+				display: grid;
+
+				margin-top: 5px;
+				padding-right: 159px;
+				padding-left: 50px;
+				grid-template-columns: 40px 41px 58px 34px 28px;
+				column-gap: 50px;
+			}
+		}
+	}
+}

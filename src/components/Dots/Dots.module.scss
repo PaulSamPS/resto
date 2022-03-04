@@ -1,27 +1,33 @@
 .dots {
-  display: flex;
+	display: flex;
 
-  button {
-    width: 18px;
-    height: 18px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    outline: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	button {
+		display: flex;
+		align-items: center;
+		justify-content: center;
 
-    .dots {
-      display: block;
-      border-radius: 50%;
-      background: var(--tetxGray);
-      padding: 2px;
-    }
+		width: 18px;
+		height: 18px;
 
-    .active {
-      background: var(--green);
-      padding: 3px;
-    }
-  }
+		cursor: pointer;
+
+		border: none;
+		outline: none;
+		background: transparent;
+
+		.dots {
+			display: block;
+
+			padding: 2px;
+
+			border-radius: 50%;
+			background: var(--tetxGray);
+		}
+
+		.active {
+			padding: 3px;
+
+			background: var(--green);
+		}
+	}
 }

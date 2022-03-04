@@ -1,36 +1,41 @@
 .contacts {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-left: 40px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
 
-  .icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--green);
-    border-radius: 50%;
-    width: 32px;
-    height: 32px;
-    cursor: pointer;
-    transition: transform ease .2s;
+	margin-left: 40px;
 
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
+	.icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
 
-  .phone {
-    display: flex;
-    flex-direction: column;
+		width: 32px;
+		height: 32px;
 
-    .title {
-      color: var(--tetxGray);
-    }
+		cursor: pointer;
+		transition: transform ease 0.2s;
 
-    .number {
-      font-weight: 700;
-      color: var(--textWhite);
-    }
-  }
+		border-radius: 50%;
+		background: var(--green);
+
+		&:hover {
+			transform: scale(1.1);
+		}
+	}
+
+	.phone {
+		display: flex;
+		flex-direction: column;
+
+		.title {
+			color: var(--tetxGray);
+		}
+
+		.number {
+			color: var(--textWhite);
+
+			font-weight: 700;
+		}
+	}
 }

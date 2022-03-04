@@ -6,7 +6,7 @@ import styles from './Nav.module.scss';
 
 export const Nav: React.FC = () => {
   const [nav, setNav] = React.useState<NavInterface[]>([]);
-  const [activeIndex, setActiveIndex] = React.useState<number>(0);
+  const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
 
   React.useEffect(() => {
     const apiGet = async () => {

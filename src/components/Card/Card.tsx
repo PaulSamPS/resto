@@ -9,13 +9,14 @@ import {ReactComponent as BuyIcon} from './Icons/buy.svg';
 import {ReactComponent as MinusIcon} from './Icons/minus.svg';
 import {ReactComponent as PlusIcon} from './Icons/plus.svg';
 import styles from './Card.module.scss';
+import {Link} from 'react-router-dom';
 
 export const Card: React.FC<CardProps> = ({className, product}): JSX.Element => {
   const [addToCart, setAddToCart] = React.useState<boolean>(false);
 
   return (
     <div className={cn(styles.card, className)}>
-      <img src={product.image} alt={product.name}/>
+      <Link to={`/${product.id}`}><img src={product.image} alt={product.name}/></Link>
       <div className={styles.info}>
         <div className={styles.top}>
           <H size={'h3'}>{product.name}</H>
