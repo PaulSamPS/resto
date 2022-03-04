@@ -9,9 +9,11 @@
 
     .productBlock {
       padding: 20px 0;
-      display: flex;
       column-gap: 20px;
-      overflow: hidden;
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      justify-items: center;
+      row-gap: 20px;
     }
   }
 }

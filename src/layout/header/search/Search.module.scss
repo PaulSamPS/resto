@@ -5,9 +5,11 @@
     ul {
       background-color: var(--brown);
       position: absolute;
-      border-radius: 10px;
+      border-radius: 0 0 10px 10px;
       z-index: 999;
       width: 100%;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
 
       button {
         background-color: transparent;
@@ -20,7 +22,6 @@
         cursor: pointer;
         width: 100%;
         transition: all ease .2s;
-        border-radius: 10px;
 
         &:hover {
           background-color: var(--green);
@@ -32,14 +33,14 @@
         }
       }
     }
+
     input {
       padding: 15px 48px;
       width: 100%;
-      margin-bottom: 2px;
 
       color: var(--tetxGray);
-      border: none;
       border-radius: 10px;
+      border: none;
       background-color: var(--brown);
       outline: none;
       box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
@@ -50,6 +51,10 @@
       &::-webkit-input-placeholder {
         color: var(--tetxGray);
         opacity: 0.5;
+      }
+
+      &:focus {
+        border-radius: 10px 10px 0 0;
       }
     }
   }
