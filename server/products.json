@@ -73,11 +73,11 @@
   },
   {
     "id": 3,
-    "name": "Барашек",
-    "image": "assets/card/1.jpg",
-    "description": "помидор, сыр фета, масло подсолнечное, капуста пекинская, \nперец сладкий красный, огурцы, оливки без косточек",
-    "weight": 210,
-    "price": 529,
+    "name": "Крем-суп сырный",
+    "image": "assets/card/soups/creamSoupCheeses.jpg",
+    "description": "картофель, морковь, лук, сливки, плавленный сыр “Дружба”, пармезан, сухарики",
+    "weight": 250,
+    "price": 320,
     "category": "Супы",
     "nutritionalValue": [
       {
@@ -186,6 +186,7 @@
     "description": "помидор, сыр фета, масло подсолнечное, капуста пекинская, \nперец сладкий красный, огурцы, оливки без косточек",
     "weight": 210,
     "price": 529,
+    "category": "Напитки",
     "nutritionalValue": [
       {
         "id": 1,
@@ -213,5 +214,50 @@
         "value": "210"
       }
     ]
+  },
+  {
+    "id": 7,
+    "name": "Довга",
+    "image": "assets/card/soups/dovga.jpg",
+    "description": "кисломолочный суп с рисом, зеленью и горохом Нутом",
+    "weight": 250,
+    "price": 320,
+    "category": "Супы",
+    "nutritionalValue": [
+      {
+        "id": 1,
+        "name": "Белки",
+        "value": "17.23"
+      },
+      {
+        "id": 2,
+        "name": "Жиры",
+        "value": "7.63"
+      },
+      {
+        "id": 3,
+        "name": "Углеводы",
+        "value": "22.35"
+      },
+      {
+        "id": 4,
+        "name": "ККал",
+        "value": "234"
+      },
+      {
+        "id": 4,
+        "name": "Вес",
+        "value": "210"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Coca-Cola",
+    "image": "assets/card/drinks/cocaCola.jpg",
+    "description": "Coca-Cola",
+    "weight": 250,
+    "price": 150,
+    "category": "Напитки"
   }
 ]

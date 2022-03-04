@@ -6,7 +6,13 @@ import styles from './Nav.module.scss';
 
 export const Nav: React.FC = () => {
   const [nav, setNav] = React.useState<NavInterface[]>([]);
-  const [activeIndex, setActiveIndex] = React.useState<number>(0);
+  const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
+  const [category, setCategory] = React.useState<string>('');
+
+  const handleClick = (index: number, name: string) => {
+    setActiveIndex(index);
+    setCategory(name);
+  };
 
   React.useEffect(() => {
     const apiGet = async () => {
@@ -16,13 +22,15 @@ export const Nav: React.FC = () => {
     apiGet();
   }, []);
 
+  console.log(category);
+
   return (
     <nav className={styles.wrapper}>
       <div className={styles.nav}>
         {nav.map((n, index) =>
           <a
             key={n.id}
-            onClick={() => setActiveIndex(index)}
+            onClick={() => handleClick(index, n.name)}
             className={cn(styles.link, {
               [styles.active]: index === activeIndex
             })}>

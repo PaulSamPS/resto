@@ -1,19 +1,19 @@
 input {
-  padding: 15px 48px;
-  width: 100%;
+	width: 100%;
+	padding: 15px 48px;
 
-  color: var(--tetxGray);
-  border: none;
-  border-radius: 10px;
-  background-color: var(--brown);
-  outline: none;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
+	color: var(--tetxGray);
+	border: none;
+	border-radius: 10px;
+	outline: none;
+	background-color: var(--brown);
+	box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
 
-  font-size: 18px;
-  line-height: 21px;
+	font-size: 18px;
+	line-height: 21px;
 
-  &::-webkit-input-placeholder {
-    color: var(--tetxGray);
-    opacity: 0.5;
-  }
+	&::-webkit-input-placeholder {
+		opacity: 0.5;
+		color: var(--tetxGray);
+	}
 }

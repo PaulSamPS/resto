@@ -1,0 +1,36 @@
+.productInfo {
+  .back {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+    margin-top: 40px;
+    margin-left: 115px;
+    cursor: pointer;
+    background: none;
+    box-shadow: unset;
+    padding: 0;
+
+    &:hover {
+      span {
+        color: var(--textWhite);
+      }
+    }
+
+    .icon {
+      background: var(--green);
+      border-radius: 50%;
+      width: 26px;
+      height: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    span {
+      font-weight: 600;
+      margin-left: 10px;
+      transition: all ease .2s;
+      color: var(--tetxGray);
+    }
+  }
+}

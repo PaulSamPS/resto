@@ -1,6 +1,5 @@
 body {
 	max-width: 1440px;
-	height: 100%;
 	margin: 0 auto;
 
 	background-image: linear-gradient(360deg, #211F20 0%, #44403F 100%);
@@ -32,6 +31,7 @@ body {
 	--textWhite: #FFF;
 	--greenGradient: linear-gradient(114.93deg, #618967 5.11%, #72A479 94%);
 	--brownGradient: linear-gradient(90deg, #494544 0%, #504B4A 100%);
+	--footerGradient: linear-gradient(270.7deg, #44403F 0.4%, #211F20 100%);
 	--darkBrown: #403C3B;
 	--black: #211F20;
 	--green: #618967;

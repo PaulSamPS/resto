@@ -1,46 +1,53 @@
 .wrapper {
-  display: flex;
-  flex-direction: column;
-  position: relative;
+	position: relative;
 
-  .sliderBlock {
-    display: flex;
-    width: 1440px;
-    overflow: hidden;
-    border-radius: 10px;
-    height: 484px;
-    position: relative;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
+	display: flex;
+	flex-direction: column;
 
-    &:hover {
-      button {
-        svg {
-          fill: var(--green);
-        }
-      }
-    }
+	.sliderBlock {
+		position: relative;
 
-    .slider {
-      width: 1440px;
-      text-align: center;
-      transition: all ease 1s;
-      height: 484px;
+		display: flex;
+		overflow: hidden;
 
-      img {
-        height: 484px;
-        width: 1440px;
-        object-fit: cover;
-      }
-    }
-  }
+		width: 1440px;
+		height: 484px;
 
-  .dots {
-    display: flex;
-    bottom: -30px;
-    right: 270px;
-    position: unset;
-    justify-content: center;
-    align-items: center;
-    height: 30px;
-  }
+		border-radius: 10px;
+		box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
+
+		&:hover {
+			button {
+				svg {
+					fill: var(--green);
+				}
+			}
+		}
+
+		.slider {
+			width: 1440px;
+			height: 484px;
+
+			transition: all ease 1s;
+			text-align: center;
+
+			img {
+				width: 1440px;
+				height: 484px;
+				object-fit: cover;
+			}
+		}
+	}
+
+	.dots {
+		position: unset;
+		right: 270px;
+		bottom: -30px;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		height: 30px;
+	}
 }
