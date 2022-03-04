@@ -26,13 +26,13 @@ export const CardInfo: React.FC<CardInfoProps> = ({product, className, ...props}
             </div>
             <div className={styles.nutritionalValue}>
               <div className={styles.name}>
-                {product.nutritionalValue.map((v) =>
+                {product.nutritionalValue?.map((v) =>
                   <Span key={v.name} size={'s'}>{v.name}</Span>
                 )}
               </div>
               <div className={styles.value}>
-                {product.nutritionalValue.map((v) =>
-                  <Span key={v.id} size={'s'}>{v.value}</Span>
+                {product.nutritionalValue?.map((v) =>
+                  <Span key={v.value} size={'s'}>{v.value}</Span>
                 )}
               </div>
             </div>

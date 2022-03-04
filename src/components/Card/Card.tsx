@@ -17,13 +17,12 @@ export const Card: React.FC<CardProps> = ({className, product}): JSX.Element => 
   return (
     <div className={cn(styles.card, className)}>
       <Link to={`/${product.id}`}><img src={product.image} alt={product.name}/></Link>
-      <div className={styles.info}>
-        <div className={styles.top}>
-          <H size={'h3'}>{product.name}</H>
-          <Span size={'s'}>Вес: {product.weight} г</Span>
-        </div>
-        <P className={styles.desc} size={'m'}>{product.description}</P>
-        {addToCart ?
+      <div className={styles.top}>
+        <H size={'h3'}>{product.name}</H>
+        <Span size={'s'}>Вес: {product.weight} г</Span>
+      </div>
+      <P className={styles.desc} size={'m'}>{product.description}</P>
+      {addToCart ?
         <div className={styles.bottom}>
           <Button>
             <MinusIcon />
@@ -43,8 +42,7 @@ export const Card: React.FC<CardProps> = ({className, product}): JSX.Element => 
             <BuyIcon />
           </Button>
         </div>
-        }
-      </div>
+      }
       <div className={styles.count}>3</div>
     </div>
   );

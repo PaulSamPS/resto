@@ -1,0 +1,19 @@
+.wrapper {
+  .title {
+    margin-top: 50px;
+    margin-bottom: 40px;
+    margin-left: 115px;
+    padding-left: 20px;
+
+    border-left: 4px solid var(--green);
+  }
+
+  .productBlock {
+    display: grid;
+
+    column-gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+    row-gap: 20px;
+  }
+}
