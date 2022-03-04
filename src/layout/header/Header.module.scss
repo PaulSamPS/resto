@@ -38,4 +38,16 @@
       }
     }
   }
+
+  .modal {
+    .icon {
+      position: unset;
+      margin-bottom: 15px;
+    }
+
+    button {
+      margin-top: 43px;
+      padding: 17px 35px;
+    }
+  }
 }
