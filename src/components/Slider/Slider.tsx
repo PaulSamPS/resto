@@ -40,7 +40,7 @@ export const Slider: React.FC = (): JSX.Element => {
 
   React.useEffect(() => {
     const apiGet = async () => {
-      const res = await axios.get<ISlider[]>('http://localhost:3001/slider');
+      const res = await axios.get<ISlider[]>('/api/slider');
       setSlider(res.data);
     };
     apiGet();

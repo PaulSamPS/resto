@@ -18,14 +18,14 @@ export const ProductInfo = () => {
 
   React.useEffect(() => {
     const apiGet = async () => {
-      const res = await axios.get<ProductInterface[]>('http://localhost:3001/products');
+      const res = await axios.get<ProductInterface[]>('/api/products');
       setProducts(res.data);
     };
     apiGet();
-  }, []);
+  }, [id]);
 
   React.useEffect(() => {
-    axios.get<ProductInterface>(`http://localhost:3001/products/${id}`).then((r) => {
+    axios.get<ProductInterface>(`/api/products/${id}`).then((r) => {
       setProduct(r.data);
     });
   }, [id]);

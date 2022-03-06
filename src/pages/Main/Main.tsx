@@ -11,7 +11,7 @@ export const Main: React.FC = (): JSX.Element => {
 
   React.useEffect(() => {
     const apiGet = async () => {
-      const res = await axios.get<ProductInterface[]>('http://localhost:3001/products');
+      const res = await axios.get<ProductInterface[]>('/api/products');
       setProducts(res.data);
     };
     apiGet();
