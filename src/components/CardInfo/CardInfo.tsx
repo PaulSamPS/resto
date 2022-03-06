@@ -8,6 +8,7 @@ import {CardInfoProps} from './CardInfo.props';
 import styles from './CardInfo.module.scss';
 
 export const CardInfo: React.FC<CardInfoProps> = ({product, className, ...props}) => {
+  console.log(product?.image);
   return (
     <div className={styles.cardWrapper}>
       {product &&

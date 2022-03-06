@@ -1,5 +1,5 @@
 import React from 'react';
-import {Search} from './search/Search';
+import {Search} from './Search/Search';
 import {Contacts} from './Contacts/Contacts';
 import {Button} from '../../components/Button/Button';
 import {Span} from '../../components/Span/Span';

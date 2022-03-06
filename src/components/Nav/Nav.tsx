@@ -16,7 +16,7 @@ export const Nav: React.FC = () => {
 
   React.useEffect(() => {
     const apiGet = async () => {
-      const res = await axios.get<NavInterface[]>('http://localhost:3001/nav');
+      const res = await axios.get<NavInterface[]>('/api/nav');
       setNav(res.data);
     };
     apiGet();

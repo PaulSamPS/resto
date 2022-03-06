@@ -8,6 +8,8 @@
   ],
   "rules": {
     "indentation": "tab",
-    "color-hex-case": "upper"
+    "color-hex-case": "upper",
+    "at-rule-no-unknown": null,
+    "scss/at-rule-no-unknown": true
   }
 }
