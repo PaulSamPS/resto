@@ -3,15 +3,17 @@ import axios from 'axios';
 import {NavInterface} from '../../interfaces/nav.interface';
 import cn from 'classnames';
 import styles from './Nav.module.scss';
+import {useAppDispatch} from '../../hooks/redux';
+import {getProduct} from '../../redux/actions/ActionCreator';
 
 export const Nav: React.FC = () => {
   const [nav, setNav] = React.useState<NavInterface[]>([]);
-  const [activeIndex, setActiveIndex] = React.useState<number | null>(null);
-  const [category, setCategory] = React.useState<string>('');
+  const dispatch = useAppDispatch();
+  const [activeIndex, setActiveIndex] = React.useState<number>(0);
 
   const handleClick = (index: number, name: string) => {
     setActiveIndex(index);
-    setCategory(name);
+    dispatch(getProduct(name));
   };
 
   React.useEffect(() => {
@@ -21,8 +23,6 @@ export const Nav: React.FC = () => {
     };
     apiGet();
   }, []);
-
-  console.log(category);
 
   return (
     <nav className={styles.wrapper}>

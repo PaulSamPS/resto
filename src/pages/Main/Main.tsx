@@ -1,36 +1,24 @@
 import React from 'react';
-import axios from 'axios';
-import {ProductInterface} from '../../interfaces/product.interface';
 import {Slider} from '../../components/Slider/Slider';
 import {Nav} from '../../components/Nav/Nav';
-import styles from './Main.module.scss';
 import {ProductBlock} from '../../components/ProductBlock/ProductBlock';
+import {useAppDispatch, useAppSelector} from '../../hooks/redux';
+import {getProduct} from '../../redux/actions/ActionCreator';
+import styles from './Main.module.scss';
 
 export const Main: React.FC = (): JSX.Element => {
-  const [products, setProducts] = React.useState<ProductInterface[]>([]);
+  const dispatch = useAppDispatch();
+  const {product} = useAppSelector((state) => state.productReducer);
 
   React.useEffect(() => {
-    const apiGet = async () => {
-      const res = await axios.get<ProductInterface[]>('/api/products');
-      setProducts(res.data);
-    };
-    apiGet();
+    dispatch(getProduct());
   }, []);
 
   return (
     <div className={styles.main}>
       <Slider/>
       <Nav/>
-      <ProductBlock products={products} title={'Горячие блюда'} filter={'Супы'}/>
-      {/* <div className={styles.meatDishes}>*/}
-      {/*  <H size={'h1'} className={styles.title}>Горячие блюда</H>*/}
-      {/*  <div className={styles.productBlock}>*/}
-      {/*    {loading ?*/}
-      {/*      <Spinner/> :*/}
-      {/*        products.map((p) => <Card key={p.id} product={p}/>)*/}
-      {/*    }*/}
-      {/*  </div>*/}
-      {/* </div>*/}
+      <ProductBlock products={product}/>
     </div>
   );
 };
