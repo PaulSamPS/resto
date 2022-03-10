@@ -26,6 +26,10 @@ const Phone = styled.div`
   ${Flex};
 `;
 
+const PhoneNumber = styled(Span)`
+  line-height: 20px;
+`;
+
 export const Contacts: React.FC = (): JSX.Element => {
   return (
     <Wrapper align={'center'}>
@@ -34,7 +38,7 @@ export const Contacts: React.FC = (): JSX.Element => {
       </Icon>
       <Phone direction={'column'}>
         <Span size={12} weight={400} color={'#CFCFCF'}>Контакты:</Span>
-        <Span size={14} weight={700}>+7 (912) 345-67-89</Span>
+        <PhoneNumber size={14} weight={700}>+7 (912) 345-67-89</PhoneNumber>
       </Phone>
     </Wrapper>
   );

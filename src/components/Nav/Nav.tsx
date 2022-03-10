@@ -3,8 +3,8 @@ import {useAppDispatch, useAppSelector} from '../../hooks/redux';
 import {getNav, getProduct} from '../../redux/actions/ActionCreator';
 import {NavInterface} from '../../interfaces/nav.interface';
 import {Flex, StyledA} from '../../styles/components';
-import styled from 'styled-components';
 import {useLocation, useNavigate} from 'react-router-dom';
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
   margin-bottom: 40px;

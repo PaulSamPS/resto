@@ -3,11 +3,15 @@ import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom';
 import {Layout} from './layout/Layout';
 import {Main} from './pages/Main/Main';
 import {Cart} from './pages/Cart/Cart';
-import styles from './App.module.scss';
+import styled from 'styled-components';
+
+const StyledApp = styled.div`
+  min-height: 100vh;
+`;
 
 export const App: React.FC = (): JSX.Element => {
   return (
-    <div className={styles.app}>
+    <StyledApp>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Layout/>}>
@@ -17,6 +21,6 @@ export const App: React.FC = (): JSX.Element => {
           </Route>
         </Routes>
       </BrowserRouter>
-    </div>
+    </StyledApp>
   );
 };

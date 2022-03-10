@@ -5,9 +5,9 @@ import {useAppDispatch, useAppSelector} from '../../hooks/redux';
 import {getProduct} from '../../redux/actions/ActionCreator';
 import {Card} from '../../components/Card/Card';
 import {H1} from '../../styles/components';
-import styled from 'styled-components';
 import {Modal} from '../../components/Modal/Modal';
 import {CardInfo} from '../../components/CardInfo/CardInfo';
+import styled from 'styled-components';
 
 const Container = styled.div`
   display: flex;
@@ -48,7 +48,7 @@ export const Main: React.FC = (): JSX.Element => {
         {product.map((p) => <Card setModal={setModal} key={p.id} product={p}/>)}
       </StyledProductBlock>
       {modal &&
-        <Modal setModal={setModal} modal={modal}>
+        <Modal setModal={setModal}>
           <CardInfo/>
         </Modal>
       }
