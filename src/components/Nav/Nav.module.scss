@@ -1,34 +1,11 @@
 .wrapper {
-	margin-bottom: 40px;
 
-	border-top: 1px solid rgba(255, 255, 255, 0.1);
-	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
 	.nav {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
 
-		margin: 28px 80px 0;
 
 		a {
-			padding-bottom: 30px;
 
-			cursor: pointer;
-			transition: all ease 0.2s;
-			transform: translateY(2px);
-			white-space: nowrap;
-
-			color: var(--tetxGray);
-			border-bottom: 3px solid transparent;
-
-			font-size: 18px;
-			line-height: 22px;
-
-			&:hover {
-				color: var(--textWhite);
-				border-bottom: 3px solid var(--green);
-			}
 		}
 
 		.active {

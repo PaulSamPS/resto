@@ -11,34 +11,14 @@
 	}
 
 	.btn {
-		display: flex;
-		align-items: center;
 
-		padding-right: 12px;
 
 		.text {
-			padding-right: 20px;
 
-			color: var(--textWhite);
-			border-right: 1px solid var(--textWhite);
-
-			font-size: 14px;
-			font-weight: 600;
-			line-height: 17px;
 		}
 
 		.count {
-			display: flex;
-			align-items: center;
-			justify-content: center;
 
-			width: 24px;
-			height: 24px;
-			margin-left: 12px;
-
-			border-radius: 50%;
-			background: var(--textWhite);
-			box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
 
 			span {
 				color: var(--darkBrown);

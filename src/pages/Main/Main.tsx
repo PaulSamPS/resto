@@ -1,10 +1,16 @@
 import React from 'react';
-import {Slider} from '../../components/Slider/Slider';
+// import {Slider} from '../../components/Slider/Slider';
 import {Nav} from '../../components/Nav/Nav';
 import {ProductBlock} from '../../components/ProductBlock/ProductBlock';
 import {useAppDispatch, useAppSelector} from '../../hooks/redux';
 import {getProduct} from '../../redux/actions/ActionCreator';
-import styles from './Main.module.scss';
+import styled from 'styled-components';
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+`;
 
 export const Main: React.FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -15,11 +21,11 @@ export const Main: React.FC = (): JSX.Element => {
   }, []);
 
   return (
-    <div className={styles.main}>
-      <Slider/>
+    <Container>
+      {/* <Slider/>*/}
       <Nav/>
       <ProductBlock products={product}/>
-    </div>
+    </Container>
   );
 };
 

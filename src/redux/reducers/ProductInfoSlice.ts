@@ -12,6 +12,7 @@ const initialState: IProductState = {
     name: '',
     id: 0,
     category: '',
+    categoryRu: '',
     image: '',
     nutritionalValue: [],
     price: 0,

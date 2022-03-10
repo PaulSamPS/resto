@@ -1,19 +1,47 @@
 import React from 'react';
-import cn from 'classnames';
 import {DotsProps} from './Dots.props';
-import styles from './Dots.module.scss';
+import styled from 'styled-components';
+import {Flex} from '../../styles/components';
 
-export const Dots: React.FC<DotsProps> = ({slideIndex, dots, arr, className, ...props}): JSX.Element => {
+interface IStyledDots {
+  activeBackground: boolean;
+  activePadding: boolean;
+}
+
+const ButtonDots = styled.button`
+  ${Flex};
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: transparent;
+`;
+
+const StyledDots = styled.span<IStyledDots>`
+  display: block;
+
+  border-radius: 50%;
+  background: ${({activeBackground}) => activeBackground ? '#618967' :'#CFCFCF'};
+  padding: ${(activePadding) => activePadding ? '3px' : '2px'};
+`;
+
+const DotsWrapper = styled.div`
+  ${Flex};
+`;
+
+export const Dots: React.FC<DotsProps> = ({slideIndex, dots, arr}): JSX.Element => {
   const [dotsArray, setDotsArray] = React.useState<JSX.Element[]>(new Array(5).fill(<></>));
 
   const constructDots = (slideIndex: number) => {
     const updateDots = arr.map((dot: JSX.Element, index) => {
       return (
-        <button key={index} onClick={() => dots(index)}>
-          <span className={cn(styles.dots, {
-            [styles.active]: slideIndex === index,
-          })}/>
-        </button>
+        <ButtonDots justify={'center'} align={'center'} key={index} onClick={() => dots(index)}>
+          <StyledDots
+            activeBackground={slideIndex === index}
+            activePadding={slideIndex === index}
+          />
+        </ButtonDots>
       );
     });
     setDotsArray(updateDots);
@@ -24,9 +52,9 @@ export const Dots: React.FC<DotsProps> = ({slideIndex, dots, arr, className, ...
   }, [slideIndex]);
 
   return (
-    <div className={cn(styles.dots, className)} {...props}>
+    <DotsWrapper>
       {dotsArray.map((dots, index) => <span key={index}>{dots}</span>)}
-    </div>
+    </DotsWrapper>
   );
 };
 

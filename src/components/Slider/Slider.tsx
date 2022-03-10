@@ -1,15 +1,65 @@
 import React from 'react';
-import axios from 'axios';
 import {ISlider} from '../../interfaces/slider.interface';
 import {Dots} from '../Dots/Dots';
 import {Arrow} from '../Arrow/Arrow';
-import {Spinner} from '../Spinner/Spinner';
-import styles from './Slider.module.scss';
+import {Flex} from '../../styles/components';
+import axios from 'axios';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+`;
+
+const SliderBlock = styled.div`
+  position: relative;
+  display: flex;
+  overflow: hidden;
+
+  width: 1440px;
+  height: 484px;
+
+  border-radius: 10px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
+
+  &:hover {
+    button {
+      svg {
+        fill: var(--green);
+      }
+    }
+  }
+`;
+
+const StyledSlider = styled.div<{offset: number}>`
+  width: 1440px;
+  height: 484px;
+
+  transition: all ease 1s;
+  text-align: center;
+  transform: translateX(${(props) => props.offset}px);
+`;
+
+const Image = styled.img`
+  width: 1440px;
+  height: 484px;
+  object-fit: cover;
+`;
+
+const StyledDots = styled.div`
+  position: unset;
+  right: 270px;
+  bottom: -30px;
+
+  ${Flex};
+
+  height: 30px;
+`;
 
 export const Slider: React.FC = (): JSX.Element => {
   const [slider, setSlider] = React.useState<ISlider[]>([]);
   const [offset, setOffset] = React.useState<number>(0);
-  const [loading] = React.useState<boolean>(false);
   const [slideIndex, setSlideIndex] = React.useState<number>(0);
   const IMG_WIDTH = 1440;
 
@@ -62,33 +112,20 @@ export const Slider: React.FC = (): JSX.Element => {
   }, [slideIndex]);
 
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.sliderBlock}>
-        {loading ?
-          <Spinner/> :
-          <>
-            {slider.map((s) => <div
-              className={styles.slider}
-              key={s.id}
-              style={{transform: `translateX(${offset}px)`}}
-            >
-              <img
-                key={s.id}
-                src={s.image}
-                alt={s.name}/>,
-            </div>
-            )}
-            <Arrow appearance={'left'} onClick={prevSlide}/>
-            <Arrow appearance={'right'} onClick={nextSlide}/>
-          </>
-        }
-      </div>
-      {!loading &&
-        <div className={styles.dots}>
-          <Dots slideIndex={slideIndex} dots={handleDots} arr={slider}/>
-        </div>
-      }
-    </div>
+    <Wrapper>
+      <SliderBlock>
+        {slider.map((s) =>
+          <StyledSlider offset={offset} key={s.id}>
+            <Image src={s.image} alt={s.name}/>,
+          </StyledSlider>
+        )}
+        <Arrow appearance={'left'} onClick={prevSlide}/>
+        <Arrow appearance={'right'} onClick={nextSlide}/>
+      </SliderBlock>
+      <StyledDots align={'center'} justify={'center'}>
+        <Dots slideIndex={slideIndex} dots={handleDots} arr={slider}/>
+      </StyledDots>
+    </Wrapper>
   );
 };
 

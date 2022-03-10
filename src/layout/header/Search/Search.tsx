@@ -2,9 +2,9 @@ import React from 'react';
 import {ReactComponent as LocationIcon} from './icons/location.svg';
 import {ReactComponent as SearchIcon} from './icons/search.svg';
 import {AddressSuggestions, DaDataSuggestion, DaDataAddress} from 'react-dadata';
-import {H} from '../../../components/H/H';
 import {Modal} from '../../../components/Modal/Modal';
 import styles from './Search.module.scss';
+import {H3} from '../../../styles/components';
 
 export const Search: React.FC = (): JSX.Element => {
   const [search, setSearch] = React.useState<DaDataSuggestion<DaDataAddress> | undefined>();
@@ -23,7 +23,7 @@ export const Search: React.FC = (): JSX.Element => {
     <div className={styles.search}>
       {modal && search !== undefined &&
         <Modal setModal={setModal} modal={modal}>
-          <H size={'h3'}>Доставка по вашему адресу {search.value} возможна</H>
+          <H3 size={15}>Доставка по вашему адресу {search.value} возможна</H3>
         </Modal>
       }
       <AddressSuggestions
