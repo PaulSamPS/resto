@@ -3,8 +3,9 @@ import {CardProps} from './Card.props';
 import {ReactComponent as BuyIcon} from './Icons/buy.svg';
 import {ReactComponent as MinusIcon} from './Icons/minus.svg';
 import {ReactComponent as PlusIcon} from './Icons/plus.svg';
-import {Link} from 'react-router-dom';
+import {useAppDispatch} from '../../hooks/redux';
 import {Button, Flex, H3, P, Span, Img} from '../../styles/components';
+import {getInfoProduct} from '../../redux/actions/ActionCreator';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -37,7 +38,8 @@ const Top = styled.div`
 
 const ButtonAddToCart = styled(Button)`
   height: 44px;
-  ${Flex}
+  ${Flex};
+  column-gap: 12px;
 `;
 
 const Description = styled(P)`
@@ -66,14 +68,18 @@ const Count = styled.div`
   line-height: 24px;
 `;
 
-export const Card: React.FC<CardProps> = ({product}): JSX.Element => {
+export const Card: React.FC<CardProps> = ({product, setModal}): JSX.Element => {
   const [addToCart, setAddToCart] = React.useState<boolean>(false);
+  const dispatch = useAppDispatch();
+
+  const handleItemInfo = (id: number) => {
+    dispatch(getInfoProduct(id));
+    setModal(true);
+  };
 
   return (
     <Wrapper direction={'column'}>
-      <Link to={`/${product.id}`}>
-        <StyledImg height={227} width={327} src={product.image} alt={product.name}/>
-      </Link>
+      <StyledImg onClick={() => handleItemInfo(product.id)} height={227} width={327} src={product.image} alt={product.name}/>
       <Top align={'baseline'} justify={'space-between'}>
         <H3 size={20}>{product.name}</H3>
         <Span color={'#CFCFCF'} size={12} weight={400}>Вес: {product.weight} г</Span>

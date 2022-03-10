@@ -1,13 +1,11 @@
 import React from 'react';
-import {ReactComponent as ShoppingBag} from '../../pages/ProductInfo/Icons/shopping-bag.svg';
-import {CardInfoProps} from './CardInfo.props';
+import {ReactComponent as ShoppingBag} from './Icons/shoppingBag.svg';
 import {Button, Flex, H3, Img, P, Span} from '../../styles/components';
 import styled from 'styled-components';
+import {useAppSelector} from '../../hooks/redux';
 
 const Wrapper = styled.div`
   ${Flex};
-  padding-bottom: 50px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 `;
 
 const Card = styled.div`
@@ -57,6 +55,11 @@ const ButtonAddToCart = styled(Button)`
   ${Flex};
   margin-right: 25px;
   padding: 16px 20px;
+  
+  svg {
+    position: unset!important;
+    transform: none!important;
+  }
 `;
 
 const ButtonSpan = styled(Span)`
@@ -90,7 +93,9 @@ const Value = styled.div`
   column-gap: 50px;
 `;
 
-export const CardInfo: React.FC<CardInfoProps> = ({product}): JSX.Element => {
+export const CardInfo: React.FC = (): JSX.Element => {
+  const {product} = useAppSelector((state) => state.productInfoReducer);
+
   return (
     <Wrapper justify={'center'}>
       {product &&

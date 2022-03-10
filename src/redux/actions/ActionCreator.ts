@@ -17,7 +17,7 @@ export const getProduct = (category: string = 'cold-snacks') => async (dispatch:
   }
 };
 
-export const getInfoProduct = (id: string | undefined) => async (dispatch: AppDispatch) => {
+export const getInfoProduct = (id: number | undefined) => async (dispatch: AppDispatch) => {
   try {
     dispatch(productInfoSlice.actions.setInfoProduct());
     const res = await axios.get<ProductInterface>(`/api/products/${id}`);

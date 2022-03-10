@@ -3,7 +3,6 @@ import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom';
 import {Layout} from './layout/Layout';
 import {Main} from './pages/Main/Main';
 import {Cart} from './pages/Cart/Cart';
-import {ProductInfo} from './pages/ProductInfo/ProductInfo';
 import styles from './App.module.scss';
 
 export const App: React.FC = (): JSX.Element => {
@@ -13,7 +12,6 @@ export const App: React.FC = (): JSX.Element => {
         <Routes>
           <Route path='/' element={<Layout/>}>
             <Route index element={<Main/>}/>
-            <Route path='/:id' element={<ProductInfo/>}/>
             <Route path='cart' element={<Cart/>}/>
             <Route path='*' element={<Navigate to='/' replace/>}/>
           </Route>
