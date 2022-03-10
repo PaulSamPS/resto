@@ -6,7 +6,8 @@
     "description": "помидор, сыр фета, масло подсолнечное, капуста пекинская, \nперец сладкий красный, огурцы, оливки без косточек",
     "weight": 210,
     "price": 529,
-    "category": "Горячие блюда",
+    "category": "hot-snacks",
+    "categoryRu": "Горячие закуски",
     "nutritionalValue": [
       {
         "id": 1,
@@ -42,7 +43,8 @@
     "description": "помидор, сыр фета, масло подсолнечное, капуста пекинская, \nперец сладкий красный, огурцы, оливки без косточек",
     "weight": 210,
     "price": 529,
-    "category": "cold-snack",
+    "category": "cold-snacks",
+    "categoryRu": "Холодные закуски",
     "nutritionalValue": [
       {
         "id": 1,
@@ -73,12 +75,13 @@
   },
   {
     "id": 3,
-    "name": "Вок с говядиной (гречневая лапша)",
+    "name": "Вок с говядиной",
     "image": "assets/card/soups/vokSgovyadinoy.webp",
     "description": "Вок из гречневой лапши соба, обжаренный с кусочками говядины и овощами, заправленный устричным соусом.",
     "weight": 300,
     "price": 449,
-    "category": "Супы",
+    "category": "soups",
+    "categoryRu": "Супы",
     "nutritionalValue": [
       {
         "id": 1,
@@ -114,7 +117,8 @@
     "description": "помидор, сыр фета, масло подсолнечное, капуста пекинская, \nперец сладкий красный, огурцы, оливки без косточек",
     "weight": 210,
     "price": 529,
-    "category": "Напитки",
+    "category": "drinks",
+    "categoryRu": "Напитки",
     "nutritionalValue": [
       {
         "id": 1,
@@ -151,6 +155,7 @@
     "weight": 210,
     "price": 529,
     "category": "grill-menu",
+    "categoryRu": "Грилль меню",
     "nutritionalValue": [
       {
         "id": 1,
@@ -186,7 +191,8 @@
     "description": "помидор, сыр фета, масло подсолнечное, капуста пекинская, \nперец сладкий красный, огурцы, оливки без косточек",
     "weight": 210,
     "price": 529,
-    "category": "Напитки",
+    "category": "drinks",
+    "categoryRu": "Напитки",
     "nutritionalValue": [
       {
         "id": 1,
@@ -222,7 +228,8 @@
     "description": "кисломолочный суп с рисом, зеленью и горохом Нутом",
     "weight": 250,
     "price": 320,
-    "category": "Супы",
+    "category": "soups",
+    "categoryRu": "Супы",
     "nutritionalValue": [
       {
         "id": 1,
@@ -258,6 +265,27 @@
     "description": "Coca-Cola",
     "weight": 250,
     "price": 150,
-    "category": "Напитки"
+    "category": "drinks",
+    "categoryRu": "Напитки"
+  },
+  {
+    "id": 9,
+    "name": "Sprite",
+    "image": "assets/card/drinks/cocaCola.jpg",
+    "description": "Sprite",
+    "weight": 250,
+    "price": 150,
+    "category": "drinks",
+    "categoryRu": "Напитки"
+  },
+  {
+    "id": 10,
+    "name": "Fanta",
+    "image": "assets/card/drinks/cocaCola.jpg",
+    "description": "Fanta",
+    "weight": 250,
+    "price": 150,
+    "category": "drinks",
+    "categoryRu": "Напитки"
   }
 ]

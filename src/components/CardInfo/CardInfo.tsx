@@ -1,46 +1,133 @@
 import React from 'react';
-import {H} from '../H/H';
-import {P} from '../P/P';
-import {Span} from '../Span/Span';
-import {Button} from '../Button/Button';
-import {ReactComponent as ShoppingBag} from '../../pages/ProductInfo/Icons/shopping-bag.svg';
-import {CardInfoProps} from './CardInfo.props';
-import styles from './CardInfo.module.scss';
+import {ReactComponent as ShoppingBag} from './Icons/shoppingBag.svg';
+import {Button, Flex, H3, Img, P, Span} from '../../styles/components';
+import styled from 'styled-components';
+import {useAppSelector} from '../../hooks/redux';
 
-export const CardInfo: React.FC<CardInfoProps> = ({product, className, ...props}) => {
-  console.log(product?.image);
+const Wrapper = styled.div`
+  ${Flex};
+`;
+
+const Card = styled.div`
+  ${Flex};
+  width: 1210px;
+  height: 400px;
+  border-radius: 10px;
+  background: var(--brownGradient);
+`;
+
+const StyledImg = styled(Img)`
+  border-radius: 10px 0 0 10px;
+`;
+
+const InfoBlock = styled.div`
+  ${Flex};
+`;
+
+const Title = styled(H3)`
+  margin-top: 38px;
+  margin-bottom: 5px;
+  padding-left: 50px;
+`;
+
+const Description = styled(P)`
+  max-width: 450px;
+  margin-bottom: 90px;
+  padding-left: 50px;
+  font-size: 14px;
+  line-height: 16px;
+  flex-grow: 1;
+`;
+
+const Weight = styled(Span)`
+  padding-left: 50px;
+  font-weight: 400;
+`;
+
+const Buy = styled.div`
+  ${Flex};
+  margin-top: 20px;
+  margin-bottom: 30px;
+  padding-left: 50px;
+`;
+
+const ButtonAddToCart = styled(Button)`
+  ${Flex};
+  margin-right: 25px;
+  padding: 16px 20px;
+  
+  svg {
+    position: unset!important;
+    transform: none!important;
+  }
+`;
+
+const ButtonSpan = styled(Span)`
+  padding-right: 20px;
+  border-right: 1px solid var(--textWhite);
+  margin-right: 15px;
+`;
+
+const NutritionalValue = styled.div`
+  width: 100%;
+  margin-bottom: 25px;
+`;
+
+const Name = styled.div`
+  display: grid;
+  padding-right: 159px;
+  padding-bottom: 5px;
+  padding-left: 50px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-weight: 300;
+  grid-template-columns: 40px 41px 58px 34px 28px;
+  column-gap: 50px;
+`;
+
+const Value = styled.div`
+  display: grid;
+  margin-top: 5px;
+  padding-right: 159px;
+  padding-left: 50px;
+  grid-template-columns: 40px 41px 58px 34px 28px;
+  column-gap: 50px;
+`;
+
+export const CardInfo: React.FC = (): JSX.Element => {
+  const {product} = useAppSelector((state) => state.productInfoReducer);
+
   return (
-    <div className={styles.cardWrapper}>
+    <Wrapper justify={'center'}>
       {product &&
-        <div className={styles.card}>
-          <img src={product.image} alt={product.name}/>
-          <div className={styles.characteristics}>
-            <H size={'h3'} className={styles.title}>{product.name}</H>
-            <P size={'m'}>{product.description}</P>
-            <Span size={'m'} className={styles.weight}>Вес: {product.weight} г</Span>
-            <div className={styles.addToCart}>
-              <Button>
-                <Span size={'m'}>Корзина</Span>
+        <Card>
+          <StyledImg width={600} height={400} src={product.image} alt={product.name}/>
+          <InfoBlock direction={'column'}>
+            <Title size={25}>{product.name}</Title>
+            <Description size={12}>{product.description}</Description>
+            <Weight size={14}>Вес: {product.weight} г</Weight>
+            <Buy align={'center'}>
+              <ButtonAddToCart align={'center'}>
+                <ButtonSpan size={14} weight={600}>Корзина</ButtonSpan>
                 <ShoppingBag/>
-              </Button>
-              <H size={'h3'}>{product.price} ₽</H>
-            </div>
-            <div className={styles.nutritionalValue}>
-              <div className={styles.name}>
+              </ButtonAddToCart>
+              <H3 size={25}>{product.price} ₽</H3>
+            </Buy>
+            <NutritionalValue>
+              <Name>
                 {product.nutritionalValue?.map((v) =>
-                  <Span key={v.name} size={'s'}>{v.name}</Span>
+                  <Span size={12} weight={300} key={v.name}>{v.name}</Span>
                 )}
-              </div>
-              <div className={styles.value}>
+              </Name>
+              <Value>
                 {product.nutritionalValue?.map((v) =>
-                  <Span key={v.value} size={'s'}>{v.value}</Span>
+                  <Span size={12} weight={500} key={v.value}>{v.value}</Span>
                 )}
-              </div>
-            </div>
-          </div>
-        </div>
+              </Value>
+            </NutritionalValue>
+          </InfoBlock>
+        </Card>
       }
-    </div>
+    </Wrapper>
   );
 };
 

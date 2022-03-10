@@ -1,11 +1,9 @@
 import React from 'react';
-import {H} from '../../components/H/H';
+import {H1} from '../../styles/components';
 
 export const Cart: React.FC = (): JSX.Element => {
   return (
-    <div>
-      <H size={'h1'}>Cart</H>
-    </div>
+    <H1 size={30}>Cart</H1>
   );
 };
 
