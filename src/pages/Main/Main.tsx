@@ -33,7 +33,7 @@ const StyledProductBlock = styled.div`
 export const Main: React.FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const {product} = useAppSelector((state) => state.productReducer);
-  const {cart} = useAppSelector((state) => state.cartSlice);
+  const {cart} = useAppSelector((state) => state.cartReducer);
   const [modal, setModal] = React.useState<boolean>(false);
 
   React.useEffect(() => {
@@ -50,7 +50,7 @@ export const Main: React.FC = (): JSX.Element => {
       </StyledProductBlock>
       {modal &&
         <Modal setModal={setModal}>
-          <CardInfo/>
+          <CardInfo count={cart}/>
         </Modal>
       }
     </Container>

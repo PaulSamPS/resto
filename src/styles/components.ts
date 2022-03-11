@@ -33,12 +33,15 @@ export const H3 = styled.h3<TitleProps>`
 `;
 
 // Button
+interface IBtn {
+    marginR?: number
+}
 
-export const Button = styled.button`
+export const Button = styled.button<IBtn>`
     padding: 10px 20px;
-    
     cursor: pointer;
     transition: transform ease 0.2s;
+    margin-right: ${({marginR}) => marginR}px;
     
     color: var(--textWhite);
     border: none;

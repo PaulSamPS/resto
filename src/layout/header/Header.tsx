@@ -4,6 +4,7 @@ import {Contacts} from './Contacts/Contacts';
 import {Modal} from '../../components/Modal/Modal';
 import {Button, H1, H2, Flex, Span, Img} from '../../styles/components';
 import {useLocation} from 'react-router-dom';
+import {useAppSelector} from '../../hooks/redux';
 import styled from 'styled-components';
 
 const StyledHeader = styled.div`
@@ -37,6 +38,7 @@ const Count = styled.div`
   border-radius: 50%;
   background: var(--textWhite);
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
+  line-height: 0;
 `;
 
 const StyledImg = styled(Img)`
@@ -50,6 +52,7 @@ const ModalButton = styled(Button)`
 
 export const Header: React.FC = (): JSX.Element => {
   const [modal, setModal] = React.useState<boolean>(false);
+  const {totalCount} = useAppSelector((state) => state.cartReducer);
   const location = useLocation();
 
   return (
@@ -62,7 +65,7 @@ export const Header: React.FC = (): JSX.Element => {
           <>
             <StyledSpan size={14} weight={600}>Корзина</StyledSpan>
             <Count align={'center'} justify={'center'}>
-              <Span size={12} weight={600} color={'#403C3B'}>1</Span>
+              <Span size={12} weight={600} color={'#403C3B'}>{totalCount}</Span>
             </Count>
           </>
         }
