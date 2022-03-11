@@ -73,6 +73,7 @@ const Count = styled.div`
 
 export const Card: React.FC<CardProps> = ({product, count, setModal}) => {
   const dispatch = useAppDispatch();
+  const itemCount = count.filter((item) => item.id === product.id);
 
   const handleItemInfo = (id: number) => {
     dispatch(getInfoProduct(id));
@@ -82,8 +83,6 @@ export const Card: React.FC<CardProps> = ({product, count, setModal}) => {
   const addProductToCart = () => {
     dispatch(cartSlice.actions.setCart(product));
   };
-
-  const itemCount = count.filter((item) => item.id === product.id);
 
   return (
     <Wrapper direction={'column'}>

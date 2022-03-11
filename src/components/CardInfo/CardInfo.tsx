@@ -1,8 +1,12 @@
 import React from 'react';
 import {ReactComponent as ShoppingBag} from './Icons/shoppingBag.svg';
 import {Button, Flex, H3, Img, P, Span} from '../../styles/components';
+import {useAppDispatch, useAppSelector} from '../../hooks/redux';
+import {CardInfoProps} from './CardInfo.props';
+import {ReactComponent as MinusIcon} from '../Card/Icons/minus.svg';
+import {ReactComponent as PlusIcon} from '../Card/Icons/plus.svg';
+import {cartSlice} from '../../redux/reducers/CartSlice';
 import styled from 'styled-components';
-import {useAppSelector} from '../../hooks/redux';
 
 const Wrapper = styled.div`
   ${Flex};
@@ -45,21 +49,42 @@ const Weight = styled(Span)`
 `;
 
 const Buy = styled.div`
+  max-width: 50%;
   ${Flex};
   margin-top: 20px;
   margin-bottom: 30px;
   padding-left: 50px;
+  position: relative;
 `;
 
 const ButtonAddToCart = styled(Button)`
   ${Flex};
-  margin-right: 25px;
   padding: 16px 20px;
   
   svg {
     position: unset!important;
     transform: none!important;
   }
+`;
+
+const ButtonCount = styled(ButtonAddToCart)`
+  width: 58px;
+  height: 51px;
+`;
+
+const Count = styled.div`
+  position: absolute;
+  ${Flex};
+  top: 0;
+  right: -100px;
+  height: 50px;
+  width: 50px;
+  color: var(--textWhite);
+  border-radius: 50%;
+  background: var(--green);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
 `;
 
 const ButtonSpan = styled(Span)`
@@ -93,8 +118,14 @@ const Value = styled.div`
   column-gap: 50px;
 `;
 
-export const CardInfo: React.FC = (): JSX.Element => {
+export const CardInfo: React.FC<CardInfoProps> = ({count}): JSX.Element => {
   const {product} = useAppSelector((state) => state.productInfoReducer);
+  const itemCount = count.filter((item) => item.id === product.id);
+  const dispatch = useAppDispatch();
+
+  const addProductToCart = () => {
+    dispatch(cartSlice.actions.setCart(product));
+  };
 
   return (
     <Wrapper justify={'center'}>
@@ -105,12 +136,28 @@ export const CardInfo: React.FC = (): JSX.Element => {
             <Title size={25}>{product.name}</Title>
             <Description size={12}>{product.description}</Description>
             <Weight size={14}>Вес: {product.weight} г</Weight>
-            <Buy align={'center'}>
-              <ButtonAddToCart align={'center'}>
-                <ButtonSpan size={14} weight={600}>Корзина</ButtonSpan>
-                <ShoppingBag/>
-              </ButtonAddToCart>
-              <H3 size={25}>{product.price} ₽</H3>
+            <Buy align={'center'} justify={'space-between'}>
+              {itemCount && itemCount.length > 0 ?
+                <>
+                  <ButtonCount align={'center'}>
+                    <MinusIcon/>
+                  </ButtonCount>
+                  <H3 size={25}>{product.price} ₽</H3>
+                  <ButtonCount align={'center'} onClick={addProductToCart}>
+                    <PlusIcon/>
+                  </ButtonCount>
+                  {itemCount && itemCount.map((i) =>
+                    <Count key={i.id} align={'center'} justify={'center'}>{i.qty}</Count>
+                  )}
+                </> :
+                <>
+                  <ButtonAddToCart align={'center'} onClick={addProductToCart}>
+                    <ButtonSpan size={14} weight={600}>Корзина</ButtonSpan>
+                    <ShoppingBag/>
+                  </ButtonAddToCart>
+                  <H3 size={25}>{product.price} ₽</H3>
+                </>
+              }
             </Buy>
             <NutritionalValue>
               <Name>
