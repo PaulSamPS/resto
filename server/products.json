@@ -6,6 +6,7 @@
     "description": "помидор, сыр фета, масло подсолнечное, капуста пекинская, \nперец сладкий красный, огурцы, оливки без косточек",
     "weight": 210,
     "price": 529,
+    "qty": 1,
     "category": "hot-snacks",
     "categoryRu": "Горячие закуски",
     "nutritionalValue": [
@@ -43,6 +44,7 @@
     "description": "помидор, сыр фета, масло подсолнечное, капуста пекинская, \nперец сладкий красный, огурцы, оливки без косточек",
     "weight": 210,
     "price": 529,
+    "qty": 1,
     "category": "cold-snacks",
     "categoryRu": "Холодные закуски",
     "nutritionalValue": [
@@ -80,6 +82,7 @@
     "description": "Вок из гречневой лапши соба, обжаренный с кусочками говядины и овощами, заправленный устричным соусом.",
     "weight": 300,
     "price": 449,
+    "qty": 1,
     "category": "soups",
     "categoryRu": "Супы",
     "nutritionalValue": [
@@ -117,6 +120,7 @@
     "description": "помидор, сыр фета, масло подсолнечное, капуста пекинская, \nперец сладкий красный, огурцы, оливки без косточек",
     "weight": 210,
     "price": 529,
+    "qty": 1,
     "category": "drinks",
     "categoryRu": "Напитки",
     "nutritionalValue": [
@@ -154,6 +158,7 @@
     "description": "помидор, сыр фета, масло подсолнечное, капуста пекинская, \nперец сладкий красный, огурцы, оливки без косточек",
     "weight": 210,
     "price": 529,
+    "qty": 1,
     "category": "grill-menu",
     "categoryRu": "Грилль меню",
     "nutritionalValue": [
@@ -191,6 +196,7 @@
     "description": "помидор, сыр фета, масло подсолнечное, капуста пекинская, \nперец сладкий красный, огурцы, оливки без косточек",
     "weight": 210,
     "price": 529,
+    "qty": 1,
     "category": "drinks",
     "categoryRu": "Напитки",
     "nutritionalValue": [
@@ -228,6 +234,7 @@
     "description": "кисломолочный суп с рисом, зеленью и горохом Нутом",
     "weight": 250,
     "price": 320,
+    "qty": 1,
     "category": "soups",
     "categoryRu": "Супы",
     "nutritionalValue": [
@@ -265,6 +272,7 @@
     "description": "Coca-Cola",
     "weight": 250,
     "price": 150,
+    "qty": 1,
     "category": "drinks",
     "categoryRu": "Напитки"
   },
@@ -275,6 +283,7 @@
     "description": "Sprite",
     "weight": 250,
     "price": 150,
+    "qty": 1,
     "category": "drinks",
     "categoryRu": "Напитки"
   },
@@ -285,6 +294,7 @@
     "description": "Fanta",
     "weight": 250,
     "price": 150,
+    "qty": 1,
     "category": "drinks",
     "categoryRu": "Напитки"
   }

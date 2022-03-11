@@ -4,8 +4,9 @@ import {ReactComponent as BuyIcon} from './Icons/buy.svg';
 import {ReactComponent as MinusIcon} from './Icons/minus.svg';
 import {ReactComponent as PlusIcon} from './Icons/plus.svg';
 import {useAppDispatch} from '../../hooks/redux';
-import {Button, Flex, H3, P, Span, Img} from '../../styles/components';
+import {Button, Flex, H3, Img, P, Span} from '../../styles/components';
 import {getInfoProduct} from '../../redux/actions/ActionCreator';
+import {cartSlice} from '../../redux/reducers/CartSlice';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -57,9 +58,11 @@ const Bottom = styled.div`
 
 const Count = styled.div`
   position: absolute;
+  ${Flex};
   top: -12px;
   right: -12px;
-  padding: 14px 20px;
+  height: 50px;
+  width: 50px;
   color: var(--textWhite);
   border-radius: 50%;
   background: var(--green);
@@ -68,14 +71,19 @@ const Count = styled.div`
   line-height: 24px;
 `;
 
-export const Card: React.FC<CardProps> = ({product, setModal}): JSX.Element => {
-  const [addToCart, setAddToCart] = React.useState<boolean>(false);
+export const Card: React.FC<CardProps> = ({product, count, setModal}) => {
   const dispatch = useAppDispatch();
 
   const handleItemInfo = (id: number) => {
     dispatch(getInfoProduct(id));
     setModal(true);
   };
+
+  const addProductToCart = () => {
+    dispatch(cartSlice.actions.setCart(product));
+  };
+
+  const itemCount = count.filter((item) => item.id === product.id);
 
   return (
     <Wrapper direction={'column'}>
@@ -85,25 +93,27 @@ export const Card: React.FC<CardProps> = ({product, setModal}): JSX.Element => {
         <Span color={'#CFCFCF'} size={12} weight={400}>Вес: {product.weight} г</Span>
       </Top>
       <Description size={13}>{product.description}</Description>
-      {addToCart ?
+      {itemCount && itemCount.length > 0 ?
         <Bottom align={'center'} justify={'space-between'}>
           <ButtonAddToCart align={'center'}>
             <MinusIcon />
           </ButtonAddToCart>
           <Span size={20} weight={600}>{product.price} ₽</Span>
-          <ButtonAddToCart align={'center'}>
+          <ButtonAddToCart align={'center'} onClick={addProductToCart}>
             <PlusIcon />
           </ButtonAddToCart>
         </Bottom> :
         <Bottom align={'center'} justify={'space-between'}>
           <Span size={20} weight={600}>{product.price} ₽</Span>
-          <ButtonAddToCart align={'center'} onClick={() => setAddToCart(true)}>
+          <ButtonAddToCart align={'center'} onClick={addProductToCart}>
             В корзину
             <BuyIcon />
           </ButtonAddToCart>
         </Bottom>
       }
-      <Count>3</Count>
+      {itemCount && itemCount.map((i) =>
+        <Count key={i.id} align={'center'} justify={'center'}>{i.qty}</Count>
+      )}
     </Wrapper>
   );
 };

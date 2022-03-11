@@ -1,10 +1,10 @@
 import React from 'react';
 import {App} from './App';
-import {createStore} from './redux/store';
-import {Provider} from 'react-redux';
 import ReactDOM from 'react-dom';
-import GlobalStyles from './styles/global';
 import './index.scss';
+import {Provider} from 'react-redux';
+import {createStore} from './redux/store';
+import GlobalStyles from './styles/global';
 
 const store = createStore();
 

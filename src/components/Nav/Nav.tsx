@@ -38,8 +38,6 @@ export const Nav: React.FC = () => {
     navigate('/');
   };
 
-  console.log(activeIndex);
-
   React.useEffect(() => {
     dispatch(getNav());
     if (location.pathname !== '/') {
