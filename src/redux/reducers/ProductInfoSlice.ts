@@ -16,6 +16,7 @@ const initialState: IProductState = {
     image: '',
     nutritionalValue: [],
     price: 0,
+    qty: 0,
     weight: 0,
     description: ''
   },

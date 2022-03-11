@@ -2,16 +2,19 @@ import {combineReducers, configureStore} from '@reduxjs/toolkit';
 import productReducer from './reducers/ProductSlice';
 import productInfoReducer from './reducers/ProductInfoSlice';
 import navReducer from './reducers/NavSlice';
+import cartSlice from './reducers/CartSlice';
 
 const rootReducer = combineReducers({
   productReducer,
   productInfoReducer,
-  navReducer
+  navReducer,
+  cartSlice
 });
 
 export const createStore = () => {
   return configureStore({
-    reducer: rootReducer
+    reducer: rootReducer,
+    devTools: true
   });
 };
 

@@ -22,7 +22,7 @@ export const Search: React.FC = (): JSX.Element => {
   return (
     <div className={styles.search}>
       {modal && search !== undefined &&
-        <Modal setModal={setModal} modal={modal}>
+        <Modal setModal={setModal}>
           <H3 size={15}>Доставка по вашему адресу {search.value} возможна</H3>
         </Modal>
       }

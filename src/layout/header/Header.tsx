@@ -2,9 +2,22 @@ import React from 'react';
 import {Search} from './Search/Search';
 import {Contacts} from './Contacts/Contacts';
 import {Modal} from '../../components/Modal/Modal';
-import styles from './Header.module.scss';
-import {Button, H2, Flex, Span, Img} from '../../styles/components';
+import {Button, H1, H2, Flex, Span, Img} from '../../styles/components';
+import {useLocation} from 'react-router-dom';
 import styled from 'styled-components';
+
+const StyledHeader = styled.div`
+  display: grid;
+
+  padding: 24px 80px;
+  grid-template-columns: auto 555px 1fr auto;
+  align-items: center;
+`;
+
+const Logo = styled(H1)`
+  margin-right: 80px;
+  letter-spacing: 5px;
+`;
 
 const ButtonCart = styled(Button)`
   ${Flex};
@@ -37,25 +50,31 @@ const ModalButton = styled(Button)`
 
 export const Header: React.FC = (): JSX.Element => {
   const [modal, setModal] = React.useState<boolean>(false);
+  const location = useLocation();
+
   return (
-    <div className={styles.header}>
-      <h1 className={styles.logo}>LOGOS</h1>
+    <StyledHeader>
+      <Logo size={25} color={'#FFFFFF'}>LOGOS</Logo>
       <Search/>
       <Contacts/>
       <ButtonCart align={'center'} onClick={() => setModal(true)}>
-        <StyledSpan size={14} weight={600} className={styles.text}>Корзина</StyledSpan>
-        <Count align={'center'} justify={'center'}>
-          <Span size={12} weight={600} color={'#403C3B'}>1</Span>
-        </Count>
+        {location.pathname === '/' &&
+          <>
+            <StyledSpan size={14} weight={600}>Корзина</StyledSpan>
+            <Count align={'center'} justify={'center'}>
+              <Span size={12} weight={600} color={'#403C3B'}>1</Span>
+            </Count>
+          </>
+        }
       </ButtonCart>
       {modal &&
-        <Modal setModal={setModal} modal={modal}>
+        <Modal setModal={setModal}>
           <StyledImg width={76} height={89} src={'assets/emptyCart.png'} alt='Корзина пуста'/>
           <H2 size={25}>Корзина пуста</H2>
-          <ModalButton>Посмотреть меню</ModalButton>
+          <ModalButton onClick={() => setModal(false)}>Посмотреть меню</ModalButton>
         </Modal>
       }
-    </div>
+    </StyledHeader>
   );
 };
 

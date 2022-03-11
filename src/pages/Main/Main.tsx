@@ -5,9 +5,9 @@ import {useAppDispatch, useAppSelector} from '../../hooks/redux';
 import {getProduct} from '../../redux/actions/ActionCreator';
 import {Card} from '../../components/Card/Card';
 import {H1} from '../../styles/components';
-import styled from 'styled-components';
 import {Modal} from '../../components/Modal/Modal';
 import {CardInfo} from '../../components/CardInfo/CardInfo';
+import styled from 'styled-components';
 
 const Container = styled.div`
   display: flex;
@@ -33,6 +33,7 @@ const StyledProductBlock = styled.div`
 export const Main: React.FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const {product} = useAppSelector((state) => state.productReducer);
+  const {cart} = useAppSelector((state) => state.cartSlice);
   const [modal, setModal] = React.useState<boolean>(false);
 
   React.useEffect(() => {
@@ -45,10 +46,10 @@ export const Main: React.FC = (): JSX.Element => {
       <Nav/>
       <Title size={32}>{product.map((p) => p.categoryRu)[0]}</Title>
       <StyledProductBlock>
-        {product.map((p) => <Card setModal={setModal} key={p.id} product={p}/>)}
+        {product.map((p) => <Card setModal={setModal} count={cart} key={p.id} product={p}/>)}
       </StyledProductBlock>
       {modal &&
-        <Modal setModal={setModal} modal={modal}>
+        <Modal setModal={setModal}>
           <CardInfo/>
         </Modal>
       }

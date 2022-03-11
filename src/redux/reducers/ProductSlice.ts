@@ -2,9 +2,9 @@ import {ProductInterface} from '../../interfaces/product.interface';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 interface IProductState {
-    product: ProductInterface[]
-    isLoading: boolean
-    error: string
+  product: ProductInterface[]
+  isLoading: boolean
+  error: string
 }
 
 const initialState: IProductState = {

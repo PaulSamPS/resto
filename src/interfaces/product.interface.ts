@@ -11,6 +11,7 @@ export interface ProductInterface {
     description: string
     weight: number
     price: number
+    qty: number
     category: string
     categoryRu: string
     nutritionalValue?: INutritionalValue[]
