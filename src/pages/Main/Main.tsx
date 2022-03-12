@@ -1,13 +1,11 @@
 import React from 'react';
-// import {Slider} from '../../components/Slider/Slider';
-import {useAppDispatch, useAppSelector} from '../../hooks/redux';
-import {getProduct} from '../../redux/actions/ActionCreator';
+import {useAppSelector} from '../../hooks/redux';
 import {Card} from '../../components/Card/Card';
 import {H1} from '../../styles/components';
 import {Modal} from '../../components/Modal/Modal';
 import {CardInfo} from '../../components/CardInfo/CardInfo';
-import styled from 'styled-components';
 import {MainProps} from './Main.props';
+import styled from 'styled-components';
 
 const Container = styled.div`
   display: flex;

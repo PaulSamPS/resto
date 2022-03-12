@@ -4,6 +4,7 @@ import {useAppSelector} from '../../hooks/redux';
 import {ProductInterface} from '../../interfaces/product.interface';
 import {useNavigate} from 'react-router-dom';
 import {CartCard} from '../../components/CartCard/CartCard';
+import {PlaceOrder} from '../../components/PlaceOrder/PlaceOrder';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -25,8 +26,10 @@ const CardBlock = styled.div`
 `;
 
 export const Cart: React.FC = (): JSX.Element => {
-  const {cart} = useAppSelector((state) => state.cartReducer);
+  const {cart, totalPrice} = useAppSelector((state) => state.cartReducer);
   const navigate = useNavigate();
+
+  console.log(totalPrice);
 
   React.useEffect(() => {
     if (cart.length === 0) {
@@ -40,6 +43,7 @@ export const Cart: React.FC = (): JSX.Element => {
       <CardBlock>
         {cart.map((p: ProductInterface) => <CartCard key={p.id} product={p}/>)}
       </CardBlock>
+      <PlaceOrder totalPrice={totalPrice}/>
     </Wrapper>
   );
 };

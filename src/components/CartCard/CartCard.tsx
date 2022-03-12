@@ -24,7 +24,9 @@ const Wrapper = styled.div`
   }
 `;
 
-const StyledImg = styled(Img)``;
+const StyledImg = styled(Img)`
+  border-radius: 10px
+`;
 
 const Info = styled.div`
   max-width: 265px;
