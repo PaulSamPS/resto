@@ -5,12 +5,14 @@ interface INavState {
   nav: NavInterface[]
   isLoading: boolean
   error: string
+  activeIndex: number| null
 }
 
 const initialState: INavState = {
   nav: [],
   isLoading: false,
-  error: ''
+  error: '',
+  activeIndex: 0
 };
 
 export const navSlice = createSlice({
@@ -28,6 +30,9 @@ export const navSlice = createSlice({
     setNavError(state, action: PayloadAction<string>) {
       state.isLoading = false;
       state.error = action.payload;
+    },
+    setActiveNav(state, action: PayloadAction<number | null>) {
+      state.activeIndex = action.payload;
     }
   }
 });

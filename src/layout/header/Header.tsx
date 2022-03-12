@@ -3,9 +3,11 @@ import {Search} from './Search/Search';
 import {Contacts} from './Contacts/Contacts';
 import {Modal} from '../../components/Modal/Modal';
 import {Button, H1, H2, Flex, Span, Img} from '../../styles/components';
-import {useLocation} from 'react-router-dom';
-import {useAppSelector} from '../../hooks/redux';
+import {useAppDispatch, useAppSelector} from '../../hooks/redux';
+import {useNavigate} from 'react-router-dom';
+import {navSlice} from '../../redux/reducers/NavSlice';
 import styled from 'styled-components';
+import {getProduct} from '../../redux/actions/ActionCreator';
 
 const StyledHeader = styled.div`
   display: grid;
@@ -18,6 +20,7 @@ const StyledHeader = styled.div`
 const Logo = styled(H1)`
   margin-right: 80px;
   letter-spacing: 5px;
+  cursor: pointer;
 `;
 
 const ButtonCart = styled(Button)`
@@ -53,22 +56,33 @@ const ModalButton = styled(Button)`
 export const Header: React.FC = (): JSX.Element => {
   const [modal, setModal] = React.useState<boolean>(false);
   const {totalCount} = useAppSelector((state) => state.cartReducer);
-  const location = useLocation();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (totalCount <= 0) {
+      setModal(true);
+    } else {
+      navigate('cart');
+    }
+  };
+
+  const handleNavigate = () => {
+    dispatch(navSlice.actions.setActiveNav(0));
+    dispatch(getProduct());
+    navigate('/');
+  };
 
   return (
     <StyledHeader>
-      <Logo size={25} color={'#FFFFFF'}>LOGOS</Logo>
+      <Logo size={25} color={'#FFFFFF'} onClick={handleNavigate}>LOGOS</Logo>
       <Search/>
       <Contacts/>
-      <ButtonCart align={'center'} onClick={() => setModal(true)}>
-        {location.pathname === '/' &&
-          <>
-            <StyledSpan size={14} weight={600}>Корзина</StyledSpan>
-            <Count align={'center'} justify={'center'}>
-              <Span size={12} weight={600} color={'#403C3B'}>{totalCount}</Span>
-            </Count>
-          </>
-        }
+      <ButtonCart align={'center'} onClick={handleClick}>
+        <StyledSpan size={14} weight={600}>Корзина</StyledSpan>
+        <Count align={'center'} justify={'center'}>
+          <Span size={12} weight={600} color={'#403C3B'}>{totalCount}</Span>
+        </Count>
       </ButtonCart>
       {modal &&
         <Modal setModal={setModal}>

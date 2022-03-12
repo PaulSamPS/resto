@@ -6,10 +6,10 @@ import {navSlice} from '../reducers/NavSlice';
 import {NavInterface} from '../../interfaces/nav.interface';
 import axios from 'axios';
 
-export const getProduct = (category: string = 'cold-snacks') => async (dispatch: AppDispatch) => {
+export const getProduct = (category?: string) => async (dispatch: AppDispatch) => {
   try {
     dispatch(productSlice.actions.setProduct());
-    const res = await axios.get<ProductInterface[]>(`/api/products?category=${category}`);
+    const res = await axios.get<ProductInterface[]>(`/api/products?category=${category ? category : 'cold-snacks'}`);
     dispatch(productSlice.actions.setProductSuccess(res.data));
   } catch (e) {
     const error = e as Error;

@@ -64,11 +64,12 @@ export const Button = styled.button<IBtn>`
 interface ParagraphProps {
     size: number
     weight?: number
+    color?: string
 }
 
 export const P = styled.p<ParagraphProps>`
     font-size: ${({size}) => size}px;
-    color: var(--tetxGray);
+    color: ${({color = 'var(--tetxGray)'}) => color};
     font-weight: ${({weight = 400}) => weight}px;
 `;
 

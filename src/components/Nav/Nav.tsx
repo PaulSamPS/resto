@@ -4,6 +4,7 @@ import {getNav, getProduct} from '../../redux/actions/ActionCreator';
 import {NavInterface} from '../../interfaces/nav.interface';
 import {Flex, StyledA} from '../../styles/components';
 import {useLocation, useNavigate} from 'react-router-dom';
+import {navSlice} from '../../redux/reducers/NavSlice';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -26,24 +27,24 @@ const StyledLink = styled(StyledA)`
 `;
 
 export const Nav: React.FC = () => {
-  const [activeIndex, setActiveIndex] = React.useState<number | null>(0);
   const dispatch = useAppDispatch();
-  const {nav} = useAppSelector((state) => state.navReducer);
+  const {nav, activeIndex} = useAppSelector((state) => state.navReducer);
   const location = useLocation();
   const navigate = useNavigate();
 
   const handleClick = (index: number, category: string) => {
-    setActiveIndex(index);
+    dispatch(navSlice.actions.setActiveNav(index));
     dispatch(getProduct(category));
     navigate('/');
   };
 
   React.useEffect(() => {
     dispatch(getNav());
-    if (location.pathname !== '/') {
-      setActiveIndex(null);
-    }
   }, []);
+
+  if (location.pathname !== '/') {
+    dispatch(navSlice.actions.setActiveNav(null));
+  }
 
   return (
     <Wrapper>
