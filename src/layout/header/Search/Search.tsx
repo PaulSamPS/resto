@@ -119,7 +119,7 @@ export const Search: React.FC = (): JSX.Element => {
       }
       <SearchDadata>
         <AddressSuggestions
-          token={process.env.REACT_APP_API_KEY}
+          token={'9c6db11104f3aee10143f74193f859ff74c58606'}
           value={search}
           onChange={setSearch}
           inputProps={{placeholder: 'Введите адрес доставки'}}
