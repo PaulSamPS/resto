@@ -3,6 +3,4 @@ import {ProductInterface} from '../../interfaces/product.interface';
 
 export interface CartCardProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>{
     product: ProductInterface
-    handleMinusItem: (item: ProductInterface) => void
-    deleteItem: (item: ProductInterface) => void
 }

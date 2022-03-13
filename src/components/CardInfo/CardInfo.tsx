@@ -5,7 +5,7 @@ import {useAppDispatch, useAppSelector} from '../../hooks/redux';
 import {CardInfoProps} from './CardInfo.props';
 import {ReactComponent as MinusIcon} from '../Card/Icons/minus.svg';
 import {ReactComponent as PlusIcon} from '../Card/Icons/plus.svg';
-import {cartSlice} from '../../redux/reducers/CartSlice';
+import {setCart, minusItem} from '../../redux/reducers/CartSlice';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -124,7 +124,11 @@ export const CardInfo: React.FC<CardInfoProps> = ({count}): JSX.Element => {
   const dispatch = useAppDispatch();
 
   const addProductToCart = () => {
-    dispatch(cartSlice.actions.setCart(product));
+    dispatch(setCart(product));
+  };
+
+  const handleMinusItem = () => {
+    dispatch(minusItem(product));
   };
 
   return (
@@ -139,7 +143,7 @@ export const CardInfo: React.FC<CardInfoProps> = ({count}): JSX.Element => {
             <Buy align={'center'} justify={'space-between'}>
               {itemCount && itemCount.length > 0 ?
                 <>
-                  <ButtonCount align={'center'}>
+                  <ButtonCount align={'center'} onClick={handleMinusItem}>
                     <MinusIcon/>
                   </ButtonCount>
                   <H3 size={25}>{product.price} ₽</H3>

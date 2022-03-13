@@ -5,13 +5,12 @@ import {ProductInterface} from '../../interfaces/product.interface';
 import {useNavigate} from 'react-router-dom';
 import {CartCard} from '../../components/CartCard/CartCard';
 import {PlaceOrder} from '../../components/PlaceOrder/PlaceOrder';
-import {cartSlice} from '../../redux/reducers/CartSlice';
-import {navSlice} from '../../redux/reducers/NavSlice';
+import {setActiveNav} from '../../redux/reducers/NavSlice';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
   ${Flex};
-  min-height: calc(100vh - 223px - 275px);
+  min-height: calc(100vh - 223px - 155.6px);
 `;
 
 const Title = styled(H1)`
@@ -31,6 +30,7 @@ const CardBlock = styled.div`
 const EmptyCart = styled.div`
   min-width: 458px;
   min-height: 358px;
+  margin-top: 80px;
   padding: 20px;
   ${Flex};
 `;
@@ -49,23 +49,15 @@ export const Cart: React.FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const handleMinusItem = (item: ProductInterface) => {
-    dispatch(cartSlice.actions.minusItem(item));
-  };
-
-  const handleDeleteItem = (item: ProductInterface) => {
-    dispatch(cartSlice.actions.deleteItem(item));
-  };
-
   const goToMenu = () => {
-    dispatch(navSlice.actions.setActiveNav(0));
+    dispatch(setActiveNav(0));
     navigate('/');
   };
 
   React.useEffect(() => {
     if (cart.length === 0) {
       navigate('/');
-      dispatch(navSlice.actions.setActiveNav(0));
+      dispatch(setActiveNav(0));
     }
   }, []);
 
@@ -75,7 +67,7 @@ export const Cart: React.FC = (): JSX.Element => {
         <>
           <Title size={32}>Корзина</Title>
           <CardBlock>
-            {cart.map((p: ProductInterface) => <CartCard key={p.id} product={p} handleMinusItem={handleMinusItem} deleteItem={handleDeleteItem}/>)}
+            {cart.map((p: ProductInterface) => <CartCard key={p.id} product={p}/>)}
           </CardBlock>
           <PlaceOrder totalPrice={totalPrice}/>
         </> :

@@ -5,8 +5,7 @@ import {ReactComponent as PlusIcon} from '../Card/Icons/plus.svg';
 import {priceRu} from '../../helpers/priceRu';
 import {ReactComponent as DeleteIcon} from './Icons/delete.svg';
 import {CartCardProps} from './CartCard.props';
-import {ProductInterface} from '../../interfaces/product.interface';
-import {cartSlice} from '../../redux/reducers/CartSlice';
+import {deleteItem, minusItem, setCart} from '../../redux/reducers/CartSlice';
 import {useAppDispatch} from '../../hooks/redux';
 import styled from 'styled-components';
 
@@ -78,11 +77,19 @@ const Delete = styled(Count)`
   }
 `;
 
-export const CartCard: React.FC<CartCardProps> = ({product, handleMinusItem, deleteItem}): JSX.Element => {
+export const CartCard: React.FC<CartCardProps> = ({product}): JSX.Element => {
   const dispatch = useAppDispatch();
 
-  const addProductToCart = (item: ProductInterface) => {
-    dispatch(cartSlice.actions.setCart(item));
+  const addProductToCart = () => {
+    dispatch(setCart(product));
+  };
+
+  const handleMinusItem = () => {
+    dispatch(minusItem(product));
+  };
+
+  const handleDeleteItem = () => {
+    dispatch(deleteItem(product));
   };
 
   return (
@@ -96,17 +103,16 @@ export const CartCard: React.FC<CartCardProps> = ({product, handleMinusItem, del
         <Count
           align={'center'}
           justify={'center'}
-          onClick={() => handleMinusItem(product)}
+          onClick={handleMinusItem}
           bg={product.qty <= 1 ? 'var(--brown)' : 'var(--green)'}
         >
           <MinusIcon/>
         </Count>
         <StyledSpanCount size={20} weight={700}>{product.qty}</StyledSpanCount>
-        <Count align={'center'} justify={'center'} onClick={() => addProductToCart(product)}><PlusIcon/></Count>
+        <Count align={'center'} justify={'center'} onClick={addProductToCart}><PlusIcon/></Count>
       </CountBlock>
       <TotalPrice size={20}>{priceRu(product.price * product.qty)}</TotalPrice>
-      <Delete align={'center'} justify={'center'} onClick={() => deleteItem(product)}><DeleteIcon/></Delete>
+      <Delete align={'center'} justify={'center'} onClick={handleDeleteItem}><DeleteIcon/></Delete>
     </Wrapper>
-
   );
 };

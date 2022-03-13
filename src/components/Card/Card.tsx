@@ -6,7 +6,7 @@ import {ReactComponent as PlusIcon} from './Icons/plus.svg';
 import {useAppDispatch} from '../../hooks/redux';
 import {Button, Flex, H3, Img, P, Span} from '../../styles/components';
 import {getInfoProduct} from '../../redux/actions/ActionCreator';
-import {cartSlice} from '../../redux/reducers/CartSlice';
+import {setCart, minusItem} from '../../redux/reducers/CartSlice';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -81,7 +81,11 @@ export const Card: React.FC<CardProps> = ({product, count, setModal}) => {
   };
 
   const addProductToCart = () => {
-    dispatch(cartSlice.actions.setCart(product));
+    dispatch(setCart(product));
+  };
+
+  const handleMinusItem = () => {
+    dispatch(minusItem(product));
   };
 
   return (
@@ -94,7 +98,7 @@ export const Card: React.FC<CardProps> = ({product, count, setModal}) => {
       <Description size={13}>{product.description}</Description>
       {itemCount && itemCount.length > 0 ?
         <Bottom align={'center'} justify={'space-between'}>
-          <ButtonAddToCart align={'center'}>
+          <ButtonAddToCart align={'center'} onClick={handleMinusItem}>
             <MinusIcon />
           </ButtonAddToCart>
           <Span size={20} weight={600}>{product.price} ₽</Span>

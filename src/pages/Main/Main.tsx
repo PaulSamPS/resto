@@ -10,7 +10,7 @@ import styled from 'styled-components';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 223px - 275px);
+  min-height: calc(100vh - 223px - 155.6px);
 `;
 
 const Title = styled(H1)`
@@ -34,7 +34,6 @@ export const Main: React.FC<MainProps> = ({product}): JSX.Element => {
 
   return (
     <Container>
-      {/* <Slider/>*/}
       <Title size={32}>{product.map((p) => p.categoryRu)[0]}</Title>
       <StyledProductBlock>
         {product.map((p) => <Card setModal={setModal} count={cart} key={p.id} product={p}/>)}

@@ -4,7 +4,7 @@ import {getNav, getProduct} from '../../redux/actions/ActionCreator';
 import {NavInterface} from '../../interfaces/nav.interface';
 import {Flex, StyledA} from '../../styles/components';
 import {useLocation, useNavigate} from 'react-router-dom';
-import {navSlice} from '../../redux/reducers/NavSlice';
+import {setActiveNav} from '../../redux/reducers/NavSlice';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -33,7 +33,7 @@ export const Nav: React.FC = () => {
   const navigate = useNavigate();
 
   const handleClick = (index: number, category: string) => {
-    dispatch(navSlice.actions.setActiveNav(index));
+    dispatch(setActiveNav(index));
     dispatch(getProduct(category));
     navigate('/');
   };
@@ -43,7 +43,7 @@ export const Nav: React.FC = () => {
   }, []);
 
   if (location.pathname !== '/') {
-    dispatch(navSlice.actions.setActiveNav(null));
+    dispatch(setActiveNav(null));
   }
 
   return (

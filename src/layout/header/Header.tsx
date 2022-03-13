@@ -5,9 +5,9 @@ import {Modal} from '../../components/Modal/Modal';
 import {Button, H1, H2, Flex, Span, Img} from '../../styles/components';
 import {useAppDispatch, useAppSelector} from '../../hooks/redux';
 import {useNavigate} from 'react-router-dom';
-import {navSlice} from '../../redux/reducers/NavSlice';
-import styled from 'styled-components';
+import {setActiveNav} from '../../redux/reducers/NavSlice';
 import {getProduct} from '../../redux/actions/ActionCreator';
+import styled from 'styled-components';
 
 const StyledHeader = styled.div`
   display: grid;
@@ -68,7 +68,7 @@ export const Header: React.FC = (): JSX.Element => {
   };
 
   const handleNavigate = () => {
-    dispatch(navSlice.actions.setActiveNav(0));
+    dispatch(setActiveNav(0));
     dispatch(getProduct());
     navigate('/');
   };
