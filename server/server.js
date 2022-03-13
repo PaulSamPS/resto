@@ -4,11 +4,13 @@ const slider = require('./slider.json');
 const nav = require('./nav.json');
 const server = jsonServer.create();
 const router = jsonServer.router({products, slider, nav});
-const middlewares = jsonServer.defaults(undefined);
+const middlewares = jsonServer.defaults({static: './build'});
+
+const PORT = process.env.PORT || 3001;
 
 server.use(middlewares);
 server.use('/api', router);
 
-server.listen(3001, () => {
+server.listen(PORT, () => {
   console.log('Сервер запущен на порту 3001');
 });
