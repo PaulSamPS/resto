@@ -6,6 +6,9 @@ import {useNavigate} from 'react-router-dom';
 import {CartCard} from '../../components/CartCard/CartCard';
 import {PlaceOrder} from '../../components/PlaceOrder/PlaceOrder';
 import {setActiveNav} from '../../redux/reducers/NavSlice';
+import {Modal} from '../../components/Modal/Modal';
+import {CardInfo} from '../../components/CardInfo/CardInfo';
+import {getProduct} from '../../redux/actions/ActionCreator';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -25,6 +28,7 @@ const CardBlock = styled.div`
   margin: 0 auto;
   background: var(--brownGradient);
   border-radius: 10px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
 `;
 
 const EmptyCart = styled.div`
@@ -45,12 +49,14 @@ const MenuBtn = styled(Button)`
 `;
 
 export const Cart: React.FC = (): JSX.Element => {
+  const [modal, setModal] = React.useState<boolean>(false);
   const {cart, totalPrice} = useAppSelector((state) => state.cartReducer);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const goToMenu = () => {
     dispatch(setActiveNav(0));
+    dispatch(getProduct());
     navigate('/');
   };
 
@@ -67,7 +73,7 @@ export const Cart: React.FC = (): JSX.Element => {
         <>
           <Title size={32}>Корзина</Title>
           <CardBlock>
-            {cart.map((p: ProductInterface) => <CartCard key={p.id} product={p}/>)}
+            {cart.map((p: ProductInterface) => <CartCard key={p.id} product={p} setModal={setModal}/>)}
           </CardBlock>
           <PlaceOrder totalPrice={totalPrice}/>
         </> :
@@ -76,6 +82,11 @@ export const Cart: React.FC = (): JSX.Element => {
             <H2 size={25}>Корзина пуста</H2>
             <MenuBtn onClick={goToMenu}>Посмотреть меню</MenuBtn>
           </EmptyCart>
+      }
+      {modal &&
+          <Modal setModal={setModal}>
+            <CardInfo count={cart}/>
+          </Modal>
       }
     </Wrapper>
   );

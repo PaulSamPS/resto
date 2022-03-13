@@ -8,6 +8,7 @@ import {CartCardProps} from './CartCard.props';
 import {deleteItem, minusItem, setCart} from '../../redux/reducers/CartSlice';
 import {useAppDispatch} from '../../hooks/redux';
 import styled from 'styled-components';
+import {getInfoProduct} from '../../redux/actions/ActionCreator';
 
 const Wrapper = styled.div`
   display: grid;
@@ -24,6 +25,7 @@ const Wrapper = styled.div`
 `;
 
 const StyledImg = styled(Img)`
+  cursor: pointer;
   border-radius: 10px
 `;
 
@@ -77,8 +79,13 @@ const Delete = styled(Count)`
   }
 `;
 
-export const CartCard: React.FC<CartCardProps> = ({product}): JSX.Element => {
+export const CartCard: React.FC<CartCardProps> = ({product, setModal}): JSX.Element => {
   const dispatch = useAppDispatch();
+
+  const handleItemInfo = () => {
+    dispatch(getInfoProduct(product.id));
+    setModal(true);
+  };
 
   const addProductToCart = () => {
     dispatch(setCart(product));
@@ -94,7 +101,7 @@ export const CartCard: React.FC<CartCardProps> = ({product}): JSX.Element => {
 
   return (
     <Wrapper>
-      <StyledImg width={117} height={86} src={product.image} alt={product.name}/>
+      <StyledImg width={117} height={86} src={product.image} alt={product.name} onClick={handleItemInfo}/>
       <Info>
         <H2 size={18}>{product.name}</H2>
         <P size={12} color={'#A6A7AB'}>{product.description}</P>

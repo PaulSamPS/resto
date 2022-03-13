@@ -75,8 +75,8 @@ export const Card: React.FC<CardProps> = ({product, count, setModal}) => {
   const dispatch = useAppDispatch();
   const itemCount = count.filter((item) => item.id === product.id);
 
-  const handleItemInfo = (id: number) => {
-    dispatch(getInfoProduct(id));
+  const handleItemInfo = () => {
+    dispatch(getInfoProduct(product.id));
     setModal(true);
   };
 
@@ -90,7 +90,7 @@ export const Card: React.FC<CardProps> = ({product, count, setModal}) => {
 
   return (
     <Wrapper direction={'column'}>
-      <StyledImg onClick={() => handleItemInfo(product.id)} height={227} width={327} src={product.image} alt={product.name}/>
+      <StyledImg onClick={handleItemInfo} height={227} width={327} src={product.image} alt={product.name}/>
       <Top align={'baseline'} justify={'space-between'}>
         <H3 size={20}>{product.name}</H3>
         <Span color={'#CFCFCF'} size={12} weight={400}>Вес: {product.weight} г</Span>

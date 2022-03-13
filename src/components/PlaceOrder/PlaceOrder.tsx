@@ -7,11 +7,11 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
   background: var(--brownGradient);
   width: 763px;
-  margin: 0 auto;
+  margin: 80px auto 0;
   border-radius: 10px;
   padding: 20px;
-  margin-top: 80px;
   ${Flex};
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
 `;
 
 const Left = styled.div`
