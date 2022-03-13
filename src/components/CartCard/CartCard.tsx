@@ -44,12 +44,15 @@ const StyledSpanCount = styled(Span)`
   text-align: center;
 `;
 
-const Count = styled.div`
+const CountDisable = styled.div<{bg?: string}>`
+  background: ${({bg = 'var(--green)'}) => bg};
+`;
+
+const Count = styled(CountDisable)`
   ${Flex};
   height: 38px;
   width: 38px;
   border-radius: 50%;
-  background: var(--green);
   cursor: pointer;
   transition: transform ease 0.2s;
   
@@ -75,11 +78,11 @@ const Delete = styled(Count)`
   }
 `;
 
-export const CartCard: React.FC<CartCardProps> = ({product}): JSX.Element => {
+export const CartCard: React.FC<CartCardProps> = ({product, handleMinusItem, deleteItem}): JSX.Element => {
   const dispatch = useAppDispatch();
 
-  const addProductToCart = (i: ProductInterface) => {
-    dispatch(cartSlice.actions.setCart(i));
+  const addProductToCart = (item: ProductInterface) => {
+    dispatch(cartSlice.actions.setCart(item));
   };
 
   return (
@@ -90,12 +93,19 @@ export const CartCard: React.FC<CartCardProps> = ({product}): JSX.Element => {
         <P size={12} color={'#A6A7AB'}>{product.description}</P>
       </Info>
       <CountBlock align={'center'} justify={'space-between'}>
-        <Count align={'center'} justify={'center'}><MinusIcon/></Count>
+        <Count
+          align={'center'}
+          justify={'center'}
+          onClick={() => handleMinusItem(product)}
+          bg={product.qty <= 1 ? 'var(--brown)' : 'var(--green)'}
+        >
+          <MinusIcon/>
+        </Count>
         <StyledSpanCount size={20} weight={700}>{product.qty}</StyledSpanCount>
         <Count align={'center'} justify={'center'} onClick={() => addProductToCart(product)}><PlusIcon/></Count>
       </CountBlock>
       <TotalPrice size={20}>{priceRu(product.price * product.qty)}</TotalPrice>
-      <Delete align={'center'} justify={'center'}><DeleteIcon/></Delete>
+      <Delete align={'center'} justify={'center'} onClick={() => deleteItem(product)}><DeleteIcon/></Delete>
     </Wrapper>
 
   );
