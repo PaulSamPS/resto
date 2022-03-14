@@ -1,7 +1,7 @@
 import React from 'react';
 import {App} from './App';
 import ReactDOM from 'react-dom';
-import './index.scss';
+import './index.css';
 import {Provider} from 'react-redux';
 import {createStore} from './redux/store';
 import GlobalStyles from './styles/global';

@@ -6,6 +6,7 @@ import {CardInfoProps} from './CardInfo.props';
 import {ReactComponent as MinusIcon} from '../Card/Icons/minus.svg';
 import {ReactComponent as PlusIcon} from '../Card/Icons/plus.svg';
 import {setCart, minusItem} from '../../redux/reducers/CartSlice';
+import {Spinner} from '../Spinner/Spinner';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -119,7 +120,7 @@ const Value = styled.div`
 `;
 
 export const CardInfo: React.FC<CardInfoProps> = ({count}): JSX.Element => {
-  const {product} = useAppSelector((state) => state.productInfoReducer);
+  const {product, isLoading} = useAppSelector((state) => state.productInfoReducer);
   const itemCount = count.filter((item) => item.id === product.id);
   const dispatch = useAppDispatch();
 
@@ -130,6 +131,10 @@ export const CardInfo: React.FC<CardInfoProps> = ({count}): JSX.Element => {
   const handleMinusItem = () => {
     dispatch(minusItem(product));
   };
+
+  if (isLoading) {
+    return <Spinner mHeight={'100%'}/>;
+  }
 
   return (
     <Wrapper justify={'center'}>

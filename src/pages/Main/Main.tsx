@@ -5,6 +5,7 @@ import {H1} from '../../styles/components';
 import {Modal} from '../../components/Modal/Modal';
 import {CardInfo} from '../../components/CardInfo/CardInfo';
 import {MainProps} from './Main.props';
+import {Spinner} from '../../components/Spinner/Spinner';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -30,7 +31,12 @@ const StyledProductBlock = styled.div`
 
 export const Main: React.FC<MainProps> = ({product}): JSX.Element => {
   const {cart} = useAppSelector((state) => state.cartReducer);
+  const {isLoading} = useAppSelector((state) => state.productReducer);
   const [modal, setModal] = React.useState<boolean>(false);
+
+  if (isLoading) {
+    return <Spinner mHeight={'calc(100vh - 223px - 155.6px)'}/>;
+  }
 
   return (
     <Container>

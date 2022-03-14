@@ -1,11 +1,12 @@
 import React from 'react';
-import {Flex} from '../../styles/components';
+import {SpinnerProps} from './Spinner.props';
 import styled from 'styled-components';
 
-const StyledSpinner = styled.div`
-  ${Flex};
-  width: 100%;
-  height: 100%;
+const StyledSpinner = styled.div<{h?: string}>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: ${({h}) => h};
   &::after {
     display: block;
     width: 64px;
@@ -29,8 +30,8 @@ const StyledSpinner = styled.div`
   }
 `;
 
-export const Spinner: React.FC = (): JSX.Element => {
+export const Spinner: React.FC<SpinnerProps> = ({mHeight}): JSX.Element => {
   return (
-    <StyledSpinner/>
+    <StyledSpinner h={mHeight}/>
   );
 };
