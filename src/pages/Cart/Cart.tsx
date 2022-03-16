@@ -50,7 +50,7 @@ const MenuBtn = styled(Button)`
 
 export const Cart: React.FC = (): JSX.Element => {
   const [modal, setModal] = React.useState<boolean>(false);
-  const {cart, totalPrice} = useAppSelector((state) => state.cartReducer);
+  const {cart} = useAppSelector((state) => state.cartReducer);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
