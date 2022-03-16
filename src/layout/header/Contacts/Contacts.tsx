@@ -1,12 +1,21 @@
 import React from 'react';
 import {ReactComponent as CallingIcon} from './icons/calling.svg';
 import {Flex, Span} from '../../../styles/components';
+import {device} from '../../../styles/breakpoints';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
   ${Flex};
   gap: 10px;
   margin-left: 40px;
+  
+  @media only screen and ${device.laptopL} {
+    margin-right: 40px;
+  }
+
+  @media only screen and ${device.laptop} {
+    display: none;
+  }
 `;
 
 const Icon = styled.div`

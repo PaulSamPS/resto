@@ -2,6 +2,7 @@ import React from 'react';
 import {ReactComponent as CloseIcon} from './Icons/close.svg';
 import {ModalProps} from './Modal.props';
 import {Flex} from '../../styles/components';
+import {device} from '../../styles/breakpoints';
 import styled from 'styled-components';
 
 const Overlay = styled.div`
@@ -45,6 +46,10 @@ const StyledModal = styled.div`
     &:hover {
       transform: rotate(90deg);
     }
+  }
+
+  @media only screen and ${device.tablet} {
+    min-width: 320px;
   }
 `;
 

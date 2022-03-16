@@ -7,6 +7,7 @@ import {ReactComponent as MinusIcon} from '../Card/Icons/minus.svg';
 import {ReactComponent as PlusIcon} from '../Card/Icons/plus.svg';
 import {setCart, minusItem} from '../../redux/reducers/CartSlice';
 import {Spinner} from '../Spinner/Spinner';
+import {device} from '../../styles/breakpoints';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -19,20 +20,56 @@ const Card = styled.div`
   height: 400px;
   border-radius: 10px;
   background: var(--brownGradient);
+
+  @media only screen and ${device.laptopL} {
+    width: 900px;
+    height: 350px;
+  }
+
+  @media only screen and ${device.laptop} {
+    flex-direction: column;
+    width: 450px;
+    height: auto;
+  }
 `;
 
 const StyledImg = styled(Img)`
   border-radius: 10px 0 0 10px;
+
+  @media only screen and ${device.laptopL} {
+    width: 450px;
+    height: 350px;
+  }
+
+  @media only screen and ${device.laptop} {
+    height: 300px;
+    width: 100%;
+    object-fit: fill;
+    margin-top: 40px;
+    border-radius: 10px;
+  }
 `;
 
 const InfoBlock = styled.div`
   ${Flex};
+
+  @media only screen and ${device.laptop} {
+   
 `;
 
 const Title = styled(H3)`
   margin-top: 38px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   padding-left: 50px;
+
+  @media only screen and ${device.laptopL} {
+    margin-top: 18px;
+  }
+
+  @media only screen and ${device.laptop} {
+    margin-top: 10px;
+    padding-left: 20px;
+  }
 `;
 
 const Description = styled(P)`
@@ -42,11 +79,26 @@ const Description = styled(P)`
   font-size: 14px;
   line-height: 16px;
   flex-grow: 1;
+
+  @media only screen and ${device.laptopL} {
+    max-width: 350px;
+    margin-bottom: 75px;
+  }
+
+  @media only screen and ${device.laptop} {
+    margin-bottom: 10px;
+    padding-left: 20px;
+    max-width: 100%;
+  }
 `;
 
 const Weight = styled(Span)`
   padding-left: 50px;
   font-weight: 400;
+
+  @media only screen and ${device.laptop} {
+    padding-left: 20px;
+  }
 `;
 
 const Buy = styled.div`
@@ -56,6 +108,11 @@ const Buy = styled.div`
   margin-bottom: 30px;
   padding-left: 50px;
   position: relative;
+
+  @media only screen and ${device.laptop} {
+    max-width: 60%;
+    padding-left: 20px;
+  }
 `;
 
 const ButtonAddToCart = styled(Button)`
@@ -72,6 +129,8 @@ const ButtonCount = styled(ButtonAddToCart)`
   width: 58px;
   height: 51px;
 `;
+
+const StyledPrice = styled(H3)``;
 
 const Count = styled.div`
   position: absolute;
@@ -97,6 +156,11 @@ const ButtonSpan = styled(Span)`
 const NutritionalValue = styled.div`
   width: 100%;
   margin-bottom: 25px;
+  text-align: center;
+
+  @media only screen and ${device.laptop} {
+    margin-bottom: 20px;
+  }
 `;
 
 const Name = styled.div`
@@ -108,6 +172,11 @@ const Name = styled.div`
   font-weight: 300;
   grid-template-columns: 40px 41px 58px 34px 28px;
   column-gap: 50px;
+
+  @media only screen and ${device.laptop} {
+    padding-left: 20px;
+    padding-right: 0;
+  }
 `;
 
 const Value = styled.div`
@@ -117,6 +186,11 @@ const Value = styled.div`
   padding-left: 50px;
   grid-template-columns: 40px 41px 58px 34px 28px;
   column-gap: 50px;
+
+  @media only screen and ${device.laptop} {
+    padding-left: 20px;
+    padding-right: 0;
+  }
 `;
 
 export const CardInfo: React.FC<CardInfoProps> = ({count}): JSX.Element => {
@@ -151,7 +225,7 @@ export const CardInfo: React.FC<CardInfoProps> = ({count}): JSX.Element => {
                   <ButtonCount align={'center'} onClick={handleMinusItem}>
                     <MinusIcon/>
                   </ButtonCount>
-                  <H3 size={25}>{product.price} ₽</H3>
+                  <StyledPrice size={25}>{product.price} ₽</StyledPrice>
                   <ButtonCount align={'center'} onClick={addProductToCart}>
                     <PlusIcon/>
                   </ButtonCount>
@@ -164,7 +238,7 @@ export const CardInfo: React.FC<CardInfoProps> = ({count}): JSX.Element => {
                     <ButtonSpan size={14} weight={600}>Корзина</ButtonSpan>
                     <ShoppingBag/>
                   </ButtonAddToCart>
-                  <H3 size={25}>{product.price} ₽</H3>
+                  <StyledPrice size={25}>{product.price} ₽</StyledPrice>
                 </>
               }
             </Buy>

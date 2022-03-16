@@ -7,6 +7,9 @@ import {useAppDispatch, useAppSelector} from '../../hooks/redux';
 import {useNavigate} from 'react-router-dom';
 import {setActiveNav} from '../../redux/reducers/NavSlice';
 import {getProduct} from '../../redux/actions/ActionCreator';
+import {ReactComponent as MobileMenuIcon} from './Icons/burger.svg';
+import {ReactComponent as CartMobileIcon} from '../../components/Card/Icons/buy.svg';
+import {device} from '../../styles/breakpoints';
 import styled from 'styled-components';
 
 const StyledHeader = styled.div`
@@ -15,22 +18,88 @@ const StyledHeader = styled.div`
   padding: 24px 80px;
   grid-template-columns: auto 555px 1fr auto;
   align-items: center;
+
+  @media only screen and ${device.laptopL} {
+    grid-template-columns: auto 1fr auto auto;
+  }
+
+  @media only screen and ${device.laptop} {
+    grid-template-columns: 64px 1fr auto;
+    row-gap: 20px;
+    grid-template-areas: 
+        'burger logo button'
+        'search search search'
+  ;
+  }
+`;
+
+const MobileMenu = styled.div`
+  display: none;
+
+  @media only screen and ${device.laptop} {
+    display: unset;
+    grid-area: burger;
+  }
 `;
 
 const Logo = styled(H1)`
   margin-right: 80px;
   letter-spacing: 5px;
   cursor: pointer;
+
+  @media only screen and ${device.laptopL} {
+    margin-right: 40px;
+  }
+
+  @media only screen and ${device.laptop} {
+    margin-right: 0;
+    grid-area: logo;
+    justify-self: center;
+  }
 `;
 
 const ButtonCart = styled(Button)`
   ${Flex};
   padding-right: 12px;
+  
+  @media only screen and ${device.laptopL} {
+    padding: 8px 16px;
+  }
+
+  @media only screen and ${device.laptop} {
+    display: none;
+  }
+`;
+
+const ButtonCartMobile = styled(Button)`
+  display: none;
+
+  @media only screen and ${device.laptop} {
+    ${Flex};
+    height: 54px;
+    width: 64px;
+    padding: 0;
+    
+    svg {
+      margin-bottom: 3px;
+    }
+  }
 `;
 
 const StyledSpan = styled(Span)`
   padding-right: 20px;
-  border-right: 1px solid var(--textWhite);
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+  
+  @media only screen and ${device.laptopL} {
+    font-size: 12px;
+  }
+
+  @media only screen and ${device.laptop} {
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-right: unset;
+    padding-right: 0;
+    margin-top: 3px;
+  }
 `;
 
 const Count = styled.div`
@@ -42,6 +111,10 @@ const Count = styled.div`
   background: var(--textWhite);
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
   line-height: 0;
+
+  @media only screen and ${device.laptop} {
+    margin-left: 0;
+  }
 `;
 
 const StyledImg = styled(Img)`
@@ -55,7 +128,7 @@ const ModalButton = styled(Button)`
 
 export const Header: React.FC = (): JSX.Element => {
   const [modal, setModal] = React.useState<boolean>(false);
-  const {totalCount} = useAppSelector((state) => state.cartReducer);
+  const {totalCount, cart} = useAppSelector((state) => state.cartReducer);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -75,9 +148,19 @@ export const Header: React.FC = (): JSX.Element => {
 
   return (
     <StyledHeader>
+      <MobileMenu><MobileMenuIcon/></MobileMenu>
       <Logo size={25} color={'#FFFFFF'} onClick={handleNavigate}>LOGOS</Logo>
       <Search/>
       <Contacts/>
+      <ButtonCartMobile align={'center'} direction={'column'} justify={'center'} onClick={handleClick}>
+        {cart.length <= 0 ?
+          <CartMobileIcon/> :
+          <Count align={'center'} justify={'center'}>
+            <Span size={12} weight={600} color={'#403C3B'}>{totalCount}</Span>
+          </Count>
+        }
+        <StyledSpan size={12} weight={600}>корзина</StyledSpan>
+      </ButtonCartMobile>
       <ButtonCart align={'center'} onClick={handleClick}>
         <StyledSpan size={14} weight={600}>Корзина</StyledSpan>
         <Count align={'center'} justify={'center'}>

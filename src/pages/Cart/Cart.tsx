@@ -75,7 +75,7 @@ export const Cart: React.FC = (): JSX.Element => {
           <CardBlock>
             {cart.map((p: ProductInterface) => <CartCard key={p.id} product={p} setModal={setModal}/>)}
           </CardBlock>
-          <PlaceOrder totalPrice={totalPrice}/>
+          <PlaceOrder/>
         </> :
           <EmptyCart align={'center'} justify={'center'} direction={'column'}>
             <StyledImg width={76} height={89} src={'assets/emptyCart.png'} alt='Корзина пуста'/>

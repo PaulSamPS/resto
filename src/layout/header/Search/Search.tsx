@@ -4,10 +4,15 @@ import {ReactComponent as SearchIcon} from './icons/search.svg';
 import {AddressSuggestions, DaDataSuggestion, DaDataAddress} from 'react-dadata';
 import {Modal} from '../../../components/Modal/Modal';
 import {H3} from '../../../styles/components';
+import {device} from '../../../styles/breakpoints';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
   position: relative;
+  @media only screen and ${device.laptop} {
+    grid-area: search!important;
+    width: 100%;
+  }
 `;
 
 const SearchDadata = styled.div`
@@ -52,7 +57,6 @@ const SearchDadata = styled.div`
     input {
       width: 100%;
       padding: 15px 48px;
-      margin-bottom: 5px;
 
       color: var(--tetxGray);
       border: none;
@@ -64,9 +68,17 @@ const SearchDadata = styled.div`
       font-size: 18px;
       line-height: 21px;
 
+      @media only screen and ${device.laptopL} {
+        padding: 10px 48px;
+      }
+
       &::-webkit-input-placeholder {
         opacity: 0.5;
         color: var(--tetxGray);
+
+        @media only screen and ${device.laptopL} {
+          font-size: 14px;
+        }
       }
     }
 `;
@@ -82,6 +94,12 @@ const StyledLocationIcon = styled(LocationIcon)`
   &:hover {
     transform: scale(1.1);
   }
+
+  @media only screen and ${device.laptopL} {
+    top: 12px;
+    width: 14px;
+    height: 17px;
+  }
 `;
 
 const StyledSearchIcon = styled(SearchIcon)`
@@ -94,6 +112,12 @@ const StyledSearchIcon = styled(SearchIcon)`
 
   &:hover {
     transform: scale(1.1);
+  }
+
+  @media only screen and ${device.laptopL} {
+    top: 12px;
+    width: 18px;
+    height: 18px;
   }
 `;
 

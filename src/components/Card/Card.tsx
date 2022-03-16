@@ -7,6 +7,7 @@ import {useAppDispatch} from '../../hooks/redux';
 import {Button, Flex, H3, Img, P, Span} from '../../styles/components';
 import {getInfoProduct} from '../../redux/actions/ActionCreator';
 import {setCart, minusItem} from '../../redux/reducers/CartSlice';
+import {device} from '../../styles/breakpoints';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -25,11 +26,19 @@ const Wrapper = styled.div`
     transform: translateY(-3px);
     box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.1);
   }
+
+  @media only screen and ${device.desktop} {
+    width: 300px;
+  }
 `;
 
 const StyledImg = styled(Img)`
   cursor: pointer;
   border-radius: 10px 10px 0 0;
+
+  @media only screen and ${device.desktop} {
+    width: 300px;
+  }
 `;
 
 const Top = styled.div`
@@ -41,6 +50,10 @@ const ButtonAddToCart = styled(Button)`
   height: 44px;
   ${Flex};
   column-gap: 12px;
+
+  @media only screen and ${device.laptopL} {
+    font-size: 12px;
+  }
 `;
 
 const Description = styled(P)`
@@ -48,6 +61,15 @@ const Description = styled(P)`
   max-width: 250px;
   padding: 0 20px;
   flex-grow: 1;
+  
+  @media only screen and ${device.desktop} {
+    width: 220px;
+  }
+
+  @media only screen and ${device.laptopL} {
+    width: 200px;
+    font-size: 11px;
+  }
 `;
 
 const Bottom = styled.div`

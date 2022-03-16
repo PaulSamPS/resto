@@ -5,17 +5,29 @@ import {NavInterface} from '../../interfaces/nav.interface';
 import {Flex, StyledA} from '../../styles/components';
 import {useLocation, useNavigate} from 'react-router-dom';
 import {setActiveNav} from '../../redux/reducers/NavSlice';
+import {device} from '../../styles/breakpoints';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
   margin-bottom: 40px;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  @media only screen and ${device.laptop} {
+    display: none;
+  }
 `;
 
 const StyledNav = styled.nav`
   ${Flex};
   margin: 28px 80px 0;
+  @media only screen and ${device.laptopL} {
+    margin-top: 13px;
+  }
+  
+  @media only screen and ${device.laptop} {
+    display: none;
+  }
 `;
 
 const StyledLink = styled(StyledA)`
@@ -23,6 +35,11 @@ const StyledLink = styled(StyledA)`
   transform: translateY(2px);
   &:hover {
     border-bottom: 3px solid var(--green);
+  }
+
+  @media only screen and ${device.laptopL} {
+    font-size: 14px;
+    padding-bottom: 15px;
   }
 `;
 

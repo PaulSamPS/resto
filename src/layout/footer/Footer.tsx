@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {device} from '../../styles/breakpoints';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -19,6 +20,10 @@ const StyledLink = styled(Link)`
 
   &:hover {
     color: var(--textWhite);
+  }
+
+  @media only screen and ${device.laptopL} {
+    font-size: 14px;
   }
 `;
 
