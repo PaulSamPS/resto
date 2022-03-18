@@ -70,11 +70,11 @@ const EmptyCart = styled.div`
 `;
 
 const StyledImg = styled(Img)`
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 `;
 
 const MenuBtn = styled(Button)`
-  margin-top: 43px;
+  margin-top: 20px;
   padding: 17px 35px;
 `;
 

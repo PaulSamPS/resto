@@ -10,10 +10,12 @@ import {getProduct} from '../../redux/actions/ActionCreator';
 import {ReactComponent as MobileMenuIcon} from './Icons/burger.svg';
 import {ReactComponent as CartMobileIcon} from '../../components/Card/Icons/buy.svg';
 import {device} from '../../styles/breakpoints';
+import {MobileMenu} from '../../components/MobileMenu/MobileMenu';
 import styled from 'styled-components';
 
 const StyledHeader = styled.div`
   display: grid;
+  position: relative;
 
   padding: 24px 80px;
   grid-template-columns: auto 555px 1fr auto;
@@ -33,7 +35,7 @@ const StyledHeader = styled.div`
   }
 `;
 
-const MobileMenu = styled.div`
+const StyledMobileMenuIcon = styled.div`
   display: none;
 
   @media only screen and ${device.laptop} {
@@ -118,16 +120,17 @@ const Count = styled.div`
 `;
 
 const StyledImg = styled(Img)`
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 `;
 
 const ModalButton = styled(Button)`
-  margin-top: 43px;
+  margin-top: 20px;
   padding: 17px 35px;
 `;
 
 export const Header: React.FC = (): JSX.Element => {
   const [modal, setModal] = React.useState<boolean>(false);
+  const [modalMenu, setModalMenu] = React.useState<boolean>(false);
   const {totalCount, cart} = useAppSelector((state) => state.cartReducer);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -146,9 +149,13 @@ export const Header: React.FC = (): JSX.Element => {
     navigate('/');
   };
 
+  const handleOpenMenu = () => {
+    setModalMenu(true);
+  };
+
   return (
     <StyledHeader>
-      <MobileMenu><MobileMenuIcon/></MobileMenu>
+      <StyledMobileMenuIcon onClick={handleOpenMenu}><MobileMenuIcon/></StyledMobileMenuIcon>
       <Logo size={25} color={'#FFFFFF'} onClick={handleNavigate}>LOGOS</Logo>
       <Search/>
       <Contacts/>
@@ -173,6 +180,9 @@ export const Header: React.FC = (): JSX.Element => {
           <H2 size={25}>Корзина пуста</H2>
           <ModalButton onClick={() => setModal(false)}>Посмотреть меню</ModalButton>
         </Modal>
+      }
+      {modalMenu &&
+        <MobileMenu setModalMenu={setModalMenu}/>
       }
     </StyledHeader>
   );

@@ -99,7 +99,7 @@ export const P = styled.p<ParagraphProps>`
 
 interface ILink {
     linkColor: string
-    borderBtm: string
+    borderBtm?: string
     size: number
 }
 
@@ -115,9 +115,9 @@ export const StyledA = styled.a<ILink>`
     font-size: ${({size}) => size}px;
     font-weight: 400;
 
-    &:hover {
-        color: var(--textWhite);
-    }
+    //&:hover {
+    //    color: var(--textWhite);
+    //}
 `;
 
 // span

@@ -55,13 +55,13 @@ export const Nav: React.FC = () => {
     navigate('/');
   };
 
-  React.useEffect(() => {
-    dispatch(getNav());
-  }, []);
-
   if (location.pathname !== '/') {
     dispatch(setActiveNav(null));
   }
+
+  React.useEffect(() => {
+    dispatch(getNav());
+  }, []);
 
   return (
     <Wrapper>
