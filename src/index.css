@@ -4,7 +4,6 @@ body {
 	overflow-y: scroll;
 
 	max-width: 1440px;
-	min-height: 100vh;
 	margin: 0 auto;
 
 	background-image: linear-gradient(360deg, #211F20 0%, #44403F 100%);

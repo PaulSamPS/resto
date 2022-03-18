@@ -28,8 +28,8 @@ const StyledHeader = styled.div`
     row-gap: 20px;
     grid-template-areas: 
         'burger logo button'
-        'search search search'
-  ;
+        'search search search';
+    padding: 20px;
   }
 `;
 

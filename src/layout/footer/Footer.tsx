@@ -9,6 +9,7 @@ const Wrapper = styled.div`
   padding: 24px 80px;
   text-align: center;
   border-radius: 10px 10px 0 0;
+  flex: 0 0 auto;
 `;
 
 const StyledLink = styled(Link)`

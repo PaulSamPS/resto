@@ -9,11 +9,20 @@ import {setActiveNav} from '../../redux/reducers/NavSlice';
 import {Modal} from '../../components/Modal/Modal';
 import {CardInfo} from '../../components/CardInfo/CardInfo';
 import {getProduct} from '../../redux/actions/ActionCreator';
+import {device} from '../../styles/breakpoints';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
   ${Flex};
-  min-height: calc(100vh - 223px - 155.6px);
+  min-height: calc(100vh - 373px);
+  padding: 0 20px;
+
+  @media only screen and ${device.laptopL} {
+    min-height: calc(100vh - 323px);
+  }
+  @media only screen and ${device.laptop} {
+    min-height: calc(100vh - 300px);
+  }
 `;
 
 const Title = styled(H1)`
@@ -29,6 +38,18 @@ const CardBlock = styled.div`
   background: var(--brownGradient);
   border-radius: 10px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
+
+  @media only screen and ${device.laptopL} {
+    width: 900px;
+  }
+
+  @media only screen and ${device.laptop} {
+    width: 700px;
+  }
+
+  @media only screen and ${device.tablet} {
+    width: 385px;
+  }
 `;
 
 const EmptyCart = styled.div`

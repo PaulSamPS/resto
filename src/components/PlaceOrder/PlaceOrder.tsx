@@ -3,6 +3,7 @@ import {Flex, Span, Button} from '../../styles/components';
 import {priceRu} from '../../helpers/priceRu';
 import {PlaceOrderProps} from './PlaceOrder.props';
 import {useAppSelector} from '../../hooks/redux';
+import {device} from '../../styles/breakpoints';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -15,6 +16,10 @@ const Wrapper = styled.div`
   ${Flex};
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
   min-height: 130px;
+
+  @media only screen and ${device.laptop} {
+    width: 563px;
+  }
 `;
 
 const Left = styled.div`

@@ -7,8 +7,9 @@ import {ReactComponent as DeleteIcon} from './Icons/delete.svg';
 import {CartCardProps} from './CartCard.props';
 import {deleteItem, minusItem, setCart} from '../../redux/reducers/CartSlice';
 import {useAppDispatch} from '../../hooks/redux';
-import styled from 'styled-components';
 import {getInfoProduct} from '../../redux/actions/ActionCreator';
+import {device} from '../../styles/breakpoints';
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
   display: grid;
@@ -22,11 +23,25 @@ const Wrapper = styled.div`
   &:last-child {
     border-bottom: none;
   }
+
+  @media only screen and ${device.laptop} {
+    column-gap: 20px;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: 
+      'img desc'
+      'count totalPrice';
+    row-gap: 20px;
+    position: relative;
+  }
 `;
 
 const StyledImg = styled(Img)`
   cursor: pointer;
-  border-radius: 10px
+  border-radius: 10px;
+  
+  @media only screen and ${device.laptop} {
+    grid-area: img;
+  }
 `;
 
 const Info = styled.div`
@@ -34,10 +49,18 @@ const Info = styled.div`
   h2 {
     margin-bottom: 5px;
   }
+
+  @media only screen and ${device.laptop} {
+    grid-area: desc;
+  }
 `;
 
 const CountBlock = styled.div`
   ${Flex};
+  
+  @media only screen and ${device.laptop} {
+    grid-area: count;
+  }
 `;
 
 const StyledSpanCount = styled(Span)`
@@ -69,6 +92,11 @@ const Count = styled(CountDisable)`
 
 const TotalPrice = styled(H2)`
   text-align: center;
+
+  @media only screen and ${device.laptop} {
+    grid-area: totalPrice;
+    justify-self: flex-start;
+  }
 `;
 
 const Delete = styled(Count)`
@@ -76,6 +104,18 @@ const Delete = styled(Count)`
   svg {
     height: 20px;
     width: 20px;
+  }
+
+  @media only screen and ${device.laptop} {
+    margin-right: 0;
+    position: absolute;
+    top: 70px;
+    right: 20px;
+  }
+
+  @media only screen and ${device.tablet} {
+    top: unset;
+    bottom: 20px;
   }
 `;
 

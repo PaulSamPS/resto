@@ -12,7 +12,7 @@ import styled from 'styled-components';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: calc(100vh - 373px);
 `;
 
 const Title = styled(H1)`
@@ -54,7 +54,7 @@ export const Main: React.FC<MainProps> = ({product}): JSX.Element => {
   const [modal, setModal] = React.useState<boolean>(false);
 
   if (isLoading) {
-    return <Spinner mHeight={'calc(100vh - 223px - 155.6px)'}/>;
+    return <Spinner mHeight={'calc(100vh - 373px)'}/>;
   }
 
   return (
