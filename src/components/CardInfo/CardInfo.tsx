@@ -121,6 +121,10 @@ const Buy = styled.div`
     max-width: 60%;
     padding-left: unset;
   }
+
+  @media only screen and ${device.tablet} {
+    max-width: 80%;
+  }
 `;
 
 const ButtonAddToCart = styled(Button)`
@@ -153,6 +157,10 @@ const Count = styled.div`
   font-size: 20px;
   font-weight: 700;
   line-height: 24px;
+  
+  @media only screen and ${device.tablet} {
+    right: -70px;
+  }
 `;
 
 const ButtonSpan = styled(Span)`

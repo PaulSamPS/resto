@@ -62,6 +62,11 @@ const EmptyCart = styled.div`
   margin-top: 80px;
   padding: 20px;
   ${Flex};
+  
+  @media only screen and ${device.tablet} {
+    min-width: 385px;
+    min-height: 285px;
+  }
 `;
 
 const StyledImg = styled(Img)`
