@@ -31,6 +31,10 @@ const Card = styled.div`
     width: 450px;
     height: auto;
   }
+
+  @media only screen and ${device.tablet} {
+    width: 345px;
+  }
 `;
 
 const StyledImg = styled(Img)`
@@ -47,6 +51,10 @@ const StyledImg = styled(Img)`
     object-fit: fill;
     margin-top: 40px;
     border-radius: 10px;
+  }
+
+  @media only screen and ${device.tablet} {
+    height: 200px;
   }
 `;
 
@@ -68,7 +76,7 @@ const Title = styled(H3)`
 
   @media only screen and ${device.laptop} {
     margin-top: 10px;
-    padding-left: 20px;
+    padding-left: unset;
   }
 `;
 
@@ -87,7 +95,7 @@ const Description = styled(P)`
 
   @media only screen and ${device.laptop} {
     margin-bottom: 10px;
-    padding-left: 20px;
+    padding-left: unset;
     max-width: 100%;
   }
 `;
@@ -97,7 +105,7 @@ const Weight = styled(Span)`
   font-weight: 400;
 
   @media only screen and ${device.laptop} {
-    padding-left: 20px;
+    padding-left: unset;
   }
 `;
 
@@ -111,7 +119,7 @@ const Buy = styled.div`
 
   @media only screen and ${device.laptop} {
     max-width: 60%;
-    padding-left: 20px;
+    padding-left: unset;
   }
 `;
 
@@ -161,6 +169,12 @@ const NutritionalValue = styled.div`
   @media only screen and ${device.laptop} {
     margin-bottom: 20px;
   }
+  
+  @media only screen and ${device.tablet} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'name value';
+  }
 `;
 
 const Name = styled.div`
@@ -177,6 +191,18 @@ const Name = styled.div`
     padding-left: 20px;
     padding-right: 0;
   }
+  
+  @media only screen and ${device.tablet} {
+    grid-area: name;
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    padding-right: 60px;
+    border-bottom: unset;
+    align-items: flex-start;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    row-gap: 10px;
+  }
 `;
 
 const Value = styled.div`
@@ -190,6 +216,14 @@ const Value = styled.div`
   @media only screen and ${device.laptop} {
     padding-left: 20px;
     padding-right: 0;
+  }
+
+  @media only screen and ${device.tablet} {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    grid-area: value;
+    align-items: flex-end;
   }
 `;
 
