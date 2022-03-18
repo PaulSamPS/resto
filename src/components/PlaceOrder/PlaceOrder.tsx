@@ -20,6 +20,12 @@ const Wrapper = styled.div`
   @media only screen and ${device.laptop} {
     width: 563px;
   }
+
+  @media only screen and ${device.tablet} {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 385px;
+  }
 `;
 
 const Left = styled.div`
@@ -37,16 +43,31 @@ const Sum = styled(Span)`
 
 const MinSum = styled.div`
   ${Flex};
+
+  @media only screen and ${device.tablet} {
+    margin-bottom: 30px;
+  }
 `;
 
 const MinOrder = styled(Span)`
   position: absolute;
   bottom: 20px;
   left: 20px;
+
+  @media only screen and ${device.tablet} {
+    bottom: 70px;
+  }
 `;
 
 const StyledSpan = styled(Span)`
   margin-top: 15px;
+`;
+
+const StyledBtn = styled(Button)`
+  @media only screen and ${device.tablet} {
+    width: 155px;
+    justify-self: center;
+  }
 `;
 
 export const PlaceOrder: React.FC<PlaceOrderProps> = (): JSX.Element => {
@@ -68,7 +89,7 @@ export const PlaceOrder: React.FC<PlaceOrderProps> = (): JSX.Element => {
           }
         </MinSum>
       </Left>
-      <Button>Оформить заказ</Button>
+      <StyledBtn>Оформить заказ</StyledBtn>
     </Wrapper>
   );
 };

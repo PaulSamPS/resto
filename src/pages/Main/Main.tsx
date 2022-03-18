@@ -13,6 +13,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - 373px);
+  padding: 0 20px;
 `;
 
 const Title = styled(H1)`
@@ -24,6 +25,10 @@ const Title = styled(H1)`
   @media only screen and ${device.laptop} {
     margin-top: 16px;
     font-size: 26px;
+  }
+  
+  @media only screen and ${device.tablet} {
+    margin-left: 0;
   }
 `;
 

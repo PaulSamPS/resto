@@ -5,11 +5,19 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   background: var(--footerGradient);
-  margin-top: 80px;
   padding: 24px 80px;
   text-align: center;
   border-radius: 10px 10px 0 0;
   flex: 0 0 auto;
+  margin: 80px 20px 0;
+  
+  @media only screen and ${device.tablet} {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    row-gap: 10px;
+    padding: 24px 0;
+  }
 `;
 
 const StyledLink = styled(Link)`
@@ -25,6 +33,10 @@ const StyledLink = styled(Link)`
 
   @media only screen and ${device.laptopL} {
     font-size: 14px;
+  }
+
+  @media only screen and ${device.tablet} {
+    margin-left: 0;
   }
 `;
 

@@ -26,10 +26,14 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled(H1)`
-  margin-bottom: 40px;
-  margin-left: 115px;
+  margin: 16px 0 40px 115px;
   padding-left: 20px;
   border-left: 4px solid var(--green);
+  
+  @media screen and ${device.tablet} {
+    margin-left: 0;
+    font-size: 26px;
+  }
 `;
 
 const CardBlock = styled.div`
