@@ -12,7 +12,6 @@ import styled from 'styled-components';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 373px);
   padding: 0 20px;
 `;
 
@@ -38,9 +37,11 @@ const StyledProductBlock = styled.div`
   grid-template-columns: repeat(4, 1fr);
   justify-items: center;
   row-gap: 20px;
+  margin-bottom: 80px;
 
   @media only screen and ${device.laptopL} {
     grid-template-columns: repeat(3, 1fr);
+    row-gap: 30px;
   }
 
   @media only screen and ${device.laptop} {
@@ -49,7 +50,6 @@ const StyledProductBlock = styled.div`
 
   @media only screen and ${device.tablet} {
     grid-template-columns: 1fr;
-    row-gap: 30px;
   }
 `;
 
@@ -59,7 +59,7 @@ export const Main: React.FC<MainProps> = ({product}): JSX.Element => {
   const [modal, setModal] = React.useState<boolean>(false);
 
   if (isLoading) {
-    return <Spinner mHeight={'calc(100vh - 373px)'}/>;
+    return <Spinner/>;
   }
 
   return (

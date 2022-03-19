@@ -1,6 +1,6 @@
 import React from 'react';
 import {useAppDispatch, useAppSelector} from '../../hooks/redux';
-import {Flex, Span, StyledA} from '../../styles/components';
+import {Flex, H1, Span, StyledA} from '../../styles/components';
 import {NavInterface} from '../../interfaces/nav.interface';
 import {ReactComponent as CloseIcon} from '../Modal/Icons/close.svg';
 import {setActiveNav} from '../../redux/reducers/NavSlice';
@@ -10,36 +10,12 @@ import {ReactComponent as CallingIcon} from '../../layout/header/Contacts/icons/
 import {MobileMenuProps} from './MobileMenu.props';
 import styled from 'styled-components';
 
-const Overlay = styled.div`
-  position: fixed;
-  z-index: 99;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  overflow: hidden;
-
-  opacity: 1;
-  background: rgba(33, 31, 32, 0.7);
-  backdrop-filter: blur(2px);
-`;
-
-const Container = styled.div`
-  width: 320px;
-  height: 100vh;
-  background: var(--brownGradient);
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  z-index: 999;
-`;
-
 const Wrapper = styled.div`
   position: relative;
   padding: 20px;
   ${Flex};
-  row-gap: 15px;
+  row-gap: 20px;
+  min-height: 100vh;
   
   svg {
     position: absolute;
@@ -55,10 +31,15 @@ const Wrapper = styled.div`
   }
 `;
 
+const Logo = styled(H1)`
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 20px;
+`;
+
 const MobileContacts = styled.div`
   ${Flex};
   gap: 10px;
-  margin-bottom: 30px;
+  margin-top: auto;
 `;
 
 const Icon = styled.div`
@@ -88,7 +69,6 @@ const PhoneNumber = styled(Span)`
 `;
 
 const StyledLink = styled(StyledA)`
-  
 `;
 
 export const MobileMenu: React.FC<MobileMenuProps> = ({setModalMenu}) => {
@@ -108,30 +88,27 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({setModalMenu}) => {
   };
 
   return (
-    <Overlay onClick={handleCloseModal}>
-      <Container>
-        <Wrapper direction={'column'}>
-          <MobileContacts align={'center'}>
-            <Icon align={'center'} justify={'center'}>
-              <CallingIcon/>
-            </Icon>
-            <Phone direction={'column'}>
-              <Span size={12} weight={400} color={'#CFCFCF'}>Контакты:</Span>
-              <PhoneNumber size={14} weight={700}>+7 (912) 345-67-89</PhoneNumber>
-            </Phone>
-          </MobileContacts>
-          {nav.map((m: NavInterface, index: number) =>
-            <StyledLink
-              onClick={() => handleClick(index, m.category)}
-              key={m.id}
-              size={16}
-              linkColor={activeIndex === index ? '#618967' : '#FFFFFF'}
-            >
-              {m.name}
-            </StyledLink>)}
-          <CloseIcon onClick={handleCloseModal}/>
-        </Wrapper>
-      </Container>
-    </Overlay>
+    <Wrapper direction={'column'} onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}>
+      <Logo size={25} color={'#FFFFFF'}>LOGOS</Logo>
+      {nav.map((m: NavInterface, index: number) =>
+        <StyledLink
+          onClick={() => handleClick(index, m.category)}
+          key={m.id}
+          size={16}
+          linkColor={activeIndex === index ? '#618967' : '#FFFFFF'}
+        >
+          {m.name}
+        </StyledLink>)}
+      <CloseIcon onClick={handleCloseModal}/>
+      <MobileContacts align={'center'}>
+        <Icon align={'center'} justify={'center'}>
+          <CallingIcon/>
+        </Icon>
+        <Phone direction={'column'}>
+          <Span size={12} weight={400} color={'#CFCFCF'}>Контакты:</Span>
+          <PhoneNumber size={14} weight={700}>+7 (912) 345-67-89</PhoneNumber>
+        </Phone>
+      </MobileContacts>
+    </Wrapper>
   );
 };

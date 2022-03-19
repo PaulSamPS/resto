@@ -35,6 +35,10 @@ const Card = styled.div`
   @media only screen and ${device.tablet} {
     width: 345px;
   }
+
+  @media only screen and ${device.mobileL} {
+    width: 295px;
+  }
 `;
 
 const StyledImg = styled(Img)`
@@ -249,7 +253,7 @@ export const CardInfo: React.FC<CardInfoProps> = ({count}): JSX.Element => {
   };
 
   if (isLoading) {
-    return <Spinner mHeight={'100%'}/>;
+    return <Spinner/>;
   }
 
   return (

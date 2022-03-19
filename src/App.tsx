@@ -5,7 +5,7 @@ import {Main} from './pages/Main/Main';
 import {Cart} from './pages/Cart/Cart';
 import {getProduct} from './redux/actions/ActionCreator';
 import {useAppDispatch, useAppSelector} from './hooks/redux';
-// import {device} from './styles/breakpoints';
+import {Delivery} from './pages/Delivery/Delivery';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -26,6 +26,7 @@ export const App: React.FC = (): JSX.Element => {
           <Route path='/' element={<Layout/>}>
             <Route index element={<Main product={product}/>}/>
             <Route path='cart' element={<Cart/>}/>
+            <Route path='delivery' element={<Delivery/>}/>
             <Route path='*' element={<Navigate to='/' replace/>}/>
           </Route>
         </Routes>

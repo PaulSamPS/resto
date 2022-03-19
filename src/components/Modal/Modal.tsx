@@ -3,6 +3,7 @@ import {ReactComponent as CloseIcon} from './Icons/close.svg';
 import {ModalProps} from './Modal.props';
 import {Flex} from '../../styles/components';
 import {device} from '../../styles/breakpoints';
+import {motion} from 'framer-motion';
 import styled from 'styled-components';
 
 const Overlay = styled.div`
@@ -20,7 +21,7 @@ const Overlay = styled.div`
   backdrop-filter: blur(2px);
 `;
 
-const StyledModal = styled.div`
+const StyledModal = styled(motion.div)`
   position: relative;
   z-index: 999;
 
@@ -60,7 +61,19 @@ export const Modal: React.FC<ModalProps> = ({children, setModal}) => {
 
   return (
     <Overlay align={'center'} justify={'center'} onClick={handleCloseModal}>
-      <StyledModal align={'center'} justify={'center'} direction={'column'} onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}>
+      <StyledModal
+        align={'center'}
+        justify={'center'}
+        direction={'column'}
+        onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
+        initial={{scale: 0}}
+        animate={{scale: 1}}
+        transition={{
+          type: 'spring',
+          stiffness: 260,
+          damping: 20
+        }}
+      >
         <CloseIcon onClick={handleCloseModal}/>
         {children}
       </StyledModal>

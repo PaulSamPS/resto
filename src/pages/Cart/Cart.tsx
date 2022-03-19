@@ -14,15 +14,7 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   ${Flex};
-  min-height: calc(100vh - 373px);
   padding: 0 20px;
-
-  @media only screen and ${device.laptopL} {
-    min-height: calc(100vh - 323px);
-  }
-  @media only screen and ${device.laptop} {
-    min-height: calc(100vh - 300px);
-  }
 `;
 
 const Title = styled(H1)`
@@ -53,6 +45,10 @@ const CardBlock = styled.div`
 
   @media only screen and ${device.tablet} {
     width: 385px;
+  }
+
+  @media only screen and ${device.mobileL} {
+    width: 335px;
   }
 `;
 

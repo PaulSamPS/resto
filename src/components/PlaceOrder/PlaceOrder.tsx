@@ -4,13 +4,14 @@ import {priceRu} from '../../helpers/priceRu';
 import {PlaceOrderProps} from './PlaceOrder.props';
 import {useAppSelector} from '../../hooks/redux';
 import {device} from '../../styles/breakpoints';
+import {useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
   position: relative;
   background: var(--brownGradient);
   width: 763px;
-  margin: 80px auto 0;
+  margin: 80px auto 80px;
   border-radius: 10px;
   padding: 20px;
   ${Flex};
@@ -26,6 +27,10 @@ const Wrapper = styled.div`
     grid-template-columns: 1fr;
     width: 385px;
   }
+
+  @media only screen and ${device.mobileL} {
+    width: 335px;
+  }
 `;
 
 const Left = styled.div`
@@ -38,14 +43,14 @@ const TotalSum = styled.div`
 `;
 
 const Sum = styled(Span)`
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 `;
 
 const MinSum = styled.div`
   ${Flex};
 
   @media only screen and ${device.tablet} {
-    margin-bottom: 30px;
+    margin-bottom: 40px;
   }
 `;
 
@@ -55,7 +60,7 @@ const MinOrder = styled(Span)`
   left: 20px;
 
   @media only screen and ${device.tablet} {
-    bottom: 70px;
+    bottom: 80px;
   }
 `;
 
@@ -65,13 +70,16 @@ const StyledSpan = styled(Span)`
 
 const StyledBtn = styled(Button)`
   @media only screen and ${device.tablet} {
-    width: 155px;
+    width: 175px;
+    height: 41px;
     justify-self: center;
   }
 `;
 
 export const PlaceOrder: React.FC<PlaceOrderProps> = (): JSX.Element => {
   const {totalPrice} = useAppSelector((state) => state.cartReducer);
+  const navigate = useNavigate();
+
   return (
     <Wrapper align={'center'} justify={'space-between'}>
       <Left>
@@ -89,7 +97,7 @@ export const PlaceOrder: React.FC<PlaceOrderProps> = (): JSX.Element => {
           }
         </MinSum>
       </Left>
-      <StyledBtn>Оформить заказ</StyledBtn>
+      <StyledBtn onClick={() => navigate('/delivery')}>Оформить заказ</StyledBtn>
     </Wrapper>
   );
 };

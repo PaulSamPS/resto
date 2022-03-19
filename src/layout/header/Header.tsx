@@ -11,6 +11,7 @@ import {ReactComponent as MobileMenuIcon} from './Icons/burger.svg';
 import {ReactComponent as CartMobileIcon} from '../../components/Card/Icons/buy.svg';
 import {device} from '../../styles/breakpoints';
 import {MobileMenu} from '../../components/MobileMenu/MobileMenu';
+import {motion} from 'framer-motion';
 import styled from 'styled-components';
 
 const StyledHeader = styled.div`
@@ -128,12 +129,43 @@ const ModalButton = styled(Button)`
   padding: 17px 35px;
 `;
 
+const StyledMotion = styled(motion.div)`
+  width: 320px;
+  height: 100vh;
+  background: var(--brownGradient);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 999;
+`;
+
+const Overlay = styled.div`
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  ${Flex};
+
+  opacity: 1;
+  background: rgba(33, 31, 32, 0.7);
+  backdrop-filter: blur(2px);
+`;
+
 export const Header: React.FC = (): JSX.Element => {
   const [modal, setModal] = React.useState<boolean>(false);
   const [modalMenu, setModalMenu] = React.useState<boolean>(false);
   const {totalCount, cart} = useAppSelector((state) => state.cartReducer);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  const variants = {
+    open: {opacity: 1, x: 0},
+    closed: {opacity: 0, x: '-100%'},
+  };
 
   const handleClick = () => {
     if (totalCount <= 0) {
@@ -182,7 +214,15 @@ export const Header: React.FC = (): JSX.Element => {
         </Modal>
       }
       {modalMenu &&
-        <MobileMenu setModalMenu={setModalMenu}/>
+        <Overlay onClick={() => setModalMenu(false)}>
+          <StyledMotion
+            animate={modalMenu ? 'open' : 'closed'}
+            initial={'closed'}
+            variants={variants}
+          >
+            <MobileMenu setModalMenu={setModalMenu}/>
+          </StyledMotion>
+        </Overlay>
       }
     </StyledHeader>
   );

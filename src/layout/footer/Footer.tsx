@@ -8,8 +8,9 @@ const Wrapper = styled.div`
   padding: 24px 80px;
   text-align: center;
   border-radius: 10px 10px 0 0;
-  flex: 0 0 auto;
-  margin: 80px 20px 0;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: auto;
   
   @media only screen and ${device.tablet} {
     display: grid;
