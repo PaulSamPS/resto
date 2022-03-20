@@ -209,7 +209,7 @@ export const Header: React.FC = (): JSX.Element => {
       }
       <Overlay onClick={() => setModalMenu(false)}
         animate={modalMenu ? 'open' : 'closed'}
-        variants={variantsO}
+        variants={variantsOverlay}
         initial={'closed'}
         transition={{
           type: 'spring',
