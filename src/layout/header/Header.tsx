@@ -156,6 +156,11 @@ export const Header: React.FC = (): JSX.Element => {
     closed: {opacity: 0, x: '-100%'},
   };
 
+  const variantsOverlay = {
+    open: {display: 'block', opacity: 1},
+    closed: {display: 'none', opacity: 0},
+  };
+
   const handleClick = () => {
     if (totalCount <= 0) {
       setModal(true);
@@ -204,6 +209,16 @@ export const Header: React.FC = (): JSX.Element => {
       }
       <Overlay onClick={() => setModalMenu(false)}
         animate={modalMenu ? 'open' : 'closed'}
+        variants={variantsO}
+        initial={'closed'}
+        transition={{
+          type: 'spring',
+          stiffness: 260,
+          damping: 20
+        }}
+      />
+      <StyledMotion
+        animate={modalMenu ? 'open' : 'closed'}
         variants={variants}
         initial={'closed'}
         transition={{
@@ -212,10 +227,8 @@ export const Header: React.FC = (): JSX.Element => {
           damping: 20
         }}
       >
-        <StyledMotion>
-          <MobileMenu setModalMenu={setModalMenu}/>
-        </StyledMotion>
-      </Overlay>
+        <MobileMenu setModalMenu={setModalMenu}/>
+      </StyledMotion>
     </StyledHeader>
   );
 };
