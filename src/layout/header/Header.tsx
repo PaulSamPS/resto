@@ -17,15 +17,12 @@ import styled from 'styled-components';
 const StyledHeader = styled.div`
   display: grid;
   position: relative;
-
   padding: 24px 80px;
   grid-template-columns: auto 555px 1fr auto;
   align-items: center;
-
   @media only screen and ${device.laptopL} {
     grid-template-columns: auto 1fr auto auto;
   }
-
   @media only screen and ${device.laptop} {
     grid-template-columns: 64px 1fr auto;
     row-gap: 20px;
@@ -38,7 +35,6 @@ const StyledHeader = styled.div`
 
 const StyledMobileMenuIcon = styled.div`
   display: none;
-
   @media only screen and ${device.laptop} {
     display: unset;
     grid-area: burger;
@@ -49,11 +45,9 @@ const Logo = styled(H1)`
   margin-right: 80px;
   letter-spacing: 5px;
   cursor: pointer;
-
   @media only screen and ${device.laptopL} {
     margin-right: 40px;
   }
-
   @media only screen and ${device.laptop} {
     margin-right: 0;
     grid-area: logo;
@@ -64,11 +58,10 @@ const Logo = styled(H1)`
 const ButtonCart = styled(Button)`
   ${Flex};
   padding-right: 12px;
-  
+
   @media only screen and ${device.laptopL} {
     padding: 8px 16px;
   }
-
   @media only screen and ${device.laptop} {
     display: none;
   }
@@ -76,13 +69,12 @@ const ButtonCart = styled(Button)`
 
 const ButtonCartMobile = styled(Button)`
   display: none;
-
   @media only screen and ${device.laptop} {
     ${Flex};
     height: 54px;
     width: 64px;
     padding: 0;
-    
+
     svg {
       margin-bottom: 3px;
     }
@@ -92,11 +84,10 @@ const ButtonCartMobile = styled(Button)`
 const StyledSpan = styled(Span)`
   padding-right: 20px;
   border-right: 1px solid rgba(255, 255, 255, 0.3);
-  
+
   @media only screen and ${device.laptopL} {
     font-size: 12px;
   }
-
   @media only screen and ${device.laptop} {
     border-top: 1px solid rgba(255, 255, 255, 0.3);
     border-right: unset;
@@ -114,7 +105,6 @@ const Count = styled.div`
   background: var(--textWhite);
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
   line-height: 0;
-
   @media only screen and ${device.laptop} {
     margin-left: 0;
   }
@@ -140,7 +130,7 @@ const StyledMotion = styled(motion.div)`
   z-index: 999;
 `;
 
-const Overlay = styled.div`
+const Overlay = styled(motion.div)`
   position: fixed;
   z-index: 99;
   top: 0;
@@ -149,7 +139,6 @@ const Overlay = styled.div`
   left: 0;
   overflow: hidden;
   ${Flex};
-
   opacity: 1;
   background: rgba(33, 31, 32, 0.7);
   backdrop-filter: blur(2px);
@@ -213,18 +202,20 @@ export const Header: React.FC = (): JSX.Element => {
           <ModalButton onClick={() => setModal(false)}>Посмотреть меню</ModalButton>
         </Modal>
       }
-      {modalMenu &&
-        <Overlay onClick={() => setModalMenu(false)}>
-          <StyledMotion
-            animate={modalMenu ? 'open' : 'closed'}
-            initial={'closed'}
-            variants={variants}
-          >
-            <MobileMenu setModalMenu={setModalMenu}/>
-          </StyledMotion>
-        </Overlay>
-      }
+      <Overlay onClick={() => setModalMenu(false)}
+        animate={modalMenu ? 'open' : 'closed'}
+        variants={variants}
+        initial={'closed'}
+        transition={{
+          type: 'spring',
+          stiffness: 260,
+          damping: 20
+        }}
+      >
+        <StyledMotion>
+          <MobileMenu setModalMenu={setModalMenu}/>
+        </StyledMotion>
+      </Overlay>
     </StyledHeader>
   );
 };
-

@@ -41,7 +41,7 @@ const StyledBtn = styled(Button)`
   }
 `;
 
-const Time = styled.div`
+const Time = styled(motion.div)`
   ${Flex};
   gap: 10px;
 `;
@@ -95,6 +95,11 @@ export const AddressDelivery = () => {
     closed: {opacity: 0, y: '-10%'},
   };
 
+  const variantsTime = {
+    open: {opacity: 1, y: 0},
+    closed: {opacity: 0, y: '-50%'},
+  };
+
   return (
     <DeliveryBlock width={800}>
       <Title size={18}>2. Доставка</Title>
@@ -113,7 +118,12 @@ export const AddressDelivery = () => {
               </StyledBtn>
             )}
           </StyledChoose>
-          <Time align={'center'}>
+          <Time
+            align={'center'}
+            animate={activeIndex === 0 ? 'open' : 'closed'}
+            initial={'closed'}
+            variants={variantsTime}
+          >
             {activeIndex === 0 &&
               <>
                 <ClockIcon/>

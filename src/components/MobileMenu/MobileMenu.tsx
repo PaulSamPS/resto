@@ -12,15 +12,15 @@ import styled from 'styled-components';
 
 const Wrapper = styled.div`
   position: relative;
-  padding: 20px;
+  padding: 30px 20px 20px;
   ${Flex};
   row-gap: 20px;
   min-height: 100vh;
   
   svg {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 30px;
+    left: 15px;
 
     cursor: pointer;
     transition: all ease 0.2s;
@@ -34,6 +34,7 @@ const Wrapper = styled.div`
 const Logo = styled(H1)`
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   padding-bottom: 20px;
+  text-align: right;
 `;
 
 const MobileContacts = styled.div`
