@@ -8,9 +8,10 @@ import {Button, Flex, H3, Img, P, Span} from '../../styles/components';
 import {getInfoProduct} from '../../redux/actions/ActionCreator';
 import {setCart, minusItem} from '../../redux/reducers/CartSlice';
 import {device} from '../../styles/breakpoints';
+import {motion} from 'framer-motion';
 import styled from 'styled-components';
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
   ${Flex};
   position: relative;
   width: 327px;
@@ -111,7 +112,12 @@ export const Card: React.FC<CardProps> = ({product, count, setModal}) => {
   };
 
   return (
-    <Wrapper direction={'column'}>
+    <Wrapper
+      direction={'column'}
+      initial={{opacity: 0}}
+      whileInView={{opacity: 1}}
+      viewport={{once: true}}
+    >
       <StyledImg onClick={handleItemInfo} height={227} width={327} src={product.image} alt={product.name}/>
       <Top align={'baseline'} justify={'space-between'}>
         <H3 size={20}>{product.name}</H3>

@@ -35,6 +35,9 @@ export const H3 = styled.h3<TitleProps>`
 // Button
 interface IBtn {
     marginR?: number
+    size?: number
+    weight?: number
+    background?: string
 }
 
 export const Button = styled.button<IBtn>`
@@ -46,11 +49,11 @@ export const Button = styled.button<IBtn>`
     color: var(--textWhite);
     border: none;
     border-radius: 10px;
-    background: var(--greenGradient);
+    background: ${({background = 'var(--greenGradient)'}) => background};
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
     
-    font-size: 14px;
-    font-weight: 600;
+    font-size: ${({size = 14}) => size}px;
+    font-weight: ${({weight = 600}) => weight};
     line-height: 17px;
     
     &:active {
@@ -75,25 +78,25 @@ export const P = styled.p<ParagraphProps>`
 
 // Input
 
-// const Input = styled.input`
-//   width: 100%;
-//   padding: 15px 48px;
-//
-//   color: var(--tetxGray);
-//   border: none;
-//   border-radius: 10px;
-//   outline: none;
-//   background-color: var(--brown);
-//   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
-//
-//   font-size: 18px;
-//   line-height: 21px;
-//
-//   &::-webkit-input-placeholder {
-//     opacity: 0.5;
-//     color: var(--tetxGray);
-//   }
-// `;
+export const Input = styled.input`
+ padding: 15px 30px;
+  color: var(--textWhite);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background: none;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
+  font-size: 16px;
+  font-weight: 400;
+
+  &::placeholder {
+    color: var(--textWhite);
+    opacity: 1;
+  }
+
+  &:focus {
+    outline: none;
+  }
+`;
 
 // a
 
