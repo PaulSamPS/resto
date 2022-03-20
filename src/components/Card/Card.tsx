@@ -8,7 +8,7 @@ import {Button, Flex, H3, Img, P, Span} from '../../styles/components';
 import {getInfoProduct} from '../../redux/actions/ActionCreator';
 import {setCart, minusItem} from '../../redux/reducers/CartSlice';
 import {device} from '../../styles/breakpoints';
-import {motion} from 'framer-motion';
+import {AnimatePresence, motion} from 'framer-motion';
 import styled from 'styled-components';
 
 const Wrapper = styled(motion.div)`
@@ -73,17 +73,23 @@ const Description = styled(P)`
   }
 `;
 
-const Bottom = styled.div`
+const Bottom = styled(motion.div)`
   padding: 0 20px 20px;
   margin-top: 15px;
   ${Flex}
 `;
 
-const Count = styled.div`
+const BottomCount = styled(motion.div)`
+  padding: 0 20px 20px;
+  margin-top: 15px;
+  ${Flex}
+`;
+
+const Count = styled(motion.div)`
   position: absolute;
-  ${Flex};
   top: -12px;
   right: -12px;
+  ${Flex};
   height: 50px;
   width: 50px;
   color: var(--textWhite);
@@ -97,6 +103,11 @@ const Count = styled.div`
 export const Card: React.FC<CardProps> = ({product, count, setModal}) => {
   const dispatch = useAppDispatch();
   const itemCount = count.filter((item) => item.id === product.id);
+
+  const variants = {
+    show: {opacity: 1},
+    hide: {opacity: 0},
+  };
 
   const handleItemInfo = () => {
     dispatch(getInfoProduct(product.id));
@@ -124,26 +135,64 @@ export const Card: React.FC<CardProps> = ({product, count, setModal}) => {
         <Span color={'#CFCFCF'} size={12} weight={400}>Вес: {product.weight} г</Span>
       </Top>
       <Description size={13}>{product.description}</Description>
-      {itemCount && itemCount.length > 0 ?
-        <Bottom align={'center'} justify={'space-between'}>
-          <ButtonAddToCart align={'center'} onClick={handleMinusItem}>
-            <MinusIcon />
-          </ButtonAddToCart>
-          <Span size={20} weight={600}>{product.price} ₽</Span>
-          <ButtonAddToCart align={'center'} onClick={addProductToCart}>
-            <PlusIcon />
-          </ButtonAddToCart>
-        </Bottom> :
-        <Bottom align={'center'} justify={'space-between'}>
-          <Span size={20} weight={600}>{product.price} ₽</Span>
-          <ButtonAddToCart align={'center'} onClick={addProductToCart}>
-            В корзину
-            <BuyIcon />
-          </ButtonAddToCart>
-        </Bottom>
-      }
+      <AnimatePresence>
+        {itemCount && itemCount.length > 0 ?
+          <Bottom
+            align={'center'}
+            justify={'space-between'}
+            animate={itemCount && itemCount.length > 0 ? 'show' : 'hide'}
+            variants={variants}
+            initial={'hide'}
+            exit={'show'}
+            transition={{
+              duration: 1
+            }}
+          >
+            <ButtonAddToCart align={'center'} onClick={handleMinusItem}>
+              <MinusIcon />
+            </ButtonAddToCart>
+            <Span size={20} weight={600}>{product.price} ₽</Span>
+            <ButtonAddToCart align={'center'} onClick={addProductToCart}>
+              <PlusIcon />
+            </ButtonAddToCart>
+          </Bottom> :
+          <BottomCount
+            align={'center'}
+            justify={'space-between'}
+            animate={itemCount && itemCount.length > 0 ? 'hide' : 'show'}
+            variants={variants}
+            initial={'show'}
+            exit={'hide'}
+            transition={{
+              duration: 1
+            }}
+          >
+            <Span size={20} weight={600}>{product.price} ₽</Span>
+            <ButtonAddToCart align={'center'} onClick={addProductToCart}>
+              В корзину
+              <BuyIcon />
+            </ButtonAddToCart>
+          </BottomCount>
+        }
+      </AnimatePresence>
       {itemCount && itemCount.map((i) =>
-        <Count key={i.id} align={'center'} justify={'center'}>{i.qty}</Count>
+        <AnimatePresence key={i.id}>
+          {itemCount &&
+            <Count
+              align={'center'}
+              justify={'center'}
+              animate={itemCount ? 'show' : 'hide'}
+              variants={variants}
+              initial={'hide'}
+              exit={'show'}
+              transition={{
+                duration: .5
+              }}
+            >
+              {i.qty}
+            </Count>
+          }
+        </AnimatePresence>
       )}
     </Wrapper>
   );

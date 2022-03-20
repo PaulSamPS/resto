@@ -68,11 +68,9 @@ export const Main: React.FC<MainProps> = ({product}): JSX.Element => {
       <StyledProductBlock>
         {product.map((p) => <Card setModal={setModal} count={cart} key={p.id} product={p}/>)}
       </StyledProductBlock>
-      {modal &&
-        <Modal setModal={setModal}>
-          <CardInfo count={cart}/>
-        </Modal>
-      }
+      <Modal setModal={setModal} modal={modal}>
+        <CardInfo count={cart}/>
+      </Modal>
     </Container>
   );
 };

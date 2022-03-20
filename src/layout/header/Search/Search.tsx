@@ -137,7 +137,7 @@ export const Search: React.FC = (): JSX.Element => {
   return (
     <Wrapper>
       {modal && search !== undefined &&
-        <Modal setModal={setModal}>
+        <Modal setModal={setModal} modal={modal}>
           <H3 size={15}>Доставка по вашему адресу {search.value} возможна</H3>
         </Modal>
       }

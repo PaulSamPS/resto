@@ -3,10 +3,10 @@ import {ReactComponent as CloseIcon} from './Icons/close.svg';
 import {ModalProps} from './Modal.props';
 import {Flex} from '../../styles/components';
 import {device} from '../../styles/breakpoints';
-import {motion} from 'framer-motion';
+import {AnimatePresence, motion} from 'framer-motion';
 import styled from 'styled-components';
 
-const Overlay = styled.div`
+const Overlay = styled(motion.div)`
   position: fixed;
   z-index: 99;
   top: 0;
@@ -54,30 +54,59 @@ const StyledModal = styled(motion.div)`
   }
 `;
 
-export const Modal: React.FC<ModalProps> = ({children, setModal}) => {
+export const Modal: React.FC<ModalProps> = ({children, setModal, modal}) => {
   const handleCloseModal = () => {
     setModal(false);
   };
 
+  const variants = {
+    open: {opacity: 1},
+    closed: {opacity: 0},
+  };
+
+  const variantsModal = {
+    open: {opacity: 1, y: 0},
+    closed: {opacity: 0, y: '-100%'},
+  };
+
   return (
-    <Overlay align={'center'} justify={'center'} onClick={handleCloseModal}>
-      <StyledModal
-        align={'center'}
-        justify={'center'}
-        direction={'column'}
-        onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
-        initial={{scale: 0}}
-        animate={{scale: 1}}
-        transition={{
-          type: 'spring',
-          stiffness: 260,
-          damping: 20
-        }}
-      >
-        <CloseIcon onClick={handleCloseModal}/>
-        {children}
-      </StyledModal>
-    </Overlay>
+    <AnimatePresence>
+      {modal &&
+        <Overlay
+          align={'center'}
+          justify={'center'}
+          onClick={handleCloseModal}
+          animate={modal ? 'open' : 'closed'}
+          variants={variants}
+          initial={'closed'}
+          exit={'closed'}
+          transition={{
+            damping: 20,
+            type: 'spring',
+            stiffness: 260,
+          }}
+        >
+          <StyledModal
+            align={'center'}
+            justify={'center'}
+            direction={'column'}
+            onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
+            animate={modal ? 'open' : 'closed'}
+            variants={variantsModal}
+            initial={'closed'}
+            exit={'closed'}
+            transition={{
+              damping: 20,
+              type: 'spring',
+              stiffness: 260,
+            }}
+          >
+            <CloseIcon onClick={handleCloseModal}/>
+            {children}
+          </StyledModal>
+        </Overlay>
+      }
+    </AnimatePresence>
   );
 };
 

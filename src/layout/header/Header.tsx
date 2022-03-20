@@ -11,7 +11,7 @@ import {ReactComponent as MobileMenuIcon} from './Icons/burger.svg';
 import {ReactComponent as CartMobileIcon} from '../../components/Card/Icons/buy.svg';
 import {device} from '../../styles/breakpoints';
 import {MobileMenu} from '../../components/MobileMenu/MobileMenu';
-import {motion} from 'framer-motion';
+import {AnimatePresence, motion} from 'framer-motion';
 import styled from 'styled-components';
 
 const StyledHeader = styled.div`
@@ -157,8 +157,8 @@ export const Header: React.FC = (): JSX.Element => {
   };
 
   const variantsOverlay = {
-    open: {display: 'block', opacity: 1},
-    closed: {display: 'none', opacity: 0},
+    open: {opacity: 1},
+    closed: {opacity: 0},
   };
 
   const handleClick = () => {
@@ -200,35 +200,41 @@ export const Header: React.FC = (): JSX.Element => {
           <Span size={12} weight={600} color={'#403C3B'}>{totalCount}</Span>
         </Count>
       </ButtonCart>
-      {modal &&
-        <Modal setModal={setModal}>
-          <StyledImg width={76} height={89} src={'assets/emptyCart.png'} alt='Корзина пуста'/>
-          <H2 size={25}>Корзина пуста</H2>
-          <ModalButton onClick={() => setModal(false)}>Посмотреть меню</ModalButton>
-        </Modal>
-      }
-      <Overlay onClick={() => setModalMenu(false)}
-        animate={modalMenu ? 'open' : 'closed'}
-        variants={variantsOverlay}
-        initial={'closed'}
-        transition={{
-          type: 'spring',
-          stiffness: 260,
-          damping: 20
-        }}
-      />
-      <StyledMotion
-        animate={modalMenu ? 'open' : 'closed'}
-        variants={variants}
-        initial={'closed'}
-        transition={{
-          type: 'spring',
-          stiffness: 260,
-          damping: 20
-        }}
-      >
-        <MobileMenu setModalMenu={setModalMenu}/>
-      </StyledMotion>
+      <Modal setModal={setModal} modal={modal}>
+        <StyledImg width={76} height={89} src={'assets/emptyCart.png'} alt='Корзина пуста'/>
+        <H2 size={25}>Корзина пуста</H2>
+        <ModalButton onClick={() => setModal(false)}>Посмотреть меню</ModalButton>
+      </Modal>
+      <AnimatePresence>
+        {modalMenu &&
+        <>
+          <Overlay onClick={() => setModalMenu(false)}
+            animate={modalMenu ? 'open' : 'closed'}
+            variants={variantsOverlay}
+            exit={'closed'}
+            initial={'closed'}
+            transition={{
+              type: 'spring',
+              stiffness: 260,
+              damping: 20
+            }}
+          />
+          <StyledMotion
+            animate={modalMenu ? 'open' : 'closed'}
+            variants={variants}
+            initial={'closed'}
+            exit={'closed'}
+            transition={{
+              type: 'spring',
+              stiffness: 260,
+              damping: 20
+            }}
+          >
+            <MobileMenu setModalMenu={setModalMenu}/>
+          </StyledMotion>
+        </>
+        }
+      </AnimatePresence>
     </StyledHeader>
   );
 };
