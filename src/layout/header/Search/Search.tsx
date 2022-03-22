@@ -59,8 +59,6 @@ const StyledSearchIcon = styled(SearchIcon)`
 export const Search: React.FC = (): JSX.Element => {
   const [search, setSearch] = React.useState<DaDataSuggestion<DaDataAddress> | undefined>();
   const [modal, setModal] = React.useState<boolean>(false);
-  // const [ip, setIp] = React.useState<string>('');
-  // const [address, setAddress] = React.useState<string>('');
   const dispatch = useAppDispatch();
   const {address} = useAppSelector((state) => state.geoReducer);
   const suggestionsRef = React.useRef<AddressSuggestions>(null);
@@ -71,15 +69,25 @@ export const Search: React.FC = (): JSX.Element => {
     }
   };
 
+  const checkAddress = () => {
+    if (search?.data.city != 'Оренбург') {
+      setModal(true);
+    }
+    if (search?.value == undefined) {
+      setModal(true);
+    }
+  };
+
   React.useEffect(() => {
     dispatch(getGeo());
   }, []);
-
+  console.log(search?.value);
   return (
     <Wrapper>
-      {modal && search !== undefined &&
+      {modal &&
         <Modal setModal={setModal} modal={modal}>
-          <H3 size={15}>Доставка по вашему адресу {search?.value} возможна</H3>
+          {search?.value == undefined ? <H3 size={15}>Некорректный адресс досставки</H3> :
+          <H3 size={15}>Доставка только по городу Оренбург</H3>}
         </Modal>
       }
       <AddressSuggestions
@@ -89,13 +97,11 @@ export const Search: React.FC = (): JSX.Element => {
         onChange={setSearch}
         inputProps={{placeholder: 'Введите адрес доставки'}}
         filterLocations={[{city: 'Оренбург'}]}
-        filterFromBound={'street'}
-        filterToBound={'street'}
       />
       <StyledLocationIcon onClick={handleClick}>
         <LocationIcon/>
       </StyledLocationIcon>
-      <StyledSearchIcon>
+      <StyledSearchIcon onClick={checkAddress}>
         <SearchIcon/>
       </StyledSearchIcon>
     </Wrapper>
