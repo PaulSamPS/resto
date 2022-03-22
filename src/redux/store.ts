@@ -4,13 +4,15 @@ import productInfoReducer from './reducers/ProductInfoSlice';
 import navReducer from './reducers/NavSlice';
 import cartReducer from './reducers/CartSlice';
 import geoReducer from './reducers/GeoSlice';
+import addressReducer from './reducers/AddressSlice';
 
 const rootReducer = combineReducers({
   productReducer,
   productInfoReducer,
   navReducer,
   cartReducer,
-  geoReducer
+  geoReducer,
+  addressReducer
 });
 
 export const createStore = () => {

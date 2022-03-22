@@ -22,7 +22,7 @@ const Wrapper = styled.div`
 `;
 
 const StyledLink = styled(Link)`
-  font-size: 20px;
+  font-size: 18px;
   color: var(--tetxGray);
   text-decoration: none;
   margin-left: 40px;

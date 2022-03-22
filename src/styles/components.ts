@@ -1,4 +1,5 @@
 import styled, {css} from 'styled-components';
+import {device} from './breakpoints';
 
 // H
 
@@ -14,6 +15,14 @@ export const H1 = styled.h1<TitleProps>`
     
     font-size: ${({size}) => size}px;
     font-weight: bold;
+
+    @media only screen and ${device.laptop} {
+        font-size: 26px;
+    }
+
+    @media only screen and ${device.mobileL} {
+        font-size: 22px!important;
+    }
 `;
 
 export const H2 = styled.h2<TitleProps>`
@@ -86,6 +95,7 @@ export const Input = styled.input`
   background: none;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
   font-size: 16px;
+  width: 100%;
   font-weight: 400;
 
   &::placeholder {
@@ -96,6 +106,10 @@ export const Input = styled.input`
   &:focus {
     outline: none;
   }
+
+    @media only screen and ${device.laptopL} {
+        font-size: 14px;
+    }
 `;
 
 export const InputCss = css`
@@ -161,8 +175,8 @@ export const Span = styled.span<ISpan>`
 // img
 
 interface IImg {
-    width: number
-    height: number
+    width?: number
+    height?: number
 }
 
 export const Img = styled.img<IImg>`

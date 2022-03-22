@@ -52,6 +52,11 @@ const StyledModal = styled(motion.div)`
   @media only screen and ${device.tablet} {
     min-width: 320px;
   }
+
+  @media only screen and ${device.mobileM} {
+    min-width: unset;
+    width: 280px;
+  }
 `;
 
 export const Modal: React.FC<ModalProps> = ({children, setModal, modal}) => {

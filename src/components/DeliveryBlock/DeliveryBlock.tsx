@@ -1,14 +1,18 @@
 import React from 'react';
 import {DeliveryBlockProps} from './DeliveryBlock.props';
 import {motion} from 'framer-motion';
+import {device} from '../../styles/breakpoints';
 import styled from 'styled-components';
 
 const Wrapper = styled(motion.div)<{width: number}>`
   background: var(--brown);
-  width: ${({width}) => width}px;
+  width: ${({width}) => width}%;
   border-radius: 10px;
   padding: 30px;
   margin-bottom: 20px;
+  @media only screen and ${device.laptop} {
+    padding: 20px;
+  }
 `;
 
 export const DeliveryBlock: React.FC<DeliveryBlockProps> = ({children, width}): JSX.Element => {

@@ -10,16 +10,9 @@ import {Spinner} from '../Spinner/Spinner';
 import {device} from '../../styles/breakpoints';
 import styled from 'styled-components';
 
-const Wrapper = styled.div`
-  ${Flex};
-`;
-
 const Card = styled.div`
   ${Flex};
-  width: 1210px;
-  height: 400px;
-  border-radius: 10px;
-  background: var(--brownGradient);
+  text-align: start;
 
   @media only screen and ${device.laptopL} {
     width: 900px;
@@ -39,10 +32,15 @@ const Card = styled.div`
   @media only screen and ${device.mobileL} {
     width: 295px;
   }
+
+  @media only screen and ${device.mobileM} {
+    width: 240px;
+  }
 `;
 
 const StyledImg = styled(Img)`
   border-radius: 10px 0 0 10px;
+  object-fit: cover;
 
   @media only screen and ${device.laptopL} {
     width: 450px;
@@ -50,9 +48,8 @@ const StyledImg = styled(Img)`
   }
 
   @media only screen and ${device.laptop} {
-    height: 300px;
+    height: 100%;
     width: 100%;
-    object-fit: fill;
     margin-top: 40px;
     border-radius: 10px;
   }
@@ -129,6 +126,10 @@ const Buy = styled.div`
   @media only screen and ${device.tablet} {
     max-width: 80%;
   }
+
+  @media only screen and ${device.mobileM} {
+    max-width: 100%;
+  }
 `;
 
 const ButtonAddToCart = styled(Button)`
@@ -164,6 +165,11 @@ const Count = styled.div`
   
   @media only screen and ${device.tablet} {
     right: -70px;
+  }
+
+  @media only screen and ${device.mobileM} {
+    right: -10px;
+    top: -190px;
   }
 `;
 
@@ -257,7 +263,7 @@ export const CardInfo: React.FC<CardInfoProps> = ({count}): JSX.Element => {
   }
 
   return (
-    <Wrapper justify={'center'}>
+    <>
       {product &&
         <Card>
           <StyledImg width={600} height={400} src={product.image} alt={product.name}/>
@@ -303,7 +309,7 @@ export const CardInfo: React.FC<CardInfoProps> = ({count}): JSX.Element => {
           </InfoBlock>
         </Card>
       }
-    </Wrapper>
+    </>
   );
 };
 

@@ -5,6 +5,7 @@ import {PlaceOrderProps} from './PlaceOrder.props';
 import {useAppSelector} from '../../hooks/redux';
 import {device} from '../../styles/breakpoints';
 import {useNavigate} from 'react-router-dom';
+import {AnimatePresence, motion} from 'framer-motion';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -31,6 +32,10 @@ const Wrapper = styled.div`
   @media only screen and ${device.mobileL} {
     width: 335px;
   }
+
+  @media only screen and ${device.mobileM} {
+    width: 275px;
+  }
 `;
 
 const Left = styled.div`
@@ -48,19 +53,23 @@ const Sum = styled(Span)`
 
 const MinSum = styled.div`
   ${Flex};
+  row-gap: 5px;
 
   @media only screen and ${device.tablet} {
-    margin-bottom: 40px;
+    margin-bottom: 10px;
   }
 `;
 
-const MinOrder = styled(Span)`
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
+const MinOrder = styled(motion.span)`
+  color: var(--textWhite);
+  font-size: 12px;
 
   @media only screen and ${device.tablet} {
     bottom: 80px;
+  }
+
+  @media only screen and ${device.mobileM} {
+    font-size: 11px;
   }
 `;
 
@@ -80,6 +89,11 @@ export const PlaceOrder: React.FC<PlaceOrderProps> = (): JSX.Element => {
   const {totalPrice} = useAppSelector((state) => state.cartReducer);
   const navigate = useNavigate();
 
+  const variants = {
+    show: {opacity: 1, height: 'auto'},
+    hide: {opacity: 0, height: 0},
+  };
+
   return (
     <Wrapper align={'center'} justify={'space-between'}>
       <Left>
@@ -89,12 +103,22 @@ export const PlaceOrder: React.FC<PlaceOrderProps> = (): JSX.Element => {
         </TotalSum>
         <MinSum direction={'column'}>
           <Span size={12}>Минимальная сума заказа 1500 ₽</Span>
-          {totalPrice < 1500 &&
-            <MinOrder size={12}>
-              До минимального заказа не хватает:
-              <StyledSpan color={'#618967'} size={12}> {priceRu(1500 - totalPrice)}</StyledSpan>
-            </MinOrder>
-          }
+          <AnimatePresence>
+            {totalPrice < 1500 &&
+              <MinOrder
+                animate={totalPrice < 1500 ? 'show' : 'hide'}
+                variants={variants}
+                initial={'hide'}
+                exit={'hide'}
+                transition={{
+                  duration: .5
+                }}
+              >
+                До минимального заказа не хватает:
+                <StyledSpan color={'#618967'} size={12}> {priceRu(1500 - totalPrice)}</StyledSpan>
+              </MinOrder>
+            }
+          </AnimatePresence>
         </MinSum>
       </Left>
       <StyledBtn onClick={() => navigate('/delivery')}>Оформить заказ</StyledBtn>

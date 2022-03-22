@@ -31,6 +31,10 @@ const Wrapper = styled(motion.div)`
   @media only screen and ${device.desktop} {
     width: 300px;
   }
+
+  @media only screen and ${device.mobileM} {
+    width: 280px;
+  }
 `;
 
 const StyledImg = styled(Img)`
@@ -39,6 +43,10 @@ const StyledImg = styled(Img)`
 
   @media only screen and ${device.desktop} {
     width: 300px;
+  }
+  
+  @media only screen and ${device.mobileM} {
+    width: 280px;
   }
 `;
 
@@ -100,7 +108,7 @@ const Count = styled(motion.div)`
   line-height: 24px;
 `;
 
-export const Card: React.FC<CardProps> = ({product, count, setModal}) => {
+export const Card: React.FC<CardProps> = ({product, count, setModal}): JSX.Element => {
   const dispatch = useAppDispatch();
   const itemCount = count.filter((item) => item.id === product.id);
 

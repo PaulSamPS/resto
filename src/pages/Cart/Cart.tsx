@@ -53,6 +53,10 @@ const CardBlock = styled.div`
   @media only screen and ${device.mobileL} {
     width: 335px;
   }
+
+  @media only screen and ${device.mobileM} {
+    width: 275px;
+  }
 `;
 
 const EmptyCart = styled(motion.div)`

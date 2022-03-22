@@ -100,6 +100,7 @@
 @media screen and (max-width: 1300px) {
     .react-dadata__input {
         padding: 10px 48px;
+        font-size: 14px;
     }
     .react-dadata__input::-webkit-input-placeholder {
         font-size: 14px;
@@ -107,5 +108,11 @@
 
     .react-dadata__input::-moz-placeholder {
         font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .react-dadata__input {
+        padding: 10px 48px;
     }
 }

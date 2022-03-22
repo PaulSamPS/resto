@@ -23,10 +23,6 @@ const Title = styled(H1)`
 
   @media only screen and ${device.laptop} {
     margin-top: 16px;
-    font-size: 26px;
-  }
-  
-  @media only screen and ${device.tablet} {
     margin-left: 0;
   }
 `;
@@ -49,7 +45,7 @@ const StyledProductBlock = styled.div`
   }
 
   @media only screen and ${device.tablet} {
-    grid-template-columns: 1fr;
+    grid-template-columns: auto;
   }
 `;
 

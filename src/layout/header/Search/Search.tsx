@@ -9,6 +9,7 @@ import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
 import {getGeo} from '../../../redux/actions/ActionCreator';
 import './search.css';
 import styled from 'styled-components';
+import {setAddress} from '../../../redux/reducers/AddressSlice';
 
 const Wrapper = styled.div`
   position: relative;
@@ -81,7 +82,20 @@ export const Search: React.FC = (): JSX.Element => {
   React.useEffect(() => {
     dispatch(getGeo());
   }, []);
-  console.log(search?.value);
+
+  React.useEffect(() => {
+    const obj = {
+      street: search?.data.street,
+      street_type: search?.data.street_type,
+      house: search?.data.house,
+      house_type: search?.data.house_type,
+      flat: search?.data.flat,
+      flat_type: search?.data.flat_type,
+      settlement_with_type: search?.data.settlement_with_type
+    };
+    dispatch(setAddress(obj));
+  }, [search]);
+
   return (
     <Wrapper>
       {modal &&
