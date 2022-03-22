@@ -79,7 +79,7 @@ export const P = styled.p<ParagraphProps>`
 // Input
 
 export const Input = styled.input`
- padding: 15px 30px;
+  padding: 15px 30px;
   color: var(--textWhite);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 10px;
@@ -96,6 +96,26 @@ export const Input = styled.input`
   &:focus {
     outline: none;
   }
+`;
+
+export const InputCss = css`
+    padding: 15px 30px;
+    color: var(--textWhite);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    background: none;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
+    font-size: 16px;
+    font-weight: 400;
+
+    &::placeholder {
+        color: var(--textWhite);
+        opacity: 1;
+    }
+
+    &:focus {
+        outline: none;
+    }
 `;
 
 // a

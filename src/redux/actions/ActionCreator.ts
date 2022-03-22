@@ -4,6 +4,7 @@ import {productSlice} from '../reducers/ProductSlice';
 import {productInfoSlice} from '../reducers/ProductInfoSlice';
 import {navSlice} from '../reducers/NavSlice';
 import {NavInterface} from '../../interfaces/nav.interface';
+import {geoSlice} from '../reducers/GeoSlice';
 import axios from 'axios';
 
 export const getProduct = (category?: string) => async (dispatch: AppDispatch) => {
@@ -36,5 +37,24 @@ export const getNav = () => async (dispatch: AppDispatch) => {
   } catch (e) {
     const error = e as Error;
     dispatch(navSlice.actions.setNavError(error.message));
+  }
+};
+
+interface IIPv4 {
+  IPv4: string
+}
+
+interface IAddress {
+  location: {value: string}
+}
+
+export const getGeo = () => async (dispatch: AppDispatch) => {
+  try {
+    const res = await axios.get<IIPv4>(`https://geolocation-db.com/json/`);
+    const resAddress = await axios.get<IAddress>(`https://suggestions.dadata.ru/suggestions/api/4_1/rs/iplocate/address?ip=${res.data.IPv4}`, {headers: {Authorization: `Token ${process.env.REACT_APP_API_KEY}`}});
+    dispatch(geoSlice.actions.setGeoSuccess(resAddress.data.location.value));
+  } catch (e) {
+    const error = e as Error;
+    dispatch(geoSlice.actions.setGeoError(error.message));
   }
 };

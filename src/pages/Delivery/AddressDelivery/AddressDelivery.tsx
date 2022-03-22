@@ -1,8 +1,9 @@
 import React from 'react';
-import {Button, Flex, H2, Input, Span} from '../../../styles/components';
+import {Button, Flex, H2, Input, InputCss, Span} from '../../../styles/components';
 import {ReactComponent as ClockIcon} from './Icons/clock.svg';
 import {DeliveryBlock} from '../../../components/DeliveryBlock/DeliveryBlock';
-import {motion} from 'framer-motion';
+import {AnimatePresence, motion} from 'framer-motion';
+import {AddressSuggestions, DaDataAddress, DaDataSuggestion} from 'react-dadata';
 import styled from 'styled-components';
 
 const StyledDelivery = styled.div`
@@ -58,12 +59,20 @@ const Address = styled(motion.div)`
   row-gap: 15px;
 `;
 
-const StreetInput = styled(Input)`
+// const StreetInput = styled(Input)`
+//   grid-area: street;
+// `;
+
+const Street = styled.div`
   grid-area: street;
+  input {
+    ${InputCss};
+  }
 `;
 
 const HouseInput = styled(Input)`
   grid-area: house;
+
 `;
 
 const OfficeInput = styled(Input)`
@@ -82,8 +91,9 @@ const CommentInput = styled(Input)`
   grid-area: comment;
 `;
 
-export const AddressDelivery = () => {
+export const AddressDelivery: React.FC = (): JSX.Element => {
   const [activeIndex, setActiveIndex] = React.useState<number>(0);
+  const [street, setStreet] = React.useState<DaDataSuggestion<DaDataAddress> | undefined>();
 
   const deliveryArr = [
     {id: 0, name: 'Доставка'},
@@ -91,8 +101,8 @@ export const AddressDelivery = () => {
   ];
 
   const variants = {
-    open: {opacity: 1, y: 0},
-    closed: {opacity: 0, y: '-10%'},
+    open: {opacity: 1, y: 0, height: 'auto'},
+    closed: {opacity: 0, y: '-10%', height: 0}
   };
 
   const variantsTime = {
@@ -132,21 +142,39 @@ export const AddressDelivery = () => {
             }
           </Time>
         </StyledDeliveryBlock>
-        {activeIndex === 0 &&
-          <Address
-            animate={activeIndex === 0 ? 'open' : 'closed'}
-            initial={'closed'}
-            variants={variants}
-          >
-            <Title size={16}>Адрес доставки</Title>
-            <StreetInput placeholder='Укажите улицу' type='text'/>
-            <HouseInput placeholder='Номер дома' type='text'/>
-            <OfficeInput placeholder='№ квартиры/офиса' type='text'/>
-            <EntranceInput placeholder='Подъезд' type='text'/>
-            <LevelInput placeholder='Этаж' type='text'/>
-            <CommentInput placeholder='Комментарий' type='text'/>
-          </Address>
-        }
+        <AnimatePresence>
+          {activeIndex === 0 &&
+             <Address
+               animate={activeIndex === 0 ? 'open' : 'closed'}
+               initial={'closed'}
+               exit={'closed'}
+               variants={variants}
+               transition={{
+                 damping: 20,
+                 type: 'spring',
+                 stiffness: 260,
+               }}
+             >
+               <Title size={16}>Адрес доставки</Title>
+               <Street>
+                 <AddressSuggestions
+                   value={street}
+                   onChange={setStreet}
+                   inputProps={{placeholder: 'Укажите улицу'}}
+                   token={`${process.env.REACT_APP_API_KEY}`}
+                   filterLocations={[{city: 'Оренбург'}]}
+                   filterFromBound={'street'}
+                   filterToBound={'street'}
+                 />
+               </Street>
+               <HouseInput placeholder='№ дома' type='text'/>
+               <OfficeInput placeholder='№ квартиры/офиса' type='text'/>
+               <EntranceInput placeholder='Подъезд' type='text'/>
+               <LevelInput placeholder='Этаж' type='text'/>
+               <CommentInput placeholder='Комментарий' type='text'/>
+             </Address>
+          }
+        </AnimatePresence>
       </StyledDelivery>
     </DeliveryBlock>
   );

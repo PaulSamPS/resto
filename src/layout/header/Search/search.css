@@ -1,0 +1,111 @@
+.react-dadata__container {
+    position: relative;
+}
+
+.react-dadata__input {
+    width: 100%;
+    padding: 15px 48px;
+
+   color: var(--tetxGray);
+   border: none;
+   border-radius: 10px;
+   outline: none;
+   background-color: var(--brown);
+   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
+   font-size: 16px;
+   line-height: 21px;
+}
+
+.react-dadata__input::-webkit-input-placeholder {
+    opacity: 0.5;
+    color: var(--tetxGray);
+}
+
+.react-dadata__input::-moz-placeholder {
+   opacity: 0.1;
+   color: var(--tetxGray);
+}
+
+.react-dadata__suggestions {
+    background-color: var(--brown);
+    border-radius: 4px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
+    left: 0;
+    list-style: none;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    text-align: left;
+    top: calc(100% + 8px);
+    z-index: 10;
+}
+
+.react-dadata__suggestion-note {
+    color: #828282;
+    font-size: 14px;
+    padding: 10px 10px 5px;
+}
+
+.react-dadata__suggestion {
+    background: none;
+    color: var(--textWhite);
+    border: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    font-size: 14px;
+    padding: 7px 10px;
+    text-align: left;
+    width: 100%;
+}
+
+.react-dadata__suggestion--line-through {
+    text-decoration: line-through;
+}
+
+.react-dadata__suggestion-subtitle {
+    color: #777;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.react-dadata__suggestion-subtitle-item {
+    display: inline-block;
+    margin-bottom: 4px;
+    margin-right: 16px;
+}
+
+.react-dadata__suggestion-subtitle-item:last-child {
+    margin-right: 0;
+}
+
+.react-dadata__suggestion--current {
+    background-color: #618967;
+}
+
+.react-dadata__suggestion:hover {
+    background-color: #618967;
+}
+
+.react-dadata mark {
+    background: none;
+}
+
+.react-dadata--highlighted {
+    color: var(--textWhite);
+}
+
+@media screen and (max-width: 1300px) {
+    .react-dadata__input {
+        padding: 10px 48px;
+    }
+    .react-dadata__input::-webkit-input-placeholder {
+        font-size: 14px;
+    }
+
+    .react-dadata__input::-moz-placeholder {
+        font-size: 14px;
+    }
+}
