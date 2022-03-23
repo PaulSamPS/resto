@@ -8,6 +8,7 @@ import {ReactComponent as PlusIcon} from '../Card/Icons/plus.svg';
 import {setCart, minusItem} from '../../redux/reducers/CartSlice';
 import {Spinner} from '../Spinner/Spinner';
 import {device} from '../../styles/breakpoints';
+import {AnimatePresence, motion} from 'framer-motion';
 import styled from 'styled-components';
 
 const Card = styled.div`
@@ -110,7 +111,7 @@ const Weight = styled(Span)`
   }
 `;
 
-const Buy = styled.div`
+const Buy = styled(motion.div)`
   max-width: 50%;
   ${Flex};
   margin-top: 20px;
@@ -131,6 +132,8 @@ const Buy = styled.div`
     max-width: 100%;
   }
 `;
+
+const BuyCount = styled(Buy)``;
 
 const ButtonAddToCart = styled(Button)`
   ${Flex};
@@ -250,6 +253,11 @@ export const CardInfo: React.FC<CardInfoProps> = ({count}): JSX.Element => {
   const itemCount = count.filter((item) => item.id === product.id);
   const dispatch = useAppDispatch();
 
+  const variants = {
+    show: {opacity: 1},
+    hide: {opacity: 0},
+  };
+
   const addProductToCart = () => {
     dispatch(setCart(product));
   };
@@ -271,9 +279,19 @@ export const CardInfo: React.FC<CardInfoProps> = ({count}): JSX.Element => {
             <Title size={25}>{product.name}</Title>
             <Description size={12}>{product.description}</Description>
             <Weight size={14}>Вес: {product.weight} г</Weight>
-            <Buy align={'center'} justify={'space-between'}>
+            <AnimatePresence>
               {itemCount && itemCount.length > 0 ?
-                <>
+                <BuyCount
+                  align={'center'}
+                  justify={'space-between'}
+                  animate={itemCount && itemCount.length > 0 ? 'show' : 'hide'}
+                  variants={variants}
+                  initial={'hide'}
+                  exit={'show'}
+                  transition={{
+                    duration: 1
+                  }}
+                >
                   <ButtonCount align={'center'} onClick={handleMinusItem}>
                     <MinusIcon/>
                   </ButtonCount>
@@ -284,16 +302,26 @@ export const CardInfo: React.FC<CardInfoProps> = ({count}): JSX.Element => {
                   {itemCount && itemCount.map((i) =>
                     <Count key={i.id} align={'center'} justify={'center'}>{i.qty}</Count>
                   )}
-                </> :
-                <>
+                </BuyCount> :
+                <Buy
+                  align={'center'}
+                  justify={'space-between'}
+                  animate={itemCount && itemCount.length > 0 ? 'hide' : 'show'}
+                  variants={variants}
+                  initial={'show'}
+                  exit={'hide'}
+                  transition={{
+                    duration: 1
+                  }}
+                >
                   <ButtonAddToCart align={'center'} onClick={addProductToCart}>
                     <ButtonSpan size={14} weight={600}>Корзина</ButtonSpan>
                     <ShoppingBag/>
                   </ButtonAddToCart>
                   <StyledPrice size={25}>{product.price} ₽</StyledPrice>
-                </>
+                </Buy>
               }
-            </Buy>
+            </AnimatePresence>
             <NutritionalValue>
               <Name>
                 {product.nutritionalValue?.map((v) =>

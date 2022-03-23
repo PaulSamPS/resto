@@ -155,11 +155,6 @@ export const AddressDelivery: React.FC = (): JSX.Element => {
     closed: {opacity: 0, height: 0}
   };
 
-  const variantsTime = {
-    open: {opacity: 1, y: 0},
-    closed: {opacity: 0, y: '-50%'},
-  };
-
   return (
     <DeliveryBlock width={100}>
       <Title size={18}>2. Доставка</Title>
@@ -181,7 +176,8 @@ export const AddressDelivery: React.FC = (): JSX.Element => {
           align={'center'}
           animate={activeIndex === 0 ? 'open' : 'closed'}
           initial={'closed'}
-          variants={variantsTime}
+          exit={'closed'}
+          variants={variants}
         >
           {activeIndex === 0 &&
             <>

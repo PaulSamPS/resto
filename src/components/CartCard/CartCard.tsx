@@ -9,9 +9,10 @@ import {deleteItem, minusItem, setCart} from '../../redux/reducers/CartSlice';
 import {useAppDispatch} from '../../hooks/redux';
 import {getInfoProduct} from '../../redux/actions/ActionCreator';
 import {device} from '../../styles/breakpoints';
+import {AnimatePresence, motion} from 'framer-motion';
 import styled from 'styled-components';
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
   display: grid;
   align-items: center;
   grid-template-columns: 117px 1fr auto 150px auto;
@@ -141,6 +142,12 @@ const Delete = styled(Count)`
 
 export const CartCard: React.FC<CartCardProps> = ({product, setModal}): JSX.Element => {
   const dispatch = useAppDispatch();
+  const [del, setDel] = React.useState<boolean>(false);
+
+  const variants = {
+    open: {opacity: 1},
+    closed: {opacity: 0}
+  };
 
   const handleItemInfo = () => {
     dispatch(getInfoProduct(product.id));
@@ -156,30 +163,41 @@ export const CartCard: React.FC<CartCardProps> = ({product, setModal}): JSX.Elem
   };
 
   const handleDeleteItem = () => {
+    setDel(true);
     dispatch(deleteItem(product));
   };
 
   return (
-    <Wrapper>
-      <StyledImg width={117} height={86} src={product.image} alt={product.name} onClick={handleItemInfo}/>
-      <Info>
-        <H2 size={18}>{product.name}</H2>
-        <P size={12} color={'#A6A7AB'}>{product.description}</P>
-      </Info>
-      <CountBlock align={'center'} justify={'space-between'}>
-        <Count
-          align={'center'}
-          justify={'center'}
-          onClick={handleMinusItem}
-          bg={product.qty <= 1 ? 'var(--brown)' : 'var(--green)'}
-        >
-          <MinusIcon/>
-        </Count>
-        <StyledSpanCount size={20} weight={700}>{product.qty}</StyledSpanCount>
-        <Count align={'center'} justify={'center'} onClick={addProductToCart}><PlusIcon/></Count>
-      </CountBlock>
-      <TotalPrice size={20}>{priceRu(product.price * product.qty)}</TotalPrice>
-      <Delete align={'center'} justify={'center'} onClick={handleDeleteItem}><DeleteIcon/></Delete>
-    </Wrapper>
+    <AnimatePresence>
+      <Wrapper
+        animate={del ? 'closed' : 'open'}
+        initial={'open'}
+        exit={'closed'}
+        variants={variants}
+        transition={{
+          duration: 1
+        }}
+      >
+        <StyledImg width={117} height={86} src={product.image} alt={product.name} onClick={handleItemInfo}/>
+        <Info>
+          <H2 size={18}>{product.name}</H2>
+          <P size={12} color={'#A6A7AB'}>{product.description}</P>
+        </Info>
+        <CountBlock align={'center'} justify={'space-between'}>
+          <Count
+            align={'center'}
+            justify={'center'}
+            onClick={handleMinusItem}
+            bg={product.qty <= 1 ? 'var(--brown)' : 'var(--green)'}
+          >
+            <MinusIcon/>
+          </Count>
+          <StyledSpanCount size={20} weight={700}>{product.qty}</StyledSpanCount>
+          <Count align={'center'} justify={'center'} onClick={addProductToCart}><PlusIcon/></Count>
+        </CountBlock>
+        <TotalPrice size={20}>{priceRu(product.price * product.qty)}</TotalPrice>
+        <Delete align={'center'} justify={'center'} onClick={handleDeleteItem}><DeleteIcon/></Delete>
+      </Wrapper>
+    </AnimatePresence>
   );
 };
