@@ -10,8 +10,19 @@ const Wrapper = styled(motion.div)<{width: number}>`
   border-radius: 10px;
   padding: 30px;
   margin-bottom: 20px;
+  
+  &:last-child {
+    margin-bottom: 90px;
+  }
+  
   @media only screen and ${device.laptop} {
     padding: 20px;
+  }
+  
+  @media only screen and ${device.tablet} {
+    &:last-child {
+      margin-bottom: 50px;
+    }
   }
 `;
 

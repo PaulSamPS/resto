@@ -34,15 +34,6 @@ const Wrapper = styled(motion.div)`
     row-gap: 20px;
     position: relative;
   }
-
-  @media only screen and ${device.mobileM} {
-    grid-template-columns: 1fr;
-    grid-template-areas: 
-      'img'
-      'desc'
-      'totalPrice'
-      'count';
-  }
 `;
 
 const StyledImg = styled(Img)`
@@ -62,6 +53,16 @@ const Info = styled.div`
 
   @media only screen and ${device.laptop} {
     grid-area: desc;
+  }
+
+  @media only screen and ${device.mobileL} {
+    p {
+      display: none;
+    }
+    h2 {
+    min-height: 70px;
+      font-size: 14px;
+    }
   }
 `;
 
@@ -99,7 +100,15 @@ const Count = styled(CountDisable)`
     width: 12px;
   }
   
-  
+  @media only screen and ${device.mobileL} {
+    height: 25px;
+    width: 25px;
+    
+    svg {
+      height: 10px;
+      width: 10px;
+    }
+  }
 `;
 
 const TotalPrice = styled(H2)`
@@ -111,7 +120,7 @@ const TotalPrice = styled(H2)`
   }
 
   @media only screen and ${device.mobileM} {
-    justify-self: unset;
+    font-size: 16px;
   }
 `;
 
@@ -135,8 +144,10 @@ const Delete = styled(Count)`
   }
 
   @media only screen and ${device.mobileM} {
-    bottom: unset;
-    top: 45px;
+      svg {
+      height: 15px;
+      width: 15px;
+    }
   }
 `;
 
