@@ -2,6 +2,7 @@ import React from 'react';
 import {Button, H2} from '../../../styles/components';
 import {DeliveryBlock} from '../../../components/DeliveryBlock/DeliveryBlock';
 import styled from 'styled-components';
+import {PayDeliveryProps} from './PayDelivery.props';
 import {device} from '../../../styles/breakpoints';
 
 const Title = styled(H2)`
@@ -29,18 +30,12 @@ const StyledBtn = styled(Button)`
     transform: unset;
   }
   @media only screen and ${device.tablet} {
-    width: 100%;
-    border-radius: unset;
-    &:first-child {
-      border-radius: 10px 10px 0 0!important;
-      border-bottom: none;
-      border-right: 1px solid var(--green);
-    }
-    &:last-child {
-      border-radius: 0 0 10px 10px!important;
-      border-top: none;
-      border-left: 1px solid var(--green);
-    }
+    width: unset;
+    font-size: 14px;
+  }
+
+  @media only screen and ${device.mobileM} {
+    font-size: 12px;
   }
 `;
 
@@ -51,7 +46,7 @@ const Pay = styled.div`
 const StyledChoose = styled.div`
   @media only screen and ${device.tablet} {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
   }
 `;
 
@@ -63,13 +58,13 @@ const StyledPayBtn = styled(StyledBtn)`
   }
 `;
 
-export const PayDelivery = () => {
+export const PayDelivery: React.FC<PayDeliveryProps> = ({screenWidth}): JSX.Element => {
   const [activeIndexPay, setActiveIndexPay] = React.useState<number>(0);
 
   const payArr = [
-    {id: 0, name: 'Оплата онлайн'},
-    {id: 1, name: 'Курьеру картой'},
-    {id: 2, name: 'Наличными'}
+    {id: 0, name: 'Оплата онлайн', mobileName: 'Онлайн'},
+    {id: 1, name: 'Курьеру картой', mobileName: 'Картой'},
+    {id: 2, name: 'Наличными', mobileName: 'Наличными'}
   ];
 
   return (
@@ -85,7 +80,7 @@ export const PayDelivery = () => {
               background={activeIndexPay === index ? 'var(--greenGradient)' : 'transparent'}
               onClick={() => setActiveIndexPay(index)}
             >
-              {d.name}
+              {screenWidth <= 768 ? d.mobileName : d.name}
             </StyledPayBtn>
           )}
         </StyledChoose>

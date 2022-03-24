@@ -5,6 +5,7 @@ import {DeliveryBlock} from '../../../components/DeliveryBlock/DeliveryBlock';
 import {AnimatePresence, motion} from 'framer-motion';
 import {useAppSelector} from '../../../hooks/redux';
 import {device} from '../../../styles/breakpoints';
+import {AddressDeliveryProps} from './AddressDelivery.props';
 import styled from 'styled-components';
 
 const StyledDeliveryBlock = styled.div`
@@ -16,11 +17,14 @@ const StyledDeliveryBlock = styled.div`
   @media only screen and ${device.tablet} {
     display: grid;
     grid-template-columns: 1fr;
-    row-gap: 30px;
   }
 `;
 
 const StyledChoose = styled.div`
+  @media only screen and ${device.tablet} {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 `;
 
 const StyledBtn = styled(Button)`
@@ -30,6 +34,10 @@ const StyledBtn = styled(Button)`
   width: 181px;
   border: 1px solid var(--green);
 
+  &:first-child {
+    border-right: none;
+  }
+
   &:last-child {
     border-radius: 0 10px 10px 0;
     border-left: none;
@@ -38,18 +46,13 @@ const StyledBtn = styled(Button)`
   &:active {
     transform: unset;
   }
-
   @media only screen and ${device.tablet} {
-    width: 100%;
-    border-radius: unset;
-    &:first-child {
-      border-radius: 10px 10px 0 0!important;
-    }
-    &:last-child {
-      border-radius: 0 0 10px 10px!important;
-      border-top: none;
-      border-left: 1px solid var(--green);
-    }
+    width: unset;
+    font-size: 14px;
+  }
+
+  @media only screen and ${device.mobileM} {
+    font-size: 12px;
   }
 `;
 
@@ -133,7 +136,7 @@ const CommentInput = styled(Input)`
   grid-area: comment;
 `;
 
-export const AddressDelivery: React.FC = (): JSX.Element => {
+export const AddressDelivery: React.FC<AddressDeliveryProps> = ({screenWidth}): JSX.Element => {
   const [activeIndex, setActiveIndex] = React.useState<number>(0);
   const [street, setStreet] = React.useState<string>('');
   const [house, setHouse] = React.useState<string>('');
@@ -153,6 +156,11 @@ export const AddressDelivery: React.FC = (): JSX.Element => {
   const variants = {
     open: {opacity: 1, height: 'auto'},
     closed: {opacity: 0, height: 0}
+  };
+
+  const variantsTime = {
+    open: screenWidth <= 768 ? {opacity: 1, height: 'auto', marginTop: '30px'} : {opacity: 1, height: 'auto', marginTop: 0},
+    closed: {opacity: 0, height: 0, marginTop: 0}
   };
 
   return (
@@ -177,7 +185,7 @@ export const AddressDelivery: React.FC = (): JSX.Element => {
           animate={activeIndex === 0 ? 'open' : 'closed'}
           initial={'closed'}
           exit={'closed'}
-          variants={variants}
+          variants={variantsTime}
         >
           {activeIndex === 0 &&
             <>
