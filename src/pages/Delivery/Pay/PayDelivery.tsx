@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {MouseEvent} from 'react';
 import {Button, H2} from '../../../styles/components';
 import {DeliveryBlock} from '../../../components/DeliveryBlock/DeliveryBlock';
-import styled from 'styled-components';
 import {PayDeliveryProps} from './PayDelivery.props';
 import {device} from '../../../styles/breakpoints';
+import {useAppDispatch} from '../../../hooks/redux';
+import {setPayment} from '../../../redux/reducers/OrderSlice';
+import styled from 'styled-components';
 
 const Title = styled(H2)`
   text-transform: none;
@@ -60,12 +62,19 @@ const StyledPayBtn = styled(StyledBtn)`
 
 export const PayDelivery: React.FC<PayDeliveryProps> = ({screenWidth}): JSX.Element => {
   const [activeIndexPay, setActiveIndexPay] = React.useState<number>(0);
+  const dispatch = useAppDispatch();
 
   const payArr = [
     {id: 0, name: 'Оплата онлайн', mobileName: 'Онлайн'},
     {id: 1, name: 'Курьеру картой', mobileName: 'Картой'},
     {id: 2, name: 'Наличными', mobileName: 'Наличными'}
   ];
+
+  const handleActiveIndexPay = (index: number, e: MouseEvent<HTMLButtonElement>, name: string) => {
+    setActiveIndexPay(index);
+    e.preventDefault();
+    dispatch(setPayment(name));
+  };
 
   return (
     <DeliveryBlock width={100}>
@@ -78,7 +87,7 @@ export const PayDelivery: React.FC<PayDeliveryProps> = ({screenWidth}): JSX.Elem
               size={16}
               weight={activeIndexPay === index ? 700 : 500}
               background={activeIndexPay === index ? 'var(--greenGradient)' : 'transparent'}
-              onClick={() => setActiveIndexPay(index)}
+              onClick={(e: MouseEvent<HTMLButtonElement>) => handleActiveIndexPay(index, e, d.name)}
             >
               {screenWidth <= 768 ? d.mobileName : d.name}
             </StyledPayBtn>

@@ -84,7 +84,7 @@ export const Search: React.FC = (): JSX.Element => {
   }, []);
 
   React.useEffect(() => {
-    const obj = {
+    const address = {
       street: search?.data.street,
       street_type: search?.data.street_type,
       house: search?.data.house,
@@ -93,7 +93,7 @@ export const Search: React.FC = (): JSX.Element => {
       flat_type: search?.data.flat_type,
       settlement_with_type: search?.data.settlement_with_type
     };
-    dispatch(setAddress(obj));
+    dispatch(setAddress(address));
   }, [search]);
 
   return (

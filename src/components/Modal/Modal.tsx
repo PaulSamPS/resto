@@ -88,7 +88,7 @@ export const Modal: React.FC<ModalProps> = ({children, setModal, modal}) => {
           transition={{
             damping: 20,
             type: 'spring',
-            stiffness: 260,
+            stiffness: 360,
           }}
         >
           <StyledModal
@@ -103,7 +103,7 @@ export const Modal: React.FC<ModalProps> = ({children, setModal, modal}) => {
             transition={{
               damping: 20,
               type: 'spring',
-              stiffness: 260,
+              stiffness: 360,
             }}
           >
             <CloseIcon onClick={handleCloseModal}/>

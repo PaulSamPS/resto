@@ -52,7 +52,9 @@ const StyledProductBlock = styled.div`
 export const Main: React.FC<MainProps> = ({product}): JSX.Element => {
   const {cart} = useAppSelector((state) => state.cartReducer);
   const {isLoading} = useAppSelector((state) => state.productReducer);
+  // const {order, payment, deliveryType} = useAppSelector((state) => state.orderReducer);
   const [modal, setModal] = React.useState<boolean>(false);
+  // const [modalOrder, setModalOrder] = useState<boolean>(false);
 
   if (isLoading) {
     return <Spinner/>;
@@ -67,6 +69,16 @@ export const Main: React.FC<MainProps> = ({product}): JSX.Element => {
       <Modal setModal={setModal} modal={modal}>
         <CardInfo count={cart}/>
       </Modal>
+      {/* {modalOrder &&*/}
+      {/*  <Modal setModal={setModal} modal={modal}>*/}
+      {/*    <div>{order.street}</div>*/}
+      {/*    <div>{order.house}</div>*/}
+      {/*    <div>{order.name}</div>*/}
+      {/*    <div>{order.phone}</div>*/}
+      {/*    <div>{deliveryType}</div>*/}
+      {/*    <div>{payment}</div>*/}
+      {/*  </Modal>*/}
+      {/* }*/}
     </Container>
   );
 };

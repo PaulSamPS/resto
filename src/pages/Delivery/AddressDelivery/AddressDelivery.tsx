@@ -1,11 +1,13 @@
-import React, {ChangeEvent} from 'react';
-import {Button, Flex, H2, Input, Span} from '../../../styles/components';
+import React, {MouseEvent} from 'react';
+import {Button, Flex, H2, Span} from '../../../styles/components';
 import {ReactComponent as ClockIcon} from './Icons/clock.svg';
 import {DeliveryBlock} from '../../../components/DeliveryBlock/DeliveryBlock';
 import {AnimatePresence, motion} from 'framer-motion';
-import {useAppSelector} from '../../../hooks/redux';
 import {device} from '../../../styles/breakpoints';
 import {AddressDeliveryProps} from './AddressDelivery.props';
+import {AddressInputs} from './AddressInputs/AddressInputs';
+import {useAppDispatch} from '../../../hooks/redux';
+import {setDeliveryType} from '../../../redux/reducers/OrderSlice';
 import styled from 'styled-components';
 
 const StyledDeliveryBlock = styled.div`
@@ -67,40 +69,6 @@ const Time = styled(motion.div)`
   }
 `;
 
-const Address = styled(motion.div)`
-  display: grid;
-  grid-template-columns: 225px 173px 173px;
-  grid-template-areas: 
-    'title title title'
-    'street street house'
-    'office entrance level'
-    'comment comment comment';
-  column-gap: 15px;
-  row-gap: 15px;
-
-  @media only screen and ${device.laptop} {
-    grid-template-columns: 1fr auto;
-    grid-template-areas: 
-    'title title'
-    'street house'
-    'office entrance'
-    'level level'
-    'comment comment';
-  }
-
-  @media only screen and ${device.tablet} {
-    grid-template-columns: 1fr;
-    grid-template-areas: 
-    'title'
-    'street'
-    'house'
-    'office'
-    'entrance'
-    'level'
-    'comment';
-  }
-`;
-
 const Title = styled(H2)`
   text-transform: none;
   margin-bottom: 20px;
@@ -111,56 +79,24 @@ const Title = styled(H2)`
   }
 `;
 
-const StreetInput = styled(Input)`
-  grid-area: street;
-`;
-
-const HouseInput = styled(Input)`
-  grid-area: house;
-
-`;
-
-const OfficeInput = styled(Input)`
-  grid-area: office;
-`;
-
-const EntranceInput = styled(Input)`
-  grid-area: entrance;
-`;
-
-const LevelInput = styled(Input)`
-  grid-area: level;
-`;
-
-const CommentInput = styled(Input)`
-  grid-area: comment;
-`;
-
 export const AddressDelivery: React.FC<AddressDeliveryProps> = ({screenWidth}): JSX.Element => {
   const [activeIndex, setActiveIndex] = React.useState<number>(0);
-  const [street, setStreet] = React.useState<string>('');
-  const [house, setHouse] = React.useState<string>('');
-  const [office, setOffice] = React.useState<string>('');
-  const [entrance, setEntrance] = React.useState<string>('');
-  const [level, setLevel] = React.useState<string>('');
-  const [comment, setComment] = React.useState<string>('');
-  const {address} = useAppSelector((state) => state.addressReducer);
+  const dispatch = useAppDispatch();
 
   const deliveryArr = [
     {id: 0, name: 'Доставка'},
     {id: 1, name: 'Самовывоз'}
   ];
 
-  console.log(street, house, office);
-
-  const variants = {
-    open: {opacity: 1, height: 'auto'},
-    closed: {opacity: 0, height: 0}
-  };
-
   const variantsTime = {
     open: screenWidth <= 768 ? {opacity: 1, height: 'auto', marginTop: '30px'} : {opacity: 1, height: 'auto', marginTop: 0},
     closed: {opacity: 0, height: 0, marginTop: 0}
+  };
+
+  const handleActiveIndex = (index: number, e: MouseEvent<HTMLButtonElement>, name: string) => {
+    setActiveIndex(index);
+    e.preventDefault();
+    dispatch(setDeliveryType(name));
   };
 
   return (
@@ -174,83 +110,30 @@ export const AddressDelivery: React.FC<AddressDeliveryProps> = ({screenWidth}): 
               size={16}
               weight={activeIndex === index ? 700 : 500}
               background={activeIndex === index ? 'var(--greenGradient)' : 'transparent'}
-              onClick={() => setActiveIndex(index)}
+              onClick={(e: MouseEvent<HTMLButtonElement>) => handleActiveIndex(index, e, d.name)}
             >
               {d.name}
             </StyledBtn>
           )}
         </StyledChoose>
-        <Time
-          align={'center'}
-          animate={activeIndex === 0 ? 'open' : 'closed'}
-          initial={'closed'}
-          exit={'closed'}
-          variants={variantsTime}
-        >
-          {activeIndex === 0 &&
-            <>
-              <ClockIcon/>
-              <Span size={16} weight={500}>Доставим через  1 час 30 минут</Span>
-            </>
-          }
-        </Time>
+        <AnimatePresence>
+          <Time
+            align={'center'}
+            animate={activeIndex === 0 ? 'open' : 'closed'}
+            initial={'closed'}
+            exit={'closed'}
+            variants={variantsTime}
+          >
+            {activeIndex === 0 &&
+              <>
+                <ClockIcon/>
+                <Span size={16} weight={500}>Доставим через  1 час 30 минут</Span>
+              </>
+            }
+          </Time>
+        </AnimatePresence>
       </StyledDeliveryBlock>
-      <AnimatePresence>
-        {activeIndex === 0 &&
-           <Address
-             animate={activeIndex === 0 ? 'open' : 'closed'}
-             initial={'closed'}
-             exit={'closed'}
-             variants={variants}
-             transition={{
-               damping: 20,
-               type: 'spring',
-               stiffness: 260,
-             }}
-           >
-             <Title size={16}>Адрес доставки</Title>
-             <StreetInput
-               placeholder='Укажите улицу'
-               type='text'
-               defaultValue={address.street && address.settlement_with_type != null ?
-                 `${address.settlement_with_type}, ${address.street_type} ${address.street}` :
-                 address.street &&
-                 `${address.street_type} ${address.street}`}
-               onChange={(e: ChangeEvent<HTMLInputElement>) => setStreet(e.target.value)}
-             />
-             <HouseInput
-               placeholder='№ дома'
-               type='text'
-               defaultValue={address.house && `${address.house_type} ${address.house}`}
-               onChange={(e: ChangeEvent<HTMLInputElement>) => setHouse(e.target.value)}
-             />
-             <OfficeInput
-               placeholder='№ квартиры/офиса'
-               type='text'
-               defaultValue={address.flat && `${address.flat_type} ${address.flat}`}
-               onChange={(e: ChangeEvent<HTMLInputElement>) => setOffice(e.target.value)}
-             />
-             <EntranceInput
-               placeholder='Подъезд'
-               type='text'
-               value={entrance}
-               onChange={(e: ChangeEvent<HTMLInputElement>) => setEntrance(e.target.value)}
-             />
-             <LevelInput
-               placeholder='Этаж'
-               type='text'
-               value={level}
-               onChange={(e: ChangeEvent<HTMLInputElement>) => setLevel(e.target.value)}
-             />
-             <CommentInput
-               placeholder='Комментарий'
-               type='text'
-               value={comment}
-               onChange={(e: ChangeEvent<HTMLInputElement>) => setComment(e.target.value)}
-             />
-           </Address>
-        }
-      </AnimatePresence>
+      <AddressInputs activeIndex={activeIndex}/>
     </DeliveryBlock>
   );
 };

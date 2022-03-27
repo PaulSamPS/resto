@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import {DeliveryBlock} from '../../../components/DeliveryBlock/DeliveryBlock';
 import {Button, Flex, Span, StyledA} from '../../../styles/components';
 import {device} from '../../../styles/breakpoints';
 import CheckedIcon from './Icons/checked.png';
 import styled from 'styled-components';
+import {useFormContext} from 'react-hook-form';
+import {IAddressDeliveryInterfaces} from '../AddressDelivery/AddressDelivery.interfaces';
+import {useLocation, useNavigate} from 'react-router-dom';
 
 const Wrapper = styled.div`
   ${Flex};
@@ -20,6 +23,7 @@ const Conditions = styled.div`
   display: flex;
   align-items: center;
   column-gap: 10px;
+  position: relative;
 
   > input {
     position: absolute;
@@ -78,6 +82,14 @@ const StyledInput = styled.input`
   height: 20px;
 `;
 
+const SpanError = styled(Span)`
+  position: absolute;
+  top: -20px;
+  left: 0;
+  
+  color: orangered;
+`;
+
 const StyledLabel = styled.label`
   color: var(--textWhite);
   font-size: 13px;
@@ -107,25 +119,36 @@ const StyledBtn = styled(Button)`
 
 export const Checkout: React.FC = () : JSX.Element => {
   const [check, setCheck] = React.useState<boolean>(false);
+  const {register, formState: {errors}} = useFormContext<IAddressDeliveryInterfaces>();
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  const handleCheck = React.useCallback(() => {
+  const handleCheck = React.useCallback((e: ChangeEvent) => {
     setCheck(!check);
   }, [check]);
 
-  console.log(check);
+  if (location.pathname !== '/delivery') {
+    navigate('/');
+  }
 
   return (
     <DeliveryBlock width={100}>
       <Wrapper align={'center'} justify={'space-between'}>
         <Conditions>
-          <StyledInput type={'checkbox'} name={'check'} checked={check} onChange={handleCheck} required/>
-          <StyledLabel htmlFor={'check'}/>
+          <StyledInput
+            {...register('check', {required: {value: true, message: 'Вы должны принять соглашение'}})}
+            type={'checkbox'}
+            checked={check}
+            onChange={handleCheck}
+          />
+          <StyledLabel htmlFor={'checkbox'}/>
+          {errors.check && <SpanError size={12}>{errors.check.message}</SpanError>}
           <ConditionsText>
             <StyledSpan size={13}>Я согласен на обработку моих перс. данных в соответствии с</StyledSpan>
             <StyledA size={13} linkColor={'#72A479'}> Условиями</StyledA>
           </ConditionsText>
         </Conditions>
-        <StyledBtn>Оформить заказ</StyledBtn>
+        <StyledBtn type={'submit'}>Оформить заказ</StyledBtn>
       </Wrapper>
     </DeliveryBlock>
   );

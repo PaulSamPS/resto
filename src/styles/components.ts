@@ -87,7 +87,7 @@ export const P = styled.p<ParagraphProps>`
 
 // Input
 
-export const Input = styled.input`
+export const InputS = styled.input`
   padding: 15px 30px;
   color: var(--textWhite);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -199,4 +199,16 @@ export const Flex = css<IFlex>`
     justify-content: ${({justify}) => justify};
     align-items: ${({align}) => align};
     flex-direction: ${({direction}) => direction ? 'column' : 'row'};
+`;
+
+
+export const FormInputBlock = styled.div`
+  position: relative;
+  
+  span {
+    position: absolute;
+    top: -18px;
+    left: 0;
+    color: orangered;
+  }
 `;

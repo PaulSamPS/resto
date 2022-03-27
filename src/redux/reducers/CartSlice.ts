@@ -41,10 +41,15 @@ export const cartSlice = createSlice({
       state.totalPrice = state.totalPrice - state.cart[itemIndex].price * state.cart[itemIndex].qty;
       state.totalCount = state.totalCount - state.cart[itemIndex].qty;
       state.cart = state.cart.filter((item) => item.id !== action.payload.id);
+    },
+    setResetCart(state) {
+      state.totalPrice = state.totalPrice = 0;
+      state.totalCount = state.totalCount = 0;
+      state.cart = state.cart = [];
     }
   }
 });
 
-export const {setCart, minusItem, deleteItem} = cartSlice.actions;
+export const {setCart, minusItem, deleteItem, setResetCart} = cartSlice.actions;
 
 export default cartSlice.reducer;
