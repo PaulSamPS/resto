@@ -1,155 +1,14 @@
 import React from 'react';
-import {Flex, H2, Img, P, Span} from '../../styles/components';
-import {ReactComponent as MinusIcon} from '../Card/Icons/minus.svg';
-import {ReactComponent as PlusIcon} from '../Card/Icons/plus.svg';
+import {ReactComponent as MinusIcon} from '../Button/Icons/minus.svg';
+import {ReactComponent as PlusIcon} from '../Button/Icons/plus.svg';
 import {priceRu} from '../../helpers/priceRu';
 import {ReactComponent as DeleteIcon} from './Icons/delete.svg';
 import {CartCardProps} from './CartCard.props';
 import {deleteItem, minusItem, setCart} from '../../redux/reducers/CartSlice';
 import {useAppDispatch} from '../../hooks/redux';
 import {getInfoProduct} from '../../redux/actions/ActionCreator';
-import {device} from '../../styles/breakpoints';
 import {AnimatePresence, motion} from 'framer-motion';
-import styled from 'styled-components';
-
-const Wrapper = styled(motion.div)`
-  display: grid;
-  align-items: center;
-  grid-template-columns: 117px 1fr auto 150px auto;
-  column-gap: 40px;
-  padding: 20px;
-
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  
-  &:last-child {
-    border-bottom: none;
-  }
-
-  @media only screen and ${device.laptop} {
-    column-gap: 20px;
-    grid-template-columns: auto 1fr;
-    grid-template-areas: 
-      'img desc'
-      'count totalPrice';
-    row-gap: 20px;
-    position: relative;
-  }
-`;
-
-const StyledImg = styled(Img)`
-  cursor: pointer;
-  border-radius: 10px;
-  
-  @media only screen and ${device.laptop} {
-    grid-area: img;
-  }
-`;
-
-const Info = styled.div`
-  max-width: 265px;
-  h2 {
-    margin-bottom: 5px;
-  }
-
-  @media only screen and ${device.laptop} {
-    grid-area: desc;
-  }
-
-  @media only screen and ${device.mobileL} {
-    p {
-      display: none;
-    }
-    h2 {
-    min-height: 70px;
-      font-size: 14px;
-    }
-  }
-`;
-
-const CountBlock = styled.div`
-  ${Flex};
-  
-  @media only screen and ${device.laptop} {
-    grid-area: count;
-  }
-`;
-
-const StyledSpanCount = styled(Span)`
-  width: 50px;
-  text-align: center;
-`;
-
-const CountDisable = styled.div<{bg?: string}>`
-  background: ${({bg = 'var(--green)'}) => bg};
-`;
-
-const Count = styled(CountDisable)`
-  ${Flex};
-  height: 38px;
-  width: 38px;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: transform ease 0.2s;
-  
-  &:active {
-    transform: translateY(2px);
-  }
-  
-  svg {
-    height: 12px;
-    width: 12px;
-  }
-  
-  @media only screen and ${device.mobileL} {
-    height: 25px;
-    width: 25px;
-    
-    svg {
-      height: 10px;
-      width: 10px;
-    }
-  }
-`;
-
-const TotalPrice = styled(H2)`
-  text-align: center;
-
-  @media only screen and ${device.laptop} {
-    grid-area: totalPrice;
-    justify-self: flex-start;
-  }
-
-  @media only screen and ${device.mobileM} {
-    font-size: 16px;
-  }
-`;
-
-const Delete = styled(Count)`
-  margin-right: 20px;
-  svg {
-    height: 20px;
-    width: 20px;
-  }
-
-  @media only screen and ${device.laptop} {
-    margin-right: 0;
-    position: absolute;
-    top: 70px;
-    right: 20px;
-  }
-
-  @media only screen and ${device.tablet} {
-    top: unset;
-    bottom: 20px;
-  }
-
-  @media only screen and ${device.mobileM} {
-      svg {
-      height: 15px;
-      width: 15px;
-    }
-  }
-`;
+import styles from './CartCard.module.scss';
 
 export const CartCard: React.FC<CartCardProps> = ({product, setModal}): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -180,7 +39,8 @@ export const CartCard: React.FC<CartCardProps> = ({product, setModal}): JSX.Elem
 
   return (
     <AnimatePresence>
-      <Wrapper
+      <motion.div
+        className={styles.wrapper}
         animate={del ? 'closed' : 'open'}
         initial={'open'}
         exit={'closed'}
@@ -189,26 +49,25 @@ export const CartCard: React.FC<CartCardProps> = ({product, setModal}): JSX.Elem
           duration: 1
         }}
       >
-        <StyledImg width={117} height={86} src={product.image} alt={product.name} onClick={handleItemInfo}/>
-        <Info>
-          <H2 size={18}>{product.name}</H2>
-          <P size={12} color={'#A6A7AB'}>{product.description}</P>
-        </Info>
-        <CountBlock align={'center'} justify={'space-between'}>
-          <Count
-            align={'center'}
-            justify={'center'}
-            onClick={handleMinusItem}
-            bg={product.qty <= 1 ? 'var(--brown)' : 'var(--green)'}
-          >
-            <MinusIcon/>
-          </Count>
-          <StyledSpanCount size={20} weight={700}>{product.qty}</StyledSpanCount>
-          <Count align={'center'} justify={'center'} onClick={addProductToCart}><PlusIcon/></Count>
-        </CountBlock>
-        <TotalPrice size={20}>{priceRu(product.price * product.qty)}</TotalPrice>
-        <Delete align={'center'} justify={'center'} onClick={handleDeleteItem}><DeleteIcon/></Delete>
-      </Wrapper>
+        <img className={styles.image} src={product.image} alt={product.name} onClick={handleItemInfo}/>
+        <div className={styles.info}>
+          <h2>{product.name}</h2>
+          <p>{product.description}</p>
+        </div>
+        <div className={styles.countBlock}>
+          {product.qty > 1 &&
+            <div className={styles.count}
+              onClick={handleMinusItem}
+            >
+              <MinusIcon/>
+            </div>
+          }
+          <span>{product.qty}</span>
+          <div className={styles.count} onClick={addProductToCart}><PlusIcon/></div>
+        </div>
+        <h2 className={styles.totalPrice}>{priceRu(product.price * product.qty)}</h2>
+        <div className={styles.delete} onClick={handleDeleteItem}><DeleteIcon/></div>
+      </motion.div>
     </AnimatePresence>
   );
 };

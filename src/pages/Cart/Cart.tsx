@@ -1,5 +1,4 @@
 import React from 'react';
-import {Button, Flex, H1, H2, Img} from '../../styles/components';
 import {useAppDispatch, useAppSelector} from '../../hooks/redux';
 import {ProductInterface} from '../../interfaces/product.interface';
 import {useNavigate} from 'react-router-dom';
@@ -9,77 +8,9 @@ import {setActiveNav} from '../../redux/reducers/NavSlice';
 import {Modal} from '../../components/Modal/Modal';
 import {CardInfo} from '../../components/CardInfo/CardInfo';
 import {getProduct} from '../../redux/actions/ActionCreator';
-import {device} from '../../styles/breakpoints';
 import {motion, AnimatePresence} from 'framer-motion';
-import styled from 'styled-components';
-
-const Wrapper = styled(motion.div)`
-  ${Flex};
-  padding: 0 20px;
-`;
-
-const CartPage = styled.div``;
-
-const Title = styled(H1)`
-  margin: 16px 0 40px 115px;
-  padding-left: 20px;
-  border-left: 4px solid var(--green);
-  
-  @media screen and ${device.tablet} {
-    margin-left: 0;
-    font-size: 26px;
-  }
-`;
-
-const CardBlock = styled.div`
-  width: 1096px;
-  margin: 0 auto;
-  background: var(--brownGradient);
-  border-radius: 10px;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
-
-  @media only screen and ${device.laptopL} {
-    width: 900px;
-  }
-
-  @media only screen and ${device.laptop} {
-    width: 700px;
-  }
-
-  @media only screen and ${device.tablet} {
-    width: 385px;
-  }
-
-  @media only screen and ${device.mobileL} {
-    width: 335px;
-  }
-
-  @media only screen and ${device.mobileM} {
-    width: 275px;
-  }
-`;
-
-const EmptyCart = styled(motion.div)`
-  min-width: 458px;
-  min-height: 358px;
-  margin-top: 50px;
-  padding: 20px;
-  ${Flex};
-  
-  @media only screen and ${device.tablet} {
-    min-width: 385px;
-    min-height: 285px;
-  }
-`;
-
-const StyledImg = styled(Img)`
-  margin-bottom: 20px;
-`;
-
-const MenuBtn = styled(Button)`
-  margin-top: 20px;
-  padding: 17px 35px;
-`;
+import {Button} from '../../components/Button/Button';
+import styles from './Cart.module.scss';
 
 export const Cart: React.FC = (): JSX.Element => {
   const [modal, setModal] = React.useState<boolean>(false);
@@ -106,25 +37,23 @@ export const Cart: React.FC = (): JSX.Element => {
   }, []);
 
   return (
-    <Wrapper
-      direction={'column'}
+    <motion.div
+      className={styles.wrapper}
       initial={{opacity: 0}}
       whileInView={{opacity: 1}}
       viewport={{once: true}}
     >
       <AnimatePresence>
         {cart.length !== 0 ?
-          <CartPage>
-            <Title size={32}>Корзина</Title>
-            <CardBlock>
+          <>
+            <h1 className={styles.title}>Корзина</h1>
+            <div className={styles.cardWrapper}>
               {cart.map((p: ProductInterface) => <CartCard key={p.id} product={p} setModal={setModal}/>)}
-            </CardBlock>
+            </div>
             <PlaceOrder/>
-          </CartPage> :
-          <EmptyCart
-            align={'center'}
-            justify={'center'}
-            direction={'column'}
+          </> :
+          <motion.div
+            className={styles.emptyCart}
             animate={cart.length !== 0 ? 'hide' : 'show'}
             variants={variants}
             initial={'hide'}
@@ -133,16 +62,16 @@ export const Cart: React.FC = (): JSX.Element => {
               duration: 2
             }}
           >
-            <StyledImg width={76} height={89} src={'assets/emptyCart.png'} alt='Корзина пуста'/>
-            <H2 size={25}>Корзина пуста</H2>
-            <MenuBtn onClick={goToMenu}>Посмотреть меню</MenuBtn>
-          </EmptyCart>
+            <img src={'image/emptyCart.png'} alt='Корзина пуста'/>
+            <h2>Корзина пуста</h2>
+            <Button onClick={goToMenu}>Посмотреть меню</Button>
+          </motion.div>
         }
       </AnimatePresence>
       <Modal setModal={setModal} modal={modal}>
         <CardInfo count={cart}/>
       </Modal>
-    </Wrapper>
+    </motion.div>
   );
 };
 

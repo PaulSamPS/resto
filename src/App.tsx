@@ -6,10 +6,6 @@ import {Cart} from './pages/Cart/Cart';
 import {getProduct} from './redux/actions/ActionCreator';
 import {useAppDispatch, useAppSelector} from './hooks/redux';
 import {Delivery} from './pages/Delivery/Delivery';
-import styled from 'styled-components';
-
-const Container = styled.div`
-`;
 
 export const App: React.FC = (): JSX.Element => {
   const {product} = useAppSelector((state) => state.productReducer);
@@ -20,7 +16,7 @@ export const App: React.FC = (): JSX.Element => {
   }, []);
 
   return (
-    <Container>
+    <>
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Layout/>}>
@@ -31,6 +27,6 @@ export const App: React.FC = (): JSX.Element => {
           </Route>
         </Routes>
       </BrowserRouter>
-    </Container>
+    </>
   );
 };

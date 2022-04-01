@@ -1,12 +1,15 @@
 @import-normalize;
 
+@import './scss/media_mixins';
+@import './scss/flex_mixins';
+
 body {
 	overflow-y: scroll;
 
 	max-width: 1440px;
 	margin: 0 auto;
 
-	background-image: linear-gradient(360deg, #211F20 0%, #44403F 100%);
+	background: linear-gradient(360deg, #211F20 -0.12%, #44403F 99.88%);
 
 	font-family:
 		-apple-system,
@@ -30,6 +33,17 @@ body {
 	padding: 0;
 }
 
+p {
+	color: #CFCFCF;
+}
+
+h1,
+h2,
+h3,
+span {
+	color: var(--textWhite);
+}
+
 :root {
 	--tetxGray: #CFCFCF;
 	--textWhite: #FFF;
@@ -40,4 +54,5 @@ body {
 	--black: #211F20;
 	--green: #618967;
 	--brown: #504B4A;
+	--red: #FC836D;
 }

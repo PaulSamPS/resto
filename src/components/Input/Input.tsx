@@ -1,30 +1,19 @@
-import React, {ForwardedRef, forwardRef} from 'react';
-import styled from 'styled-components';
-import {InputS, Span} from '../../styles/components';
+import React from 'react';
 import {InputProps} from './Input.props';
+import {ForwardedRef, forwardRef} from 'react';
+import styles from './Input.module.scss';
+import cn from 'classnames';
 
-const Wrapper = styled.div`
-  position: relative;
-  width: 100%;
-`;
 
-const StyledInput = styled(InputS)`
-  width: 100%;
-`;
-
-const ErrorSpan = styled(Span)`
-  position: absolute;
-  top: -18px;
-  left: 0;
-  color: orangered;
-`;
-
-export const Input = forwardRef(({error, placeholder, type, ...props}: InputProps, ref: ForwardedRef<HTMLInputElement>): JSX.Element => {
+export const Input = forwardRef(({className, error, ...props}: InputProps, ref: ForwardedRef<HTMLInputElement>): JSX.Element => {
   return (
-    <Wrapper>
-      <StyledInput ref={ref} placeholder={placeholder} type={type}/>
-      {error && <ErrorSpan size={14}>{error.message}</ErrorSpan>}
-    </Wrapper>
+    <div className={ cn(className, styles.wrapper)}>
+      <input ref={ref} className={cn(styles.input, {
+        [styles.error]: error
+      })} {...props} />
+      {error && <span className={styles.errorMessage}>{ error.message }</span>}
+    </div>
   );
 });
+
 Input.displayName = 'Input';
