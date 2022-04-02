@@ -1,8 +1,6 @@
 @import './src/scss/index';
 
 .bottomCount {
-	margin-top: 15px;
-
 	@include flexBetweenCenter;
 
 	span {
@@ -14,8 +12,6 @@
 }
 
 .bottom {
-	margin-top: 15px;
-
 	@include flexBetweenCenter;
 
 	span {

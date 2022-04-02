@@ -25,32 +25,34 @@ export const CardButtons: React.FC<CardButtonsProps> = ({product, itemCount, cla
   };
 
   return (
-    <AnimatePresence {...props}>
-      {itemCount.length > 0 ?
-        <motion.div
-          className={styles.bottomCount}
-          animate={itemCount.length > 0 ? 'show' : 'hide'}
-          variants={variants}
-          initial={'hide'}
-          exit={'show'}
-          transition={{duration: 1}}
-        >
-          <Button appearance={'count'} className={styles.btn} onClick={handleMinusItem}>
-            <MinusIcon/>
-          </Button>
-          <span>{product.price} ₽</span>
-          <Button appearance={'count'} className={styles.btn} onClick={addProductToCart}>
-            <PlusIcon/>
-          </Button>
-        </motion.div> :
-      <div className={styles.bottom}>
-        <span>{product.price} ₽</span>
-        <Button appearance={'card'} className={styles.btn} onClick={addProductToCart}>
-          В корзину
-        </Button>
-      </div>
-      }
-    </AnimatePresence>
+    <div className={className} {...props}>
+      <AnimatePresence>
+        {itemCount.length > 0 ?
+            <motion.div
+              className={styles.bottomCount}
+              animate={itemCount.length > 0 ? 'show' : 'hide'}
+              variants={variants}
+              initial={'hide'}
+              exit={'show'}
+              transition={{duration: 1}}
+            >
+              <Button appearance={'count'} className={styles.btn} onClick={handleMinusItem}>
+                <MinusIcon/>
+              </Button>
+              <span>{product.price} ₽</span>
+              <Button appearance={'count'} className={styles.btn} onClick={addProductToCart}>
+                <PlusIcon/>
+              </Button>
+            </motion.div> :
+            <div className={styles.bottom}>
+              <span>{product.price} ₽</span>
+              <Button appearance={'card'} className={styles.btn} onClick={addProductToCart}>
+                В корзину
+              </Button>
+            </div>
+        }
+      </AnimatePresence>
+    </div>
   );
 };
 

@@ -24,16 +24,18 @@ export const Card: React.FC<CardProps> = ({product, count, setModal}): JSX.Eleme
       whileInView={{opacity: 1}}
       viewport={{once: true}}
     >
-      <img className={styles.img} onClick={handleItemInfo} src={product.image} alt={product.name}/>
+      <div className={styles.img}>
+        <img onClick={handleItemInfo} src={product.image} alt={product.name}/>
+      </div>
       <div className={styles.info}>
         <div className={styles.top} >
           <h3>{product.name}</h3>
           <span>Вес: {product.weight} г</span>
         </div>
         <p className={styles.desc}>{product.description}</p>
-        <CardButtons itemCount={itemCount} product={product}/>
-        <CardCount itemCount={itemCount}/>
       </div>
+      <CardButtons className={styles.buttons} itemCount={itemCount} product={product}/>
+      <CardCount itemCount={itemCount}/>
     </motion.div>
   );
 };

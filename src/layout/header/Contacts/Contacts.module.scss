@@ -32,6 +32,7 @@
 
 	.phoneWrapper {
 		@include flexColumn;
+		align-items: unset;
 
 		span {
 			color: var(--tetxGray);
