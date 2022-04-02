@@ -9,6 +9,7 @@ import {useAppDispatch} from '../../hooks/redux';
 import {getInfoProduct} from '../../redux/actions/ActionCreator';
 import {AnimatePresence, motion} from 'framer-motion';
 import styles from './CartCard.module.scss';
+import cn from 'classnames';
 
 export const CartCard: React.FC<CartCardProps> = ({product, setModal}): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -55,13 +56,13 @@ export const CartCard: React.FC<CartCardProps> = ({product, setModal}): JSX.Elem
           <p>{product.description}</p>
         </div>
         <div className={styles.countBlock}>
-          {product.qty > 1 &&
-            <div className={styles.count}
-              onClick={handleMinusItem}
-            >
-              <MinusIcon/>
-            </div>
-          }
+          <div className={cn(styles.count, {
+            [styles.countOpacity]: product.qty <= 1
+          })}
+          onClick={handleMinusItem}
+          >
+            <MinusIcon/>
+          </div>
           <span>{product.qty}</span>
           <div className={styles.count} onClick={addProductToCart}><PlusIcon/></div>
         </div>

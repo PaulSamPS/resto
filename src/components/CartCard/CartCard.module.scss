@@ -16,7 +16,7 @@
 
 	@include _laptop {
 		column-gap: 20px;
-		grid-template-columns: auto 1fr;
+		grid-template-columns: 126px 1fr;
 		grid-template-areas:
 			'img desc'
 			'count totalPrice';
@@ -28,6 +28,7 @@
 	.image {
 		width: 117px;
 		height: 86px;
+		object-fit: cover;
 
 		cursor: pointer;
 
@@ -114,6 +115,16 @@
 					width: 10px;
 					height: 10px;
 				}
+			}
+		}
+
+		.countOpacity {
+			background: var(--tetxGray);
+			cursor: unset;
+			opacity: 0.5;
+
+			&:active {
+				transform: none;
 			}
 		}
 	}
