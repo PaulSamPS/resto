@@ -60,6 +60,7 @@
 
 		@include _laptop {
 			border-radius: 0 0 10px 10px;
+			width: 100%;
 		}
 
 		.title {
@@ -77,7 +78,7 @@
 
 			@include _laptop {
 				margin-top: 10px;
-				padding: 0 20px;
+				padding-left: 0;
 			}
 		}
 
@@ -99,7 +100,7 @@
 			@include _laptop {
 				max-width: 100%;
 				margin-bottom: 10px;
-				padding: 0 20px;
+				padding-left: 0;
 
 				font-size: 12px;
 			}
@@ -112,7 +113,7 @@
 			font-weight: 400;
 
 			@include _laptop {
-				padding: 0 20px;
+				padding-left: 0;
 			}
 		}
 
@@ -135,7 +136,6 @@
 			.name {
 				display: grid;
 
-				padding-right: 159px;
 				padding-bottom: 5px;
 				padding-left: 50px;
 
@@ -151,7 +151,7 @@
 				}
 
 				@include _laptop {
-					padding: 0 20px 5px;
+					padding: 0 0 5px;
 				}
 
 				@include _tablet {
@@ -172,7 +172,6 @@
 				display: grid;
 
 				margin-top: 5px;
-				padding-right: 159px;
 				padding-left: 50px;
 				grid-template-columns: 40px 41px 58px 34px 28px;
 				column-gap: 50px;
@@ -183,7 +182,7 @@
 				}
 
 				@include _laptop {
-					padding: 0 20px;
+					padding-left: 0;
 				}
 
 				@include _tablet {

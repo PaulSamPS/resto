@@ -1,75 +1,67 @@
 import React from 'react';
 import {ReactComponent as LocationIcon} from './icons/location.svg';
-import {ReactComponent as SearchIcon} from './icons/search.svg';
-import {AddressSuggestions, DaDataSuggestion, DaDataAddress} from 'react-dadata';
-import {Modal} from '../../../components/Modal/Modal';
-import {useAppDispatch, useAppSelector} from '../../../hooks/redux';
-import {getGeo} from '../../../redux/actions/ActionCreator';
-import {setAddress} from '../../../redux/reducers/AddressSlice';
-import './search.scss';
+// import {ReactComponent as SearchIcon} from './icons/search.svg';
+import {YMaps, withYMaps} from 'react-yandex-maps';
+import {Input} from '../../../components/Input/Input';
 import styles from './Search.module.scss';
 
 export const Search: React.FC = (): JSX.Element => {
-  const [search, setSearch] = React.useState<DaDataSuggestion<DaDataAddress> | undefined>();
-  const [modal, setModal] = React.useState<boolean>(false);
-  const dispatch = useAppDispatch();
-  const {address} = useAppSelector((state) => state.geoReducer);
-  const suggestionsRef = React.useRef<AddressSuggestions>(null);
+  const [searchMap, setSearchMap] = React.useState<boolean>(false);
+  const [search, setSearch] = React.useState<string>('');
 
-  const handleClick = () => {
-    if (suggestionsRef.current) {
-      suggestionsRef.current.setInputValue(address);
-    }
+  const MapSuggestComponent = (props: any) => {
+    const {ymaps} = props;
+
+    React.useEffect(() => {
+      const geo = () => {
+        ymaps.geolocation.get({
+          provider: 'auto',
+          autoReverseGeocode: true
+        }).then(function(result: any) {
+          ymaps.geocode(result.geoObjects.get(0).geometry._coordinates, {results: 1}).then(function(res: any) {
+            setSearch(res.geoObjects.get(0).getAddressLine());
+          });
+        });
+      };
+      const geoPos = document.getElementById('button');
+      geoPos?.addEventListener('click', geo);
+    }, []);
+
+    React.useEffect(() => {
+      const suggestView = new ymaps.SuggestView('suggest');
+      const setAddress = () => {
+        suggestView.events.add('select', (e: any) => {
+          setSearch(e.get('item').value);
+          setSearchMap(false);
+        });
+      };
+      setAddress();
+    }, [ymaps.SuggestView]);
+
+    return <Input id='suggest' placeholder='Введите адрес доставки' className={styles.input} defaultValue={search} onClick={() => setSearchMap(true)}/>;
   };
 
-  const checkAddress = () => {
-    if (search?.data.city != 'Оренбург') {
-      setModal(true);
-    }
-    if (search?.value == undefined) {
-      setModal(true);
-    }
-  };
-
-  React.useEffect(() => {
-    dispatch(getGeo());
-  }, []);
-
-  React.useEffect(() => {
-    const address = {
-      street: search?.data.street,
-      street_type: search?.data.street_type,
-      house: search?.data.house,
-      house_type: search?.data.house_type,
-      flat: search?.data.flat,
-      flat_type: search?.data.flat_type,
-      settlement_with_type: search?.data.settlement_with_type
-    };
-    dispatch(setAddress(address));
+  const SuggestComponent = React.useMemo(() => {
+    return withYMaps(MapSuggestComponent, true, [
+      'SuggestView',
+      'geocode',
+      'coordSystem.geo',
+      'geolocation'
+    ]);
   }, [search]);
 
   return (
     <div className={styles.wrapper}>
-      {modal &&
-        <Modal setModal={setModal} modal={modal}>
-          {search?.value == undefined ? <h3>Некорректный адресс досставки</h3> :
-          <h3>Доставка только по городу Оренбург</h3>}
-        </Modal>
-      }
-      <AddressSuggestions
-        ref={suggestionsRef}
-        token={`${process.env.REACT_APP_API_KEY}`}
-        value={search}
-        onChange={setSearch}
-        inputProps={{placeholder: 'Введите адрес доставки'}}
-        filterLocations={[{city: 'Оренбург'}]}
-      />
-      <div className={styles.location} onClick={handleClick}>
+      {searchMap && <div className={styles.overlay} onClick={() => setSearchMap(false)}/>}
+      <YMaps enterprise query={{apikey: 'e07291bb-96f5-473e-9bd7-f36aa1867dc0'}} onClick={() => setSearchMap(true)}>
+        <SuggestComponent/>
+      </YMaps>
+      <div className={styles.location} id='button'>
         <LocationIcon/>
       </div>
-      <div className={styles.search} onClick={checkAddress}>
-        <SearchIcon/>
-      </div>
+      {/* <div className={styles.search}>*/}
+      {/*  <SearchIcon/>*/}
+      {/* </div>*/}
     </div>
   );
 };

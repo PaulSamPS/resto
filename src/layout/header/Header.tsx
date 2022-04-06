@@ -58,7 +58,7 @@ export const Header: React.FC = (): JSX.Element => {
       <ButtonMobile appearance={'cartMobile'} totalCount={totalCount} onClick={handleClick}>корзина</ButtonMobile>
       <Button className={styles.btn} totalCount={totalCount} appearance={'cart'} onClick={handleClick}>Корзина</Button>
       <Modal setModal={setModal} modal={modal}>
-        <img className={styles.image} src={'image/emptyCart.png'} alt='Корзина пуста'/>
+        <img className={styles.image} src={'assets/emptyCart.png'} alt='Корзина пуста'/>
         <h2>Корзина пуста</h2>
         <Button className={styles.modalBtn} onClick={() => setModal(false)}>Посмотреть меню</Button>
       </Modal>

@@ -62,7 +62,7 @@ export const Cart: React.FC = (): JSX.Element => {
               duration: 2
             }}
           >
-            <img src={'image/emptyCart.png'} alt='Корзина пуста'/>
+            <img src={'assets/emptyCart.png'} alt='Корзина пуста'/>
             <h2>Корзина пуста</h2>
             <Button onClick={goToMenu}>Посмотреть меню</Button>
           </motion.div>

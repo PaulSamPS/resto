@@ -13,10 +13,82 @@
 		font-size: 15px;
 	}
 
+	.overlay {
+		position: fixed;
+		z-index: 99;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+
+		overflow: hidden;
+
+		@include flexCenterCenter;
+
+		opacity: 1;
+		background: rgba(33, 31, 32, 0.7);
+		backdrop-filter: blur(2px);
+	}
+
+	input {
+		padding: 15px 45px!important;
+		position: relative;
+		z-index: 100;
+		background: var(--brown)!important;
+
+		&::placeholder {
+			opacity: 0.5!important;
+		}
+	}
+
+	ymaps[class*="ymaps-2-1-79-search__suggest"] {
+		border: none;
+		border-radius: 10px;
+		top: 0;
+		background: none;
+	}
+
+	ymaps[class*="ymaps-2-1-79-search__suggest-item_selected_yes"] {
+		background-color: var(--green);
+	}
+
+	yamps#id_164920057872098514346 {
+
+	}
+
+	ymaps[class*="ymaps-2-1-79-suggest-item"] {
+		&:hover {
+			background-color: var(--green);
+		}
+	}
+
+	ymaps[class*="ymaps-2-1-79-search__suggest-highlight"] {
+	}
+
+	ymaps[class*="suggest-item"] {
+		color: var(--textWhite);
+	}
+
+	.map {
+		position: absolute;
+		left: 0;
+		z-index: 9999;
+		height: 300px;
+		width: 100%;
+		box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
+		transform: scale(1);
+		transition: all ease .2s;
+	}
+
+	.hidden {
+		transform: scale(0);
+	}
+
 	.location {
 		position: absolute;
 		top: 14px;
 		left: 18px;
+		z-index: 100;
 
 		cursor: pointer;
 		transition: transform ease 0.2s;
@@ -26,7 +98,7 @@
 		}
 
 		@include _laptopL {
-			top: 9px;
+			top: 12px;
 
 			width: 14px;
 			height: 17px;
@@ -37,6 +109,7 @@
 		position: absolute;
 		top: 13px;
 		right: 18px;
+		z-index: 100;
 
 		cursor: pointer;
 		transition: transform ease 0.2s;
@@ -46,7 +119,7 @@
 		}
 
 		@include _laptopL {
-			top: 10px;
+			top: 12px;
 
 			width: 18px;
 			height: 18px;
