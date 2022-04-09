@@ -27,6 +27,7 @@
 		> label {
 			@include flex;
 			user-select: none;
+
 			border: 1px solid transparent;
 
 			&::before {

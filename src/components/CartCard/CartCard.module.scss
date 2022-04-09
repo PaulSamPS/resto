@@ -119,9 +119,10 @@
 		}
 
 		.countOpacity {
-			background: var(--tetxGray);
 			cursor: unset;
+
 			opacity: 0.5;
+			background: var(--tetxGray);
 
 			&:active {
 				transform: none;

@@ -59,8 +59,9 @@
 		border-radius: 0 10px 10px 0;
 
 		@include _laptop {
-			border-radius: 0 0 10px 10px;
 			width: 100%;
+
+			border-radius: 0 0 10px 10px;
 		}
 
 		.title {

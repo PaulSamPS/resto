@@ -4,8 +4,8 @@ import {AddressInputsProps} from './AddressInputs.props';
 import {useAppSelector} from '../../../../hooks/redux';
 import {useFormContext} from 'react-hook-form';
 import {IAddressDeliveryInterfaces} from '../AddressDelivery.interfaces';
-import styles from './AddressInput.module.scss';
 import {Input} from '../../../../components/Input/Input';
+import styles from './AddressInput.module.scss';
 
 export const AddressInputs: React.FC<AddressInputsProps> = ({activeIndex}): JSX.Element => {
   const {address} = useAppSelector((state) => state.addressReducer);

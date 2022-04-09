@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {ContactInfo} from './ContactInfo/ContactInfo';
 import {AddressDelivery} from './AddressDelivery/AddressDelivery';
 import {PayDelivery} from './Pay/PayDelivery';
@@ -11,19 +11,30 @@ import {setOrder} from '../../redux/reducers/OrderSlice';
 import {IAddressDeliveryInterfaces} from './AddressDelivery/AddressDelivery.interfaces';
 import {setResetCart} from '../../redux/reducers/CartSlice';
 import styles from './Delivery.module.scss';
+import {postOrder} from '../../redux/actions/ActionCreator';
 
 export const Delivery: React.FC = (): JSX.Element => {
   const [screenWidth, setScreenWidth] = React.useState<number>(0);
-  const [error, setError] = useState<string>();
-  const {cart} = useAppSelector((state) => state.cartReducer);
-  const {order} = useAppSelector((state) => state.orderReducer);
+  const {cart, totalCount, totalPrice} = useAppSelector((state) => state.cartReducer);
+  const {deliveryType, payment} = useAppSelector((state) => state.orderReducer);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const methods = useForm({mode: 'onChange'});
 
   const onSubmit: SubmitHandler<any> = (data: IAddressDeliveryInterfaces) => {
+    const obj = {
+      delivery: data,
+      products: cart,
+      totalCount,
+      totalPrice,
+      deliveryType,
+      payment
+    };
     try {
       dispatch(setOrder(data));
+      dispatch(postOrder(obj));
+      dispatch(setResetCart());
+
       methods.reset({
         name: '',
         phone: '',
@@ -35,14 +46,11 @@ export const Delivery: React.FC = (): JSX.Element => {
         office: '',
         check: false
       });
-      dispatch(setResetCart());
-      navigate('/');
+      navigate('/order');
     } catch (e: any) {
-      setError(e.message);
+      console.log(e.message);
     }
   };
-
-  console.log(error);
 
   const resizeWindow = () => {
     setScreenWidth(window.innerWidth);
@@ -60,8 +68,6 @@ export const Delivery: React.FC = (): JSX.Element => {
       dispatch(setActiveNav(0));
     }
   }, []);
-
-  console.log(order);
 
   return (
     <div className={styles.wrapper}>

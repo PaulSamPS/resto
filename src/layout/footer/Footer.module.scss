@@ -1,9 +1,9 @@
 @import './src/scss/index';
 
 .wrapper {
+	width: calc(100% - 40px);
 	margin-top: auto;
 	padding: 24px 80px;
-	width: calc(100% - 40px);
 
 	text-align: center;
 
@@ -12,6 +12,7 @@
 
 	@include _tablet {
 		display: grid;
+
 		margin-right: 20px;
 		margin-left: 20px;
 		padding: 24px 0;

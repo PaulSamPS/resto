@@ -36,9 +36,11 @@
 
 	.errorMessage {
 		position: absolute;
-		top: -20px;
+		top: -18px;
 		left: 0;
 
 		color: var(--red);
+
+		font-size: 14px;
 	}
 }

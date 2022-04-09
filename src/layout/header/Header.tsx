@@ -12,6 +12,7 @@ import {AnimatePresence, motion} from 'framer-motion';
 import {ButtonMobile} from '../../components/ButtonMobile/ButtonMobile';
 import {Button} from '../../components/Button/Button';
 import styles from './Header.module.scss';
+import {MyOrders} from './MyOrders/MyOrders';
 
 
 export const Header: React.FC = (): JSX.Element => {
@@ -42,6 +43,7 @@ export const Header: React.FC = (): JSX.Element => {
   const handleNavigate = () => {
     dispatch(setActiveNav(0));
     dispatch(getProduct());
+    setModal(false);
     navigate('/');
   };
 
@@ -55,12 +57,13 @@ export const Header: React.FC = (): JSX.Element => {
       <h1 className={styles.logo} onClick={handleNavigate}>LOGOS</h1>
       <Search/>
       <Contacts/>
+      <MyOrders/>
       <ButtonMobile appearance={'cartMobile'} totalCount={totalCount} onClick={handleClick}>корзина</ButtonMobile>
       <Button className={styles.btn} totalCount={totalCount} appearance={'cart'} onClick={handleClick}>Корзина</Button>
       <Modal setModal={setModal} modal={modal}>
         <img className={styles.image} src={'assets/emptyCart.png'} alt='Корзина пуста'/>
         <h2>Корзина пуста</h2>
-        <Button className={styles.modalBtn} onClick={() => setModal(false)}>Посмотреть меню</Button>
+        <Button className={styles.modalBtn} onClick={handleNavigate}>Посмотреть меню</Button>
       </Modal>
       <AnimatePresence>
         {modalMenu &&

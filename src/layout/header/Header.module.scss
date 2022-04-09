@@ -9,10 +9,10 @@
 	width: 100%;
 
 	padding: 24px 80px;
-	grid-template-columns: auto 555px 1fr auto;
+	grid-template-columns: auto 555px 1fr auto auto;
 
 	@include _laptopL {
-		grid-template-columns: auto 1fr auto auto;
+		grid-template-columns: auto 1fr auto auto auto;
 	}
 
 	@include _laptop {
@@ -30,7 +30,8 @@
 		@include _laptop {
 			display: unset;
 			grid-area: burger;
-          cursor: pointer;
+
+			cursor: pointer;
 		}
 	}
 
@@ -66,8 +67,8 @@
 	.image {
 		width: 76px;
 		height: 89px;
+		margin-top: 10%;
 		margin-bottom: 20px;
-      margin-top: 10%;
 	}
 
 	.modalBtn {

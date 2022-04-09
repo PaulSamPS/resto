@@ -4,8 +4,10 @@ import {productSlice} from '../reducers/ProductSlice';
 import {productInfoSlice} from '../reducers/ProductInfoSlice';
 import {navSlice} from '../reducers/NavSlice';
 import {NavInterface} from '../../interfaces/nav.interface';
-import {geoSlice} from '../reducers/GeoSlice';
 import axios from 'axios';
+import {geoSlice} from '../reducers/GeoSlice';
+import {orderSuccessSlice} from '../reducers/OrderSuccess';
+import {IOrderSuccess, IOSuccess} from '../../interfaces/order.interface';
 
 export const getProduct = (category?: string) => async (dispatch: AppDispatch) => {
   try {
@@ -56,5 +58,25 @@ export const getGeo = () => async (dispatch: AppDispatch) => {
   } catch (e) {
     const error = e as Error;
     dispatch(geoSlice.actions.setGeoError(error.message));
+  }
+};
+
+export const postOrder = (obj: any) => async (dispatch: AppDispatch) => {
+  try {
+    await axios.post('api/order', obj);
+  } catch (e) {
+    const error = e as Error;
+    console.log(error);
+  }
+};
+
+export const getOrderSuccess = () => async (dispatch: AppDispatch) => {
+  try {
+    dispatch(orderSuccessSlice.actions.setOrderSuccess());
+    const res = await axios.get<IOrderSuccess[]>(`/api/order`);
+    dispatch(orderSuccessSlice.actions.setOrderSuccessSuccess(res.data));
+  } catch (e) {
+    const error = e as Error;
+    dispatch(orderSuccessSlice.actions.setOrderSuccessError(error.message));
   }
 };

@@ -3,9 +3,9 @@
 .title {
 	margin-bottom: 20px;
 
-	font-size: 18px;
-
 	text-transform: none;
+
+	font-size: 18px;
 	grid-area: title;
 
 	@include _tablet {

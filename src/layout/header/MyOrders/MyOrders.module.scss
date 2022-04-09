@@ -1,0 +1,12 @@
+.wrapper {
+  margin-right: 40px;
+
+  span {
+    cursor: pointer;
+    transition: all ease .2s;
+
+    &:hover {
+      color: var(--green);
+    }
+  }
+}

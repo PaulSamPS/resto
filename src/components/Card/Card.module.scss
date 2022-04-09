@@ -2,6 +2,7 @@
 
 .wrapper {
 	position: relative;
+
 	@include flexColumn;
 	align-items: unset;
 
@@ -37,7 +38,6 @@
 
 		cursor: pointer;
 
-
 		@include _desktop {
 			width: 300px;
 		}
@@ -48,15 +48,18 @@
 
 		img {
 			object-fit: cover;
+
 			width: 100%;
 			height: 100%;
+
 			border-radius: 10px 10px 0 0;
 		}
 	}
 
 	.info {
-		padding: 20px;
 		flex-grow: 1;
+
+		padding: 20px;
 
 		p {
 			color: #CFCFCF;
@@ -78,9 +81,10 @@
 		}
 
 		.desc {
+			flex-grow: 1;
+
 			max-width: 250px;
 			margin-top: 10px;
-			flex-grow: 1;
 
 			@include _desktop {
 				width: 220px;

@@ -9,6 +9,7 @@ import {setDeliveryType} from '../../../redux/reducers/OrderSlice';
 import {Button} from '../../../components/Button/Button';
 import cn from 'classnames';
 import styles from './AddressDelivery.module.scss';
+import {AddressSelfDelivery} from './AddressSelfDelivery/AddressSelfDelivery';
 
 
 export const AddressDelivery: React.FC<AddressDeliveryProps> = ({screenWidth}): JSX.Element => {
@@ -30,6 +31,10 @@ export const AddressDelivery: React.FC<AddressDeliveryProps> = ({screenWidth}): 
     e.preventDefault();
     dispatch(setDeliveryType(name));
   };
+
+  React.useEffect(() => {
+    dispatch(setDeliveryType('Доставка'));
+  }, []);
 
   return (
     <DeliveryBlock>
@@ -66,6 +71,7 @@ export const AddressDelivery: React.FC<AddressDeliveryProps> = ({screenWidth}): 
         </AnimatePresence>
       </div>
       <AddressInputs activeIndex={activeIndex}/>
+      <AddressSelfDelivery activeIndex={activeIndex}/>
     </DeliveryBlock>
   );
 };

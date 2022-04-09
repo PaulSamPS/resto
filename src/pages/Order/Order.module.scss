@@ -1,0 +1,106 @@
+@import './src/scss/index';
+
+.wrapper {
+  width: 840px;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  @include _laptop {
+    width: 100%;
+  }
+
+  .title {
+    margin: 16px 0 40px 0;
+    padding-left: 20px;
+
+    border-left: 4px solid var(--green);
+
+    font-size: 32px;
+
+    @include _tablet {
+      margin-left: 0;
+
+      font-size: 26px;
+    }
+  }
+
+  .infoBlock {
+    margin-bottom: 20px;
+    @include flexColumn;
+    align-items: unset;
+    row-gap: 10px;
+
+    label {
+      color: var(--tetxGray);
+    }
+
+    span {
+      color: var(--textWhite);
+    }
+  }
+
+  .card {
+    @include flexBetweenCenter;
+    margin-bottom: 15px;
+
+    img {
+      width: 117px;
+      height: 86px;
+      border-radius: 10px;
+    }
+
+    .count {
+      width: 50px;
+      height: 50px;
+
+      color: var(--textWhite);
+      border-radius: 50%;
+      background: var(--green);
+
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 24px;
+
+      @include flexCenterCenter;
+    }
+  }
+
+  .totalSum {
+    @include flex;
+    column-gap: 10px;
+
+    span {
+      color: #A6A7AB;
+
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .totalPrice {
+      color: var(--textWhite);
+
+      font-size: 25px;
+      font-weight: 700;
+    }
+  }
+
+  .countBlock {
+    @include flex;
+    column-gap: 10px;
+    margin-bottom: 10px;
+
+    span {
+      color: #A6A7AB;
+
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .totalCount {
+      color: var(--textWhite);
+
+      font-size: 25px;
+      font-weight: 700;
+    }
+  }
+}
