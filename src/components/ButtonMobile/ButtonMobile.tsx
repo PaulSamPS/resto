@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './ButtonMobile.module.scss';
 import {ButtonMobileProps} from './ButtonMobile.props';
-import {ReactComponent as CartIcon} from './Icons/buy.svg';
-import {ReactComponent as BurgerIcon} from './Icons/burger.svg';
+import {ReactComponent as CartIcon} from '../../helpers/icons/mobileCart.svg';
+import {ReactComponent as BurgerIcon} from '../../helpers/icons/burger.svg';
 import cn from 'classnames';
 
 export const ButtonMobile = ({appearance, totalCount, children, className, ...props}: ButtonMobileProps): JSX.Element => {

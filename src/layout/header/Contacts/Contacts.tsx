@@ -1,5 +1,5 @@
 import React from 'react';
-import {ReactComponent as CallingIcon} from './icons/calling.svg';
+import {ReactComponent as CallingIcon} from '../../../helpers/icons/calling.svg';
 import styles from './Contacts.module.scss';
 
 export const Contacts: React.FC = (): JSX.Element => {

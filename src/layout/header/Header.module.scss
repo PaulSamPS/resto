@@ -54,6 +54,23 @@
 		}
 	}
 
+	.myOrders {
+		margin-right: 40px;
+
+		@include _laptop {
+			display: none;
+		}
+
+		span {
+			cursor: pointer;
+			transition: all ease .2s;
+
+			&:hover {
+				color: var(--green);
+			}
+		}
+	}
+
 	.btn {
 		@include _laptopL {
 			padding: 8px 16px;

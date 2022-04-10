@@ -1,5 +1,5 @@
 import React from 'react';
-import {ReactComponent as LocationIcon} from './icons/location.svg';
+import {ReactComponent as LocationIcon} from '../../../helpers/icons/location.svg';
 // import {ReactComponent as SearchIcon} from './icons/search.svg';
 import {AddressSuggestions, DaDataSuggestion, DaDataAddress} from 'react-dadata';
 import {useAppDispatch, useAppSelector} from '../../../hooks/redux';

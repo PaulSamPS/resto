@@ -46,7 +46,7 @@ export const Delivery: React.FC = (): JSX.Element => {
         office: '',
         check: false
       });
-      navigate('/order');
+      navigate('/accepted-order');
     } catch (e: any) {
       console.log(e.message);
     }

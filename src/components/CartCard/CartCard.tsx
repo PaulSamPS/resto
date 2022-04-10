@@ -1,8 +1,8 @@
 import React from 'react';
-import {ReactComponent as MinusIcon} from '../Button/Icons/minus.svg';
-import {ReactComponent as PlusIcon} from '../Button/Icons/plus.svg';
+import {ReactComponent as MinusIcon} from '../../helpers/icons/minus.svg';
+import {ReactComponent as PlusIcon} from '../../helpers/icons/plus.svg';
 import {priceRu} from '../../helpers/priceRu';
-import {ReactComponent as DeleteIcon} from './Icons/delete.svg';
+import {ReactComponent as DeleteIcon} from '../../helpers/icons/delete.svg';
 import {CartCardProps} from './CartCard.props';
 import {deleteItem, minusItem, setCart} from '../../redux/reducers/CartSlice';
 import {useAppDispatch} from '../../hooks/redux';

@@ -6,19 +6,19 @@ import {useAppDispatch, useAppSelector} from '../../hooks/redux';
 import {useNavigate} from 'react-router-dom';
 import {setActiveNav} from '../../redux/reducers/NavSlice';
 import {getProduct} from '../../redux/actions/ActionCreator';
-import {ReactComponent as MobileMenuIcon} from './Icons/burger.svg';
+import {ReactComponent as MobileMenuIcon} from '../../helpers/icons/burger.svg';
 import {MobileMenu} from '../../components/MobileMenu/MobileMenu';
 import {AnimatePresence, motion} from 'framer-motion';
 import {ButtonMobile} from '../../components/ButtonMobile/ButtonMobile';
 import {Button} from '../../components/Button/Button';
 import styles from './Header.module.scss';
-import {MyOrders} from './MyOrders/MyOrders';
 
 
 export const Header: React.FC = (): JSX.Element => {
   const [modal, setModal] = React.useState<boolean>(false);
   const [modalMenu, setModalMenu] = React.useState<boolean>(false);
   const {totalCount} = useAppSelector((state) => state.cartReducer);
+  const {orderSuccess} = useAppSelector((state) => state.orderSuccessReducer);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -51,13 +51,19 @@ export const Header: React.FC = (): JSX.Element => {
     setModalMenu(true);
   };
 
+  const myOrdersNavigate = () => {
+    navigate('/my-orders');
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.burger} onClick={handleOpenMenu}><MobileMenuIcon/></div>
       <h1 className={styles.logo} onClick={handleNavigate}>LOGOS</h1>
       <Search/>
       <Contacts/>
-      <MyOrders/>
+      <div className={styles.myOrders}>
+        {orderSuccess.length > 0 && <span onClick={myOrdersNavigate}>Мои заказы</span>}
+      </div>
       <ButtonMobile appearance={'cartMobile'} totalCount={totalCount} onClick={handleClick}>корзина</ButtonMobile>
       <Button className={styles.btn} totalCount={totalCount} appearance={'cart'} onClick={handleClick}>Корзина</Button>
       <Modal setModal={setModal} modal={modal}>

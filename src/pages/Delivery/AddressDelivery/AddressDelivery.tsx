@@ -1,5 +1,5 @@
 import React, {MouseEvent} from 'react';
-import {ReactComponent as ClockIcon} from './Icons/clock.svg';
+import {ReactComponent as ClockIcon} from '../../../helpers/icons/clock.svg';
 import {DeliveryBlock} from '../../../components/DeliveryBlock/DeliveryBlock';
 import {AnimatePresence, motion} from 'framer-motion';
 import {AddressDeliveryProps} from './AddressDelivery.props';

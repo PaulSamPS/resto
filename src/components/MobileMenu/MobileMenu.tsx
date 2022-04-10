@@ -1,17 +1,18 @@
 import React from 'react';
 import {useAppDispatch, useAppSelector} from '../../hooks/redux';
 import {NavInterface} from '../../interfaces/nav.interface';
-import {ReactComponent as CloseIcon} from '../Modal/Icons/close.svg';
+import {ReactComponent as CloseIcon} from '../../helpers/icons/close.svg';
 import {setActiveNav} from '../../redux/reducers/NavSlice';
 import {getProduct} from '../../redux/actions/ActionCreator';
 import {useNavigate} from 'react-router-dom';
-import {ReactComponent as CallingIcon} from '../../layout/header/Contacts/icons/calling.svg';
+import {ReactComponent as CallingIcon} from '../../helpers/icons/calling.svg';
 import {MobileMenuProps} from './MobileMenu.props';
 import cn from 'classnames';
 import styles from './MobileMenu.module.scss';
 
 export const MobileMenu: React.FC<MobileMenuProps> = ({setModalMenu}): JSX.Element => {
   const {nav, activeIndex} = useAppSelector((state) => state.navReducer);
+  const {orderSuccess} = useAppSelector((state) => state.orderSuccessReducer);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -26,12 +27,21 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({setModalMenu}): JSX.Eleme
     navigate('/');
   };
 
+  const myOrdersNavigate = () => {
+    navigate('/my-orders');
+    handleCloseModal();
+  };
+
   return (
     <div className={styles.wrapper} onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}>
       <div className={styles.top}>
         <CloseIcon onClick={handleCloseModal}/>
         <h1>LOGOS</h1>
       </div>
+      <div className={styles.myOrders}>
+        {orderSuccess.length > 0 && <span onClick={myOrdersNavigate}>Мои заказы</span>}
+      </div>
+      <span className={styles.categories}>Категории: </span>
       {nav.map((m: NavInterface, index: number) =>
         <a
           className={cn(styles.navLink, {

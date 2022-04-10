@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './Button.module.scss';
 import {ButtonProps} from './Button.props';
-import {ReactComponent as CartIcon} from './Icons/buy.svg';
-import {ReactComponent as BagIcon} from './Icons/shoppingBag.svg';
+import {ReactComponent as CartIcon} from '../../helpers/icons/buy.svg';
+import {ReactComponent as BagIcon} from '../../helpers/icons/shoppingBag.svg';
 import cn from 'classnames';
 
 export const Button = ({appearance, totalCount, children, className, ...props}: ButtonProps): JSX.Element => {

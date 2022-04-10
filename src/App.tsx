@@ -6,7 +6,8 @@ import {Cart} from './pages/Cart/Cart';
 import {getOrderSuccess, getProduct} from './redux/actions/ActionCreator';
 import {useAppDispatch, useAppSelector} from './hooks/redux';
 import {Delivery} from './pages/Delivery/Delivery';
-import {Order} from './pages/Order/Order';
+import {MyOrders} from './pages/MyOrders/MyOrders';
+import {AcceptedOrder} from './pages/AcceptedOrder/AcceptedOrder';
 
 export const App: React.FC = (): JSX.Element => {
   const {product} = useAppSelector((state) => state.productReducer);
@@ -29,7 +30,8 @@ export const App: React.FC = (): JSX.Element => {
             <Route index element={<Main product={product}/>}/>
             <Route path='cart' element={<Cart/>}/>
             <Route path='delivery' element={<Delivery/>}/>
-            <Route path='order' element={<Order order={orderSuccess} loading={isLoading}/>}/>
+            <Route path='my-orders' element={<MyOrders order={orderSuccess} loading={isLoading}/>}/>
+            <Route path='accepted-order' element={<AcceptedOrder/>}/>
             <Route path='*' element={<Navigate to='/' replace/>}/>
           </Route>
         </Routes>
