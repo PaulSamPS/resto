@@ -7,7 +7,7 @@ import {NavInterface} from '../../interfaces/nav.interface';
 import axios from 'axios';
 import {geoSlice} from '../reducers/GeoSlice';
 import {orderSuccessSlice} from '../reducers/OrderSuccess';
-import {IOrderSuccess, IOSuccess} from '../../interfaces/order.interface';
+import {IOrderSuccess} from '../../interfaces/order.interface';
 
 export const getProduct = (category?: string) => async (dispatch: AppDispatch) => {
   try {
